@@ -84,7 +84,7 @@ public class HNMarkdown : UIView {
                 }
                 str = ""
                 type = .code
-                let text = table.format()
+                let text = table.format().trimmingCharacters(in: .whitespacesAndNewlines)
                 let item = HNMarkDownItem(type:type,content: text)
                 self.items.append(item)
             }else{
