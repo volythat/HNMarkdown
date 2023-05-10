@@ -15,7 +15,7 @@ import SwiftRichString
 import Splash
 import Markdown
 
-class HNMarkdown : UIView {
+public class HNMarkdown : UIView {
     
     var items : [HNMarkDownItem] = []
     var contentHeight : CGFloat = 0
