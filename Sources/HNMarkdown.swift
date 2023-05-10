@@ -72,10 +72,12 @@ public class HNMarkdown : UIView {
                 let item = HNMarkDownItem(type:type,content: text)
                 self.items.append(item)
             }else if let table = mark as? Table {
-                print("table = \(table.debugDescription(options: .printSourceLocations))")
+                print("table = \(table.format())")
+                print("table = \(table.debugDescription(options: .printEverything))")
                 table.head.cells.forEach { cell in
                     print("cell = \(cell.plainText)")
                 }
+                
             }else{
                 type = .text
                 mark.children.forEach { child in
