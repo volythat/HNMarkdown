@@ -145,8 +145,7 @@ extension UIButton {
         } completion: { _ in
             self.isSelected = true
             self.alpha = 1
-            UIView.animate(withDuration: 0.3) {
-            } completion: { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
                 self.isSelected = false
                 self.isUserInteractionEnabled = true
             }
