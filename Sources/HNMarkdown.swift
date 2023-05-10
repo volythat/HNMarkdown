@@ -71,6 +71,13 @@ public class HNMarkdown : UIView {
                 let text = mark.format().removeElement(element: element)
                 let item = HNMarkDownItem(type:type,content: text)
                 self.items.append(item)
+            }else if let table = mark as? Table {
+                table.head.cells.forEach { cell in
+                    print("head = \(cell.format())")
+                }
+                table.body.rows.forEach { row in
+                    print("row = \(row.format())")
+                }
             }else{
                 type = .text
                 mark.children.forEach { child in
