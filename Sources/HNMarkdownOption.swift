@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public struct HNMarkdownOption {
+public class HNMarkdownOption {
     var fontSize : CGFloat = 14
     var font : UIFont {
         get {
