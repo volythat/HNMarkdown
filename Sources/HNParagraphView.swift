@@ -142,9 +142,8 @@ extension UIButton {
         self.fade()
         
         UIView.animate(withDuration: 0.6) {
-            
-        } completion: { _ in
             self.isSelected = false
+        } completion: { _ in
             self.isUserInteractionEnabled = true
         }
     }
