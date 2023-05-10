@@ -145,7 +145,7 @@ extension UIButton {
         } completion: { _ in
             self.isSelected = true
             self.alpha = 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
                 self.isSelected = false
                 self.isUserInteractionEnabled = true
             }
