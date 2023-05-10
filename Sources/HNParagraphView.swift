@@ -48,13 +48,15 @@ class HNParagraphView: UIView {
     func createCopyButton(){
         let btn = UIButton(frame: CGRect(x: frame.width - 40, y: 0, width: 40, height: 40))
         btn.setImage(self.options.copyImage, for: .normal)
+        btn.setImage(self.options.copyDoneImage, for: .selected)
         btn.tintColor = self.options.tintColorCopyButton
-        btn.addTarget(self , action: #selector(self.selectedCopyButton), for: .touchUpInside)
+        btn.addTarget(self , action: #selector(self.selectedCopyButton(_:)), for: .touchUpInside)
         self.addSubview(btn)
     }
-    @objc func selectedCopyButton(){
+    @objc func selectedCopyButton(_ sender:UIButton){
         UIPasteboard.general.string = item?.content ?? ""
         print("copied content to clipboard!")
+        sender.animationCopyButton()
     }
     
     func setAttrParagraph(text:String)->NSMutableAttributedString?{
@@ -122,5 +124,28 @@ class HNParagraphView: UIView {
     func setAttrCode(text:String)->NSAttributedString?{
         let highlighter = SyntaxHighlighter(format: AttributedStringOutputFormat(theme: .sunset(withFont: Font(size:self.options.fontSize))))
         return highlighter.highlight(text)
+    }
+}
+extension UIButton {
+    func fade(){
+        UIView.animate(withDuration: 0.1) {
+            self.alpha = 0.1
+        } completion: { _ in
+            self.isSelected = true
+            self.alpha = 1
+            
+        }
+
+    }
+    func animationCopyButton(){
+        isUserInteractionEnabled = false
+        self.fade()
+        
+        UIView.animate(withDuration: 0.6) {
+            
+        } completion: { _ in
+            self.isSelected = false
+            self.isUserInteractionEnabled = true
+        }
     }
 }
