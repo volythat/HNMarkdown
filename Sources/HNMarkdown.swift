@@ -30,6 +30,7 @@ public class HNMarkdown : UIView {
     }
     
     public func setUp(markdownText:String){
+        HNFont.SpaceMonoRegular.register()
         let document = Document(parsing: markdownText)
         items = []
         var str = ""

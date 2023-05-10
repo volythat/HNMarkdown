@@ -35,6 +35,15 @@ public enum HNFont : String {
     public func size(_ size:CGFloat) -> UIFont {
         return UIFont(name: self.rawValue, size: size) ?? UIFont(name: "HelveticaNeue", size: size)!
     }
+    public func register(){
+        guard let asset = NSDataAsset(name: "Fonts/\(self.rawValue)", bundle: Bundle.module),
+              let provider = CGDataProvider(data: asset.data as NSData),
+              let font = CGFont(provider),
+              CTFontManagerRegisterGraphicsFont(font, nil) else {
+            print("register font error")
+            return
+        }
+    }
 }
 
 extension UIFont {
