@@ -12,7 +12,7 @@ import UIKit
 
 #endif
 
-enum HNFont : String {
+public enum HNFont : String {
     case AvenirNextRegular = "AvenirNext-Regular"
     case AvenirNextMedium = "AvenirNext-Medium"
     case AvenirNextBold = "AvenirNext-Bold"
@@ -32,17 +32,17 @@ enum HNFont : String {
     
     case SpaceMonoRegular = "SpaceMono-Regular"
     
-    func size(_ size:CGFloat) -> UIFont {
+    public func size(_ size:CGFloat) -> UIFont {
         return UIFont(name: self.rawValue, size: size) ?? UIFont(name: "HelveticaNeue", size: size)!
     }
 }
 
 extension UIFont {
-    class func font(_ name:HNFont,_ size:CGFloat)->UIFont{
+    public class func font(_ name:HNFont,_ size:CGFloat)->UIFont{
         return UIFont(name: name.rawValue, size: size)!
     }
     
-    class func printFonts() {
+    public class func printFonts() {
         
         let fontFamilyNames = UIFont.familyNames
         for familyName in fontFamilyNames {
