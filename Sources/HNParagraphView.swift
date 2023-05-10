@@ -47,8 +47,8 @@ class HNParagraphView: UIView {
     }
     func createCopyButton(){
         let btn = UIButton(frame: CGRect(x: frame.width - 40, y: 0, width: 40, height: 40))
-        btn.setImage(UIImage(systemName: "doc.on.doc"), for: .normal)
-        btn.tintColor = UIColor(hexString: "#50D78C")
+        btn.setImage(self.options.copyImage, for: .normal)
+        btn.tintColor = self.options.tintColorCopyButton
         btn.addTarget(self , action: #selector(self.selectedCopyButton), for: .touchUpInside)
         self.addSubview(btn)
     }

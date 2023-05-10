@@ -40,6 +40,7 @@ public struct HNMarkdownOption {
     }
     var codeBackground = UIColor(hexString: "#F4F7F9")
     var color = UIColor(hexString: "#000000")
-    
+    var copyImage = UIImage(systemName: "doc.on.doc")
+    var tintColorCopyButton = UIColor.darkGray
 }
 
