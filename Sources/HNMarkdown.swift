@@ -73,7 +73,9 @@ public class HNMarkdown : UIView {
                 self.items.append(item)
             }else if let table = mark as? Table {
                 print("table = \(table.debugDescription(options: .printSourceLocations))")
-                
+                table.head.cells.forEach { cell in
+                    print("cell = \(cell.plainText)")
+                }
             }else{
                 type = .text
                 mark.children.forEach { child in
