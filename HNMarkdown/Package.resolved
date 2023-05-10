@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "splash",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JohnSundell/Splash",
+      "state" : {
+        "revision" : "7f4df436eb78fe64fe2c32c58006e9949fa28ad8",
+        "version" : "0.16.0"
+      }
+    },
+    {
+      "identity" : "swift-cmark",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-cmark.git",
+      "state" : {
+        "branch" : "gfm",
+        "revision" : "6c7037758492a28593264aaa22ef659afa94e5bf"
+      }
+    },
+    {
+      "identity" : "swift-markdown",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-markdown.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "40f7f858e01a6ca512d96088087ffa861861eee5"
+      }
+    },
+    {
+      "identity" : "swiftrichstring",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/malcommac/SwiftRichString.git",
+      "state" : {
+        "revision" : "9bf4b5af6bb4386865636fc504d6c588c2b65040",
+        "version" : "3.7.2"
+      }
+    }
+  ],
+  "version" : 2
+}
