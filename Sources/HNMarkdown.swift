@@ -20,7 +20,7 @@ public class HNMarkdown : UIView {
     var items : [HNMarkDownItem] = []
     var contentHeight : CGFloat = 0
     let padding : CGFloat = 16
-    var options : HNMarkdownOption = HNMarkdownOption()
+    public var options : HNMarkdownOption = HNMarkdownOption()
     var widthView : CGFloat = 300
     
     override init(frame: CGRect) {
