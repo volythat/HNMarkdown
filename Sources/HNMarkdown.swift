@@ -21,6 +21,7 @@ public class HNMarkdown : UIView {
     var contentHeight : CGFloat = 0
     let padding : CGFloat = 16
     var options : HNMarkdownOption = HNMarkdownOption()
+    var widthView : CGFloat = 300
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +30,8 @@ public class HNMarkdown : UIView {
         super.init(coder: coder)
     }
     
-    public func setUp(markdownText:String){
+    public func setUp(markdownText:String,width:CGFloat){
+        self.widthView = width
         HNFont.SpaceMonoRegular.register()
         let document = Document(parsing: markdownText)
         items = []
@@ -94,8 +96,8 @@ public class HNMarkdown : UIView {
         var y = CGFloat(0)
         items.forEach { item in
             y += 8
-            let h = item.getHeight(width: self.frame.width - (self.padding * 2), font: self.options.font)
-            let label = HNParagraphView(frame: CGRect(x: self.padding, y: y , width: self.frame.width - (self.padding * 2), height: h))
+            let h = item.getHeight(width: self.widthView - (self.padding * 2), font: self.options.font)
+            let label = HNParagraphView(frame: CGRect(x: self.padding, y: y , width: self.widthView - (self.padding * 2), height: h))
             label.setUp(item: item,options: self.options, height: h)
             
             if item.type == .code {
