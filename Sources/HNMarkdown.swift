@@ -72,7 +72,7 @@ public class HNMarkdown : UIView {
                 let item = HNMarkDownItem(type:type,content: text)
                 self.items.append(item)
             }else if let table = mark as? Table {
-                print("table = \(table.debugDescription())")
+                print("table = \(table.debugDescription(options: .printSourceLocations))")
                 
             }else{
                 type = .text
