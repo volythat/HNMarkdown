@@ -77,7 +77,7 @@ public class HNMarkdown : UIView {
 //                table.head.cells.forEach { cell in
 //                    print("cell = \(cell.plainText)")
 //                }
-                type = .text
+                type = .code
                 str += table.format()
             }else{
                 type = .text
