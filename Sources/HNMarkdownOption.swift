@@ -14,16 +14,19 @@ public class HNMarkdownOption {
         get {
             return UIFont.systemFont(ofSize: fontSize)
         }
+        set {}
     }
     public var fontBold : UIFont {
         get {
             return UIFont.boldSystemFont(ofSize: fontSize)
         }
+        set {}
     }
     public var fontItalic : UIFont {
         get {
             return UIFont.italicSystemFont(ofSize: fontSize)
         }
+        set {}
     }
     
     public var fontHeader6 = UIFont.boldSystemFont(ofSize: 16)
@@ -37,6 +40,7 @@ public class HNMarkdownOption {
         get {
             return HNFont.SpaceMonoRegular.size(fontSize)
         }
+        set {}
     }
     public var codeBackground = UIColor(hexString: "#F4F7F9")
     public var color = UIColor(hexString: "#000000")
