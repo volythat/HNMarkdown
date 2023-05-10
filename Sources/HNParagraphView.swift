@@ -128,7 +128,7 @@ class HNParagraphView: UIView {
 }
 extension UIButton {
     func fade(){
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.3) {
             self.alpha = 0.1
         } completion: { _ in
             self.isSelected = true
