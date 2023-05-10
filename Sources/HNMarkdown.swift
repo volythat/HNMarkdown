@@ -29,7 +29,7 @@ public class HNMarkdown : UIView {
         super.init(coder: coder)
     }
     
-    func setUp(markdownText:String){
+    public func setUp(markdownText:String){
         let document = Document(parsing: markdownText)
         items = []
         var str = ""
