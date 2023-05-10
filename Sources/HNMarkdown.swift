@@ -77,8 +77,16 @@ public class HNMarkdown : UIView {
 //                table.head.cells.forEach { cell in
 //                    print("cell = \(cell.plainText)")
 //                }
+                
+                if !str.isEmpty {
+                    let item = HNMarkDownItem(type:.text,content: str)
+                    self.items.append(item)
+                }
+                str = ""
                 type = .code
-                str += table.format()
+                let text = table.format()
+                let item = HNMarkDownItem(type:type,content: text)
+                self.items.append(item)
             }else{
                 type = .text
                 mark.children.forEach { child in
