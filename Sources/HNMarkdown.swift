@@ -93,9 +93,9 @@ class HNMarkdown : UIView {
         var y = CGFloat(0)
         items.forEach { item in
             y += 8
-            let h = item.getHeight(width: self.frame.width - (self.padding * 2))
+            let h = item.getHeight(width: self.frame.width - (self.padding * 2), font: self.options.font)
             let label = HNParagraphView(frame: CGRect(x: self.padding, y: y , width: self.frame.width - (self.padding * 2), height: h))
-            label.setUp(item: item, height: h)
+            label.setUp(item: item,options: self.options, height: h)
             
             if item.type == .code {
                 label.backgroundColor = self.options.codeBackground
@@ -108,7 +108,16 @@ class HNMarkdown : UIView {
             y += label.frame.size.height
         }
         self.contentHeight = y + 16
+        self.updateHeightConstraint()
     }
     
+    func updateHeightConstraint(){
+        for con in self.constraints {
+            if con.firstAttribute == NSLayoutConstraint.Attribute.height {
+                con.constant = self.contentHeight
+                break
+            }
+        }
+    }
 }
 
