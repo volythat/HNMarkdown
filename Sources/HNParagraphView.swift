@@ -139,12 +139,18 @@ extension UIButton {
     }
     func animationCopyButton(){
         isUserInteractionEnabled = false
-        self.fade()
         
-        UIView.animate(withDuration: 0.6) {
-            self.isSelected = false
+        UIView.animate(withDuration: 0.3) {
+            self.alpha = 0.1
         } completion: { _ in
-            self.isUserInteractionEnabled = true
+            self.isSelected = true
+            self.alpha = 1
+            UIView.animate(withDuration: 0.3) {
+            } completion: { _ in
+                self.isSelected = false
+                self.isUserInteractionEnabled = true
+            }
         }
+        
     }
 }
