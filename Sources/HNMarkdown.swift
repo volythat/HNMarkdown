@@ -23,7 +23,6 @@ public class HNMarkdown : UIView {
     var contentHeight : CGFloat = 0
     let padding : CGFloat = 16
     public var options : HNMarkdownOption = HNMarkdownOption()
-    var widthView : CGFloat = 300
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,8 +32,7 @@ public class HNMarkdown : UIView {
         super.init(coder: coder)
     }
     
-    public func setUp(markdownText:String,width:CGFloat){
-        self.widthView = width
+    public func setUp(markdownText:String){
         HNFont.SpaceMonoRegular.register()
         let document = Document(parsing: markdownText)
         items = []
