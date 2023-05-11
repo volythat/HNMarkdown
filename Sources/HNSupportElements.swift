@@ -51,7 +51,7 @@ enum HNSupportElements : String {
             return from
             
         case .inlinecode:
-            return "<f> " + from + " </f>"
+            return "<f>" + from + "</f>"
         }
     }
 }

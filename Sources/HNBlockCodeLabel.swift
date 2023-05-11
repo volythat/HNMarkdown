@@ -30,16 +30,16 @@ class HNBlockCodeLabel : HNParagraphLabel {
         }
     }
     func createCopyButton(){
-        let btn = UIButton(frame: CGRect(x: frame.width - 40, y: 0, width: 40, height: 40))
+        let btn = UIButton(frame: CGRect(x: frame.width - 30, y: 0, width: 30, height: 30))
         btn.setImage(self.options.copyImage, for: .normal)
         btn.setImage(self.options.copyDoneImage, for: .selected)
         btn.tintColor = self.options.tintColorCopyButton
         btn.addTarget(self , action: #selector(self.selectedCopyButton(_:)), for: .touchUpInside)
         self.addSubview(btn)
         btn.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(5)
+            make.top.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.width.height.equalTo(40)
+            make.width.height.equalTo(15)
         }
     }
     //MARK: - FUNC
