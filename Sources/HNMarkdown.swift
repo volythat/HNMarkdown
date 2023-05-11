@@ -14,10 +14,12 @@ import Foundation
 import SwiftRichString
 import Splash
 import Markdown
+import SnapKit
 
 public class HNMarkdown : UIView {
     
     var items : [HNMarkDownItem] = []
+    
     var contentHeight : CGFloat = 0
     let padding : CGFloat = 16
     public var options : HNMarkdownOption = HNMarkdownOption()
@@ -73,10 +75,6 @@ public class HNMarkdown : UIView {
                 self.items.append(item)
             }else if let table = mark as? Table {
                 print("table = \(table.format())")
-//                print("table = \(table.debugDescription(options: .printEverything))")
-//                table.head.cells.forEach { cell in
-//                    print("cell = \(cell.plainText)")
-//                }
                 
                 if !str.isEmpty {
                     let item = HNMarkDownItem(type:.text,content: str)
@@ -87,31 +85,49 @@ public class HNMarkdown : UIView {
                 let text = table.format().trimmingCharacters(in: .whitespacesAndNewlines)
                 let item = HNMarkDownItem(type:type,content: text)
                 self.items.append(item)
-            }else{
+            }
+//            else if mark is UnorderedList || mark is OrderedList || mark is ListItem {
+//                type = .text
+//                str += mark.format(options: .init(orderedListNumerals: .incrementing(start: 1)))
+//            }
+            else{
                 type = .text
+                var isAdded = false
                 mark.children.forEach { child in
                     if child is Emphasis {
+                        isAdded = true
                         str += child.format().removeElement(element: .italic)
                     }else if child is Strong {
+                        isAdded = true
                         str += child.format().removeElement(element: .bold)
                     }else if child is Strikethrough {
+                        isAdded = true
                         str += child.format().removeElement(element: .strikethrough)
                     }else if child is InlineCode {
+                        isAdded = true
                         str += child.format().removeElement(element: .inlinecode)
-                    }else{
+                    }else if child is Text {
+                        isAdded = true
                         str += child.format()
                     }
                 }
+                if !isAdded {
+                    str += mark.format(options: .init(orderedListNumerals: .incrementing(start: 1)))
+                }
             }
         }
-        
+        if !str.isEmpty {
+            let item = HNMarkDownItem(type:.text,content: str)
+            self.items.append(item)
+            str = ""
+        }
         self.addItemViews()
     }
     
     func addItemViews(){
         var y = CGFloat(0)
         items.forEach { item in
-            y += 8
+            y += 3
             let h = item.getHeight(width: self.widthView - (self.padding * 2), font: self.options.font)
             let label = HNParagraphView(frame: CGRect(x: self.padding, y: y , width: self.widthView - (self.padding * 2), height: h))
             label.setUp(item: item,options: self.options, height: h)
@@ -124,6 +140,7 @@ public class HNMarkdown : UIView {
                 label.backgroundColor = .clear
             }
             self.addSubview(label)
+            
             y += label.frame.size.height
         }
         self.contentHeight = y + 16

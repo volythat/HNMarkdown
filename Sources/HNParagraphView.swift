@@ -23,13 +23,13 @@ class HNParagraphView: UIView {
             let label = self.createLabel(item: item,x:self.padding,width: self.frame.width - (self.padding * 2))
             
             self.addSubview(label)
-            self.frame.size.height = label.frame.size.height + 16
+            self.frame.size.height = label.frame.size.height + padding
             
             createCopyButton()
         }else{
             let label = self.createLabel(item: item,x:0,width: self.frame.width)
             self.addSubview(label)
-            self.frame.size.height = label.frame.size.height + 16
+            self.frame.size.height = label.frame.size.height + padding
         }
     }
     func createLabel(item:HNMarkDownItem,x:CGFloat,width:CGFloat)->UILabel{

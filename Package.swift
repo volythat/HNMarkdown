@@ -18,7 +18,8 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/apple/swift-markdown.git", branch: "main"),
         .package(url: "https://github.com/malcommac/SwiftRichString.git", from: "3.0.0"),
-        .package(url: "https://github.com/JohnSundell/Splash", from: "0.1.0")
+        .package(url: "https://github.com/JohnSundell/Splash", from: "0.1.0"),
+        .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -28,6 +29,7 @@ let package = Package(
             dependencies: [
                 "Splash",
                 "SwiftRichString",
+                "SnapKit",
                 .product(name: "Markdown", package: "swift-markdown"),
             ],
             path:"Sources"
