@@ -136,12 +136,12 @@ public class HNMarkdown : UIView {
 
             self.addSubview(label)
             label.snp.makeConstraints { make in
-                make.leading.equalToSuperview().offset(0)
-                make.trailing.equalToSuperview().offset(0)
+                make.leading.equalToSuperview().offset(self.options.padding)
+                make.trailing.equalToSuperview().offset(-self.options.padding)
                 if let top = topView {
-                    make.top.equalTo(top.snp.bottom).offset(8)
+                    make.top.equalTo(top.snp.bottom)
                 }else{
-                    make.top.equalToSuperview().offset(10)
+                    make.top.equalToSuperview()
                 }
             }
             label.sizeToFit()
@@ -150,7 +150,7 @@ public class HNMarkdown : UIView {
             y += label.frame.size.height
         }
         
-        self.contentHeight = y + 16
+        self.contentHeight = y
         self.updateHeightConstraint()
     }
     
