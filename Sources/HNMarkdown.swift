@@ -32,7 +32,7 @@ public class HNMarkdown : UIView {
     }
     
     public func setUp(markdownText:String){
-        animationAppear()
+//        animationAppear()
         subviews.forEach { v in
             v.removeFromSuperview()
         }
