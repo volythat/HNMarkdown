@@ -20,7 +20,6 @@ public class HNMarkdown : UIView {
     
     var items : [HNMarkDownItem] = []
     
-    var contentHeight : CGFloat = 0
     let padding : CGFloat = 16
     public var options : HNMarkdownOption = HNMarkdownOption()
     
@@ -33,6 +32,7 @@ public class HNMarkdown : UIView {
     }
     
     public func setUp(markdownText:String){
+        animationAppear()
         subviews.forEach { v in
             v.removeFromSuperview()
         }
@@ -163,12 +163,10 @@ public class HNMarkdown : UIView {
         self.bringSubviewToFront(block)
     }
     
-    func updateHeightConstraint(){
-        for con in self.constraints {
-            if con.firstAttribute == NSLayoutConstraint.Attribute.height {
-                con.constant = self.contentHeight
-                break
-            }
+    func animationAppear(){
+        alpha = 0
+        UIView.animate(withDuration: 1.0) {
+            self.alpha = 1
         }
     }
     

@@ -24,6 +24,9 @@ class TBFeatureCodeResponseCell: UITableViewCell {
     }
     
     func setUp(text:String){
+        let options = HNMarkdownOption()
+        options.fontCode = HNFont.SpaceMonoRegular.size(13)
+        self.viewContent.options = options
         self.viewContent.setUp(markdownText: text)
     }
 }
