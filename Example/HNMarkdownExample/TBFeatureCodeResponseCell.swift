@@ -24,6 +24,6 @@ class TBFeatureCodeResponseCell: UITableViewCell {
     }
     
     func setUp(text:String){
-        self.viewContent.setUp(markdownText: text,width:UIScreen.main.bounds.width - 32)
+        self.viewContent.setUp(markdownText: text)
     }
 }

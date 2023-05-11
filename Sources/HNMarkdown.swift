@@ -119,10 +119,8 @@ public class HNMarkdown : UIView {
     }
     
     func addItemViews(){
-        var y = CGFloat(0)
         var topView : UIView? = nil
-        
-        items.forEach { item in
+        for (index,item) in items.enumerated() {
             let label = HNBlockCodeLabel()
             label.setUp(item: item,options: self.options)
 
@@ -139,19 +137,19 @@ public class HNMarkdown : UIView {
                 make.leading.equalToSuperview().offset(self.options.padding)
                 make.trailing.equalToSuperview().offset(-self.options.padding)
                 if let top = topView {
-                    make.top.equalTo(top.snp.bottom)
+                    make.top.equalTo(top.snp.bottom).offset(self.options.padding/2)
                 }else{
-                    make.top.equalToSuperview()
+                    make.top.equalToSuperview().offset(self.options.padding)
+                }
+                if index == items.count - 1 {
+                    make.bottom.equalToSuperview().offset(-self.options.padding)
                 }
             }
             label.sizeToFit()
             self.layoutIfNeeded()
             topView = label
-            y += label.frame.size.height
         }
         
-        self.contentHeight = y
-        self.updateHeightConstraint()
     }
     
     func updateHeightConstraint(){
