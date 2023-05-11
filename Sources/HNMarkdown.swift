@@ -165,7 +165,7 @@ public class HNMarkdown : UIView {
     
     func animationAppear(){
         alpha = 0
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: 1.2) {
             self.alpha = 1
         }
     }
