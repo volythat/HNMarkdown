@@ -33,6 +33,9 @@ public class HNMarkdown : UIView {
     }
     
     public func setUp(markdownText:String){
+        subviews.forEach { v in
+            v.removeFromSuperview()
+        }
         HNFont.SpaceMonoRegular.register()
         let document = Document(parsing: markdownText)
         items = []
@@ -123,21 +126,13 @@ public class HNMarkdown : UIView {
         for (index,item) in items.enumerated() {
             let label = HNBlockCodeLabel()
             label.setUp(item: item,options: self.options)
-
-            if item.type == .code {
-                label.backgroundColor = self.options.codeBackground
-                label.layer.cornerRadius = 8
-                label.layer.masksToBounds = true
-            }else{
-                label.backgroundColor = .clear
-            }
-
             self.addSubview(label)
+            
             label.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(self.options.padding)
                 make.trailing.equalToSuperview().offset(-self.options.padding)
                 if let top = topView {
-                    make.top.equalTo(top.snp.bottom).offset(self.options.padding/2)
+                    make.top.equalTo(top.snp.bottom).offset(self.options.padding)
                 }else{
                     make.top.equalToSuperview().offset(self.options.padding)
                 }
@@ -145,11 +140,27 @@ public class HNMarkdown : UIView {
                     make.bottom.equalToSuperview().offset(-self.options.padding)
                 }
             }
-            label.sizeToFit()
-            self.layoutIfNeeded()
+            if item.type == .code {
+                self.addBackground(block: label)
+            }
             topView = label
         }
         
+    }
+    
+    func addBackground(block:UIView){
+        let bg = UIView(frame: .zero)
+        bg.backgroundColor = options.codeBackground
+        bg.layer.cornerRadius = 8
+        bg.layer.masksToBounds = true
+        self.addSubview(bg)
+        bg.snp.makeConstraints { make in
+            make.top.equalTo(block).offset(-8)
+            make.bottom.equalTo(block).offset(8)
+            make.leading.equalTo(block).offset(-8)
+            make.trailing.equalTo(block).offset(8)
+        }
+        self.bringSubviewToFront(block)
     }
     
     func updateHeightConstraint(){

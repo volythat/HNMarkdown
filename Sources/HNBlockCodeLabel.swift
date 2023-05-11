@@ -23,14 +23,11 @@ class HNBlockCodeLabel : HNParagraphLabel {
         self.item = item
         self.options = options
         if item.type == .code {
-            contentInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
             self.attributedText = self.setAttrCode(text: item.content)
             createCopyButton()
         }else{
-            contentInsets = .zero
             self.attributedText = self.setAttrParagraph(text: item.content)
         }
-        sizeToFit()
     }
     func createCopyButton(){
         let btn = UIButton(frame: CGRect(x: frame.width - 40, y: 0, width: 40, height: 40))
