@@ -28,7 +28,8 @@ public class HNMarkdown : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    required init?(coder: NSCoder) {
+    
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
@@ -85,12 +86,7 @@ public class HNMarkdown : UIView {
                 let text = table.format().trimmingCharacters(in: .whitespacesAndNewlines)
                 let item = HNMarkDownItem(type:type,content: text)
                 self.items.append(item)
-            }
-//            else if mark is UnorderedList || mark is OrderedList || mark is ListItem {
-//                type = .text
-//                str += mark.format(options: .init(orderedListNumerals: .incrementing(start: 1)))
-//            }
-            else{
+            }else{
                 type = .text
                 var isAdded = false
                 mark.children.forEach { child in
@@ -126,12 +122,12 @@ public class HNMarkdown : UIView {
     
     func addItemViews(){
         var y = CGFloat(0)
+        var topView : UIView? = nil
+        
         items.forEach { item in
-            y += 3
-            let h = item.getHeight(width: self.widthView - (self.padding * 2), font: self.options.font)
-            let label = HNParagraphView(frame: CGRect(x: self.padding, y: y , width: self.widthView - (self.padding * 2), height: h))
-            label.setUp(item: item,options: self.options, height: h)
-            
+            let label = HNBlockCodeLabel()
+            label.setUp(item: item,options: self.options)
+
             if item.type == .code {
                 label.backgroundColor = self.options.codeBackground
                 label.layer.cornerRadius = 8
@@ -139,10 +135,23 @@ public class HNMarkdown : UIView {
             }else{
                 label.backgroundColor = .clear
             }
+
             self.addSubview(label)
-            
+            label.snp.makeConstraints { make in
+                make.leading.equalToSuperview().offset(0)
+                make.trailing.equalToSuperview().offset(0)
+                if let top = topView {
+                    make.top.equalTo(top.snp.bottom).offset(8)
+                }else{
+                    make.top.equalToSuperview().offset(10)
+                }
+            }
+            label.sizeToFit()
+            self.layoutIfNeeded()
+            topView = label
             y += label.frame.size.height
         }
+        
         self.contentHeight = y + 16
         self.updateHeightConstraint()
     }

@@ -1,49 +1,36 @@
 //
-//  HNParagraphLabel.swift
-//  HNMarkdownExample
+//  File.swift
+//  
 //
-//  Created by oneweek02 on 5/10/23.
+//  Created by oneweek02 on 5/11/23.
 //
 
 import UIKit
 import Foundation
-import Markdown
 import SwiftRichString
 import Splash
 
-class HNParagraphView: UIView {
-    let padding : CGFloat = 16
+class HNBlockCodeLabel : HNParagraphLabel {
+    
     var item : HNMarkDownItem?
     var options = HNMarkdownOption()
+
     
-    func setUp(item:HNMarkDownItem,options:HNMarkdownOption,height:CGFloat){
+    //MARK: - SETUP
+    func setUp(item:HNMarkDownItem,options:HNMarkdownOption){
+        numberOfLines = 0
+        isUserInteractionEnabled = true 
         self.item = item
         self.options = options
         if item.type == .code {
-            let label = self.createLabel(item: item,x:self.padding,width: self.frame.width - (self.padding * 2))
-            
-            self.addSubview(label)
-            self.frame.size.height = label.frame.size.height + padding
-            
+            contentInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+            self.attributedText = self.setAttrCode(text: item.content)
             createCopyButton()
         }else{
-            let label = self.createLabel(item: item,x:0,width: self.frame.width)
-            self.addSubview(label)
-            self.frame.size.height = label.frame.size.height + padding
+            contentInsets = .zero
+            self.attributedText = self.setAttrParagraph(text: item.content)
         }
-    }
-    func createLabel(item:HNMarkDownItem,x:CGFloat,width:CGFloat)->UILabel{
-        let label = UILabel(frame: CGRect(x: x, y: 8, width: width, height: 10))
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .black
-        label.numberOfLines = 0
-        if item.type == .code {
-            label.attributedText =  self.setAttrCode(text: item.content)
-        }else{
-            label.attributedText = self.setAttrParagraph(text: item.content)
-        }
-        label.sizeToFit()
-        return label
+        sizeToFit()
     }
     func createCopyButton(){
         let btn = UIButton(frame: CGRect(x: frame.width - 40, y: 0, width: 40, height: 40))
@@ -52,13 +39,13 @@ class HNParagraphView: UIView {
         btn.tintColor = self.options.tintColorCopyButton
         btn.addTarget(self , action: #selector(self.selectedCopyButton(_:)), for: .touchUpInside)
         self.addSubview(btn)
+        btn.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(5)
+            make.trailing.equalToSuperview()
+            make.width.height.equalTo(40)
+        }
     }
-    @objc func selectedCopyButton(_ sender:UIButton){
-        UIPasteboard.general.string = item?.content ?? ""
-        print("copied content to clipboard!")
-        sender.animationCopyButton()
-    }
-    
+    //MARK: - FUNC
     func setAttrParagraph(text:String)->NSMutableAttributedString?{
         // The base style is applied to the entire string
         let baseStyle = Style {
@@ -125,31 +112,10 @@ class HNParagraphView: UIView {
         let highlighter = SyntaxHighlighter(format: AttributedStringOutputFormat(theme: .sunset(withFont: Font(size:self.options.fontSize))))
         return highlighter.highlight(text)
     }
-}
-extension UIButton {
-    func fade(){
-        UIView.animate(withDuration: 0.3) {
-            self.alpha = 0.1
-        } completion: { _ in
-            self.isSelected = true
-            self.alpha = 1
-            
-        }
-
-    }
-    func animationCopyButton(){
-        isUserInteractionEnabled = false
-        
-        UIView.animate(withDuration: 0.3) {
-            self.alpha = 0.1
-        } completion: { _ in
-            self.isSelected = true
-            self.alpha = 1
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
-                self.isSelected = false
-                self.isUserInteractionEnabled = true
-            }
-        }
-        
+    //MARK: - ACTION
+    @objc func selectedCopyButton(_ sender:UIButton){
+        UIPasteboard.general.string = item?.content ?? ""
+        print("copied content to clipboard!")
+        sender.animationCopyButton()
     }
 }

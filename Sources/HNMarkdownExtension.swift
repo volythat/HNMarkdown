@@ -35,3 +35,30 @@ extension String {
         return element.addTag(from: str)
     }
 }
+extension UIButton {
+    func fade(){
+        UIView.animate(withDuration: 0.3) {
+            self.alpha = 0.1
+        } completion: { _ in
+            self.isSelected = true
+            self.alpha = 1
+            
+        }
+
+    }
+    func animationCopyButton(){
+        isUserInteractionEnabled = false
+        
+        UIView.animate(withDuration: 0.3) {
+            self.alpha = 0.1
+        } completion: { _ in
+            self.isSelected = true
+            self.alpha = 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
+                self.isSelected = false
+                self.isUserInteractionEnabled = true
+            }
+        }
+        
+    }
+}

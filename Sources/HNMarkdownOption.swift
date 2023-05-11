@@ -47,6 +47,7 @@ public class HNMarkdownOption {
     public var copyImage = UIImage(systemName: "doc.on.doc")
     public var copyDoneImage = UIImage(systemName: "checkmark")
     public var tintColorCopyButton = UIColor.darkGray
+    public var padding : CGFloat = 16
     
     public init() {}
 }
