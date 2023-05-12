@@ -43,15 +43,16 @@ public class HNMarkdown : UIView {
         var type = HNMarkDownType.text
         document.children.forEach { mark in
             print("mark = \(mark.debugDescription(options: .printEverything))")
-            if mark is CodeBlock {
+            if let code = mark as? CodeBlock {
                 if !str.isEmpty {
                     let item = HNMarkDownItem(type:.text,content: str)
                     self.items.append(item)
                 }
                 str = ""
                 type = .code
-                let text = mark.format().removeElement(element: .code)
-                let item = HNMarkDownItem(type:type,content: text)
+                
+//                let text = mark.format().removeElement(element: .code)
+                let item = HNMarkDownItem(type:type,content: code.code)
                 self.items.append(item)
             }else if let header = mark as? Heading {
                 if !str.isEmpty {
@@ -127,7 +128,7 @@ public class HNMarkdown : UIView {
             let label = HNBlockCodeLabel()
             label.setUp(item: item,options: self.options)
             self.addSubview(label)
-            let topOffset : CGFloat = (item.type == .code ? 8 : 0) + self.options.padding
+            let topOffset : CGFloat = (item.type == .code ? 27 : 0) + self.options.padding
             label.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(self.options.padding)
                 make.trailing.equalToSuperview().offset(-self.options.padding)
@@ -155,7 +156,7 @@ public class HNMarkdown : UIView {
         bg.layer.masksToBounds = true
         self.addSubview(bg)
         bg.snp.makeConstraints { make in
-            make.top.equalTo(block).offset(-8)
+            make.top.equalTo(block).offset(-35)
             make.bottom.equalTo(block).offset(8)
             make.leading.equalTo(block).offset(-8)
             make.trailing.equalTo(block).offset(8)

@@ -38,7 +38,7 @@ class HNBlockCodeLabel : HNParagraphLabel {
         btn.addTarget(self , action: #selector(self.selectedCopyButton(_:)), for: .touchUpInside)
         self.addSubview(btn)
         btn.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(-25)
             make.trailing.equalToSuperview()
             make.width.height.equalTo(15)
         }
