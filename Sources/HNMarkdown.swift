@@ -76,7 +76,7 @@ public class HNMarkdown : UIView {
                 let item = HNMarkDownItem(type:type,content: text)
                 self.items.append(item)
             }else if let table = mark as? Table {
-                print("table = \(table.format())")
+                print("table = \(table.debugDescription())")
                 
                 if !str.isEmpty {
                     let item = HNMarkDownItem(type:.text,content: str)
@@ -127,14 +127,14 @@ public class HNMarkdown : UIView {
             let label = HNBlockCodeLabel()
             label.setUp(item: item,options: self.options)
             self.addSubview(label)
-            
+            let topOffset : CGFloat = (item.type == .code ? 8 : 0) + self.options.padding
             label.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(self.options.padding)
                 make.trailing.equalToSuperview().offset(-self.options.padding)
                 if let top = topView {
-                    make.top.equalTo(top.snp.bottom).offset(self.options.padding)
+                    make.top.equalTo(top.snp.bottom).offset(topOffset)
                 }else{
-                    make.top.equalToSuperview().offset(self.options.padding)
+                    make.top.equalToSuperview().offset(topOffset)
                 }
                 if index == items.count - 1 {
                     make.bottom.equalToSuperview().offset(-self.options.padding)
