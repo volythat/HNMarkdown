@@ -131,6 +131,15 @@ s.close()
 * row 2
 * row 3
 
+
+| STT | Tên người              | Tài sản ước tính (tỷ USD) |
+|-----|------------------------|---------------------------|
+| 1   | Jeff Bezos             | 115,3                     |
+| 2   | Elon Musk              | 97,1                      |
+| 3   | Bernard Arnault       | 76,1                      |
+| 4   | Bill Gates             | 126,4                     |
+| 5   | Mark Zuckerberg | 129,1                     |
+
 """
 
     override func viewDidLoad() {

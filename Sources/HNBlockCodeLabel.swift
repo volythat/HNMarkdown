@@ -24,6 +24,7 @@ class HNBlockCodeLabel : HNParagraphLabel {
         self.options = options
         if item.type == .code {
             self.attributedText = self.setAttrCode(text: item.content)
+            
             createCopyButton()
         }else{
             self.attributedText = self.setAttrParagraph(text: item.content)
@@ -60,7 +61,7 @@ class HNBlockCodeLabel : HNParagraphLabel {
         }
         let foreground: Style = Style {
             $0.font = self.options.fontCode
-            $0.color = self.options.color
+            $0.color = self.options.colorText
             $0.backColor = self.options.codeBackground
         }
         let italic: Style = Style {
@@ -68,7 +69,7 @@ class HNBlockCodeLabel : HNParagraphLabel {
         }
         let underline: Style = Style {
             $0.font = self.options.font
-            $0.underline = (.single, self.options.color)
+            $0.underline = (.single, self.options.colorText)
         }
         let header1: Style = Style {
             $0.font = self.options.fontHeader1
@@ -106,7 +107,7 @@ class HNBlockCodeLabel : HNParagraphLabel {
     
 
     func setAttrCode(text:String)->NSAttributedString?{
-        let highlighter = SyntaxHighlighter(format: AttributedStringOutputFormat(theme: .sunset(withFont: Font(size:self.options.fontSize))))
+        let highlighter = SyntaxHighlighter(format: AttributedStringOutputFormat(theme: options.themeForCode()))
         return highlighter.highlight(text)
     }
     //MARK: - ACTION

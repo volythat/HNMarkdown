@@ -7,9 +7,10 @@
 
 import Foundation
 import UIKit
+import Splash
 
 public class HNMarkdownOption {
-    public var fontSize : CGFloat = 14
+    public var fontSize : CGFloat = 13
     public var font : UIFont {
         get {
             return UIFont.systemFont(ofSize: fontSize)
@@ -38,16 +39,36 @@ public class HNMarkdownOption {
     
     public var fontCode : UIFont {
         get {
-            return HNFont.SpaceMonoRegular.size(fontSize)
+            return HNFont.SpaceMonoRegular.size(fontSize - 1)
         }
         set {}
     }
-    public var codeBackground = UIColor(hexString: "#F4F7F9")
-    public var color = UIColor(hexString: "#000000")
+    public var codeBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
+    public var colorText = UIColor(named: "defaultColorText",in: Bundle.module, compatibleWith: nil)!
     public var copyImage = UIImage(systemName: "doc.on.doc")
     public var copyDoneImage = UIImage(systemName: "checkmark")
-    public var tintColorCopyButton = UIColor.darkGray
+    public var tintColorCopyButton = UIColor(named: "tintColorCopyButton",in: Bundle.module, compatibleWith: nil)
     public var padding : CGFloat = 16
+    public var allowDarkmode : Bool = false
+    
+    public func themeForCode()->Theme {
+        return Theme(
+            font: Font(size: self.fontSize),
+            plainTextColor: self.colorText,
+            tokenColors: [
+                .keyword: Color(named: "colorKeyword", in: Bundle.module, compatibleWith: nil)!,
+                .string: Color(named: "colorString", in: Bundle.module, compatibleWith: nil)!,
+                .type: Color(named: "colorType", in: Bundle.module, compatibleWith: nil)!,
+                .call: Color(named: "colorCall", in: Bundle.module, compatibleWith: nil)!,
+                .number: Color(named: "colorNumber", in: Bundle.module, compatibleWith: nil)!,
+                .comment: Color(named: "colorCommend", in: Bundle.module, compatibleWith: nil)!,
+                .property: Color(named: "colorProperty", in: Bundle.module, compatibleWith: nil)!,
+                .dotAccess: Color(named: "colorDotAccess", in: Bundle.module, compatibleWith: nil)!,
+                .preprocessing: Color(named: "colorPreProcessing", in: Bundle.module, compatibleWith: nil)!
+            ],
+            backgroundColor: self.codeBackground
+        )
+    }
     
     public init() {}
 }
