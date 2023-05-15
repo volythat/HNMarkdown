@@ -125,10 +125,10 @@ public class HNMarkdown : UIView {
     func addItemViews(){
         var topView : UIView? = nil
         for (index,item) in items.enumerated() {
-            let label = HNBlockCodeLabel()
+            let label = HNBlockCodeView()
             label.setUp(item: item,options: self.options)
             self.addSubview(label)
-            let topOffset : CGFloat = (item.type == .code ? 27 : 0) + self.options.padding
+            let topOffset : CGFloat = self.options.padding
             label.snp.makeConstraints { make in
                 make.leading.equalToSuperview().offset(self.options.padding)
                 make.trailing.equalToSuperview().offset(-self.options.padding)
@@ -141,27 +141,10 @@ public class HNMarkdown : UIView {
                     make.bottom.equalToSuperview().offset(-self.options.padding)
                 }
             }
-            if item.type == .code {
-                self.addBackground(block: label)
-            }
+            
             topView = label
         }
         
-    }
-    
-    func addBackground(block:UIView){
-        let bg = UIView(frame: .zero)
-        bg.backgroundColor = options.codeBackground
-        bg.layer.cornerRadius = 8
-        bg.layer.masksToBounds = true
-        self.addSubview(bg)
-        bg.snp.makeConstraints { make in
-            make.top.equalTo(block).offset(-35)
-            make.bottom.equalTo(block).offset(8)
-            make.leading.equalTo(block).offset(-8)
-            make.trailing.equalTo(block).offset(8)
-        }
-        self.bringSubviewToFront(block)
     }
     
     func animationAppear(){

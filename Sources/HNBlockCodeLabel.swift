@@ -19,30 +19,15 @@ class HNBlockCodeLabel : HNParagraphLabel {
     //MARK: - SETUP
     func setUp(item:HNMarkDownItem,options:HNMarkdownOption){
         numberOfLines = 0
-        isUserInteractionEnabled = true 
         self.item = item
         self.options = options
         if item.type == .code {
             self.attributedText = self.setAttrCode(text: item.content)
-            
-            createCopyButton()
         }else{
             self.attributedText = self.setAttrParagraph(text: item.content)
         }
     }
-    func createCopyButton(){
-        let btn = UIButton(frame: CGRect(x: frame.width - 30, y: 0, width: 30, height: 30))
-        btn.setImage(self.options.copyImage, for: .normal)
-        btn.setImage(self.options.copyDoneImage, for: .selected)
-        btn.tintColor = self.options.tintColorCopyButton
-        btn.addTarget(self , action: #selector(self.selectedCopyButton(_:)), for: .touchUpInside)
-        self.addSubview(btn)
-        btn.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(-25)
-            make.trailing.equalToSuperview()
-            make.width.height.equalTo(15)
-        }
-    }
+
     //MARK: - FUNC
     func setAttrParagraph(text:String)->NSMutableAttributedString?{
         // The base style is applied to the entire string
@@ -111,9 +96,5 @@ class HNBlockCodeLabel : HNParagraphLabel {
         return highlighter.highlight(text)
     }
     //MARK: - ACTION
-    @objc func selectedCopyButton(_ sender:UIButton){
-        UIPasteboard.general.string = item?.content ?? ""
-        print("copied content to clipboard!")
-        sender.animationCopyButton()
-    }
+
 }
