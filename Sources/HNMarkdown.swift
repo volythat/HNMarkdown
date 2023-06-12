@@ -19,7 +19,7 @@ import SnapKit
 public class HNMarkdown : UIView {
     
     var items : [HNMarkDownItem] = []
-    
+    var isDebug : Bool = false
     let padding : CGFloat = 16
     public var options : HNMarkdownOption = HNMarkdownOption()
     
@@ -31,8 +31,9 @@ public class HNMarkdown : UIView {
         super.init(coder: coder)
     }
     
-    public func setUp(markdownText:String){
-//        animationAppear()
+    public func setUp(markdownText:String,isDebug:Bool = false ){
+        self.isDebug = isDebug
+
         subviews.forEach { v in
             v.removeFromSuperview()
         }
@@ -42,7 +43,7 @@ public class HNMarkdown : UIView {
         var str = ""
         var type = HNMarkDownType.text
         document.children.forEach { mark in
-            print("mark = \(mark.debugDescription(options: .printEverything))")
+            logDebug("mark = \(mark.debugDescription(options: .printEverything))")
             if let code = mark as? CodeBlock {
                 if !str.isEmpty {
                     let item = HNMarkDownItem(type:.text,content: str)
@@ -51,7 +52,6 @@ public class HNMarkdown : UIView {
                 str = ""
                 type = .code
                 
-//                let text = mark.format().removeElement(element: .code)
                 let item = HNMarkDownItem(type:type,content: code.code)
                 self.items.append(item)
             }else if let header = mark as? Heading {
@@ -77,7 +77,6 @@ public class HNMarkdown : UIView {
                 let item = HNMarkDownItem(type:type,content: text)
                 self.items.append(item)
             }else if let table = mark as? Table {
-                print("table = \(table.debugDescription())")
                 
                 if !str.isEmpty {
                     let item = HNMarkDownItem(type:.text,content: str)
@@ -108,6 +107,7 @@ public class HNMarkdown : UIView {
                         isAdded = true
                         str += child.format()
                     }
+                    
                 }
                 if !isAdded {
                     str += mark.format(options: .init(orderedListNumerals: .incrementing(start: 1)))
@@ -121,6 +121,7 @@ public class HNMarkdown : UIView {
         }
         self.addItemViews()
     }
+    
     
     func addItemViews(){
         var topView : UIView? = nil

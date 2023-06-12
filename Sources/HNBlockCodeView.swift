@@ -72,7 +72,6 @@ class HNBlockCodeView : UIView {
     //MARK: - ACTION
     @objc func selectedCopyButton(_ sender:UIButton){
         UIPasteboard.general.string = item?.content ?? ""
-        print("copied content to clipboard!")
         sender.animationCopyButton()
     }
 }

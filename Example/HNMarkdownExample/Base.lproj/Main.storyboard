@@ -3,9 +3,10 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,10 +44,59 @@
             </objects>
             <point key="canvasLocation" x="-112" y="25"/>
         </scene>
+        <!--View Controller2-->
+        <scene sceneID="z52-x5-dwe">
+            <objects>
+                <viewController storyboardIdentifier="ViewController2" id="EaX-1d-oh9" customClass="ViewController2" customModule="HNMarkdownExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D1d-ax-2qS">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGn-6J-Eaf">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dj0-u4-knJ" customClass="HNMarkdown" customModule="HNMarkdown">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1759"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="750" constant="1759" id="utU-cu-glx"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="dj0-u4-knJ" secondAttribute="bottom" id="6U3-Jo-JeE"/>
+                                    <constraint firstItem="dj0-u4-knJ" firstAttribute="leading" secondItem="BGn-6J-Eaf" secondAttribute="leading" id="BN0-C5-Aa0"/>
+                                    <constraint firstItem="dj0-u4-knJ" firstAttribute="top" secondItem="BGn-6J-Eaf" secondAttribute="top" id="CzQ-wV-m0Z"/>
+                                    <constraint firstItem="dj0-u4-knJ" firstAttribute="width" secondItem="BGn-6J-Eaf" secondAttribute="width" id="NMU-gx-XJq"/>
+                                    <constraint firstAttribute="trailing" secondItem="dj0-u4-knJ" secondAttribute="trailing" id="ahN-ji-yHU"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="q7e-7W-YId"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="q7e-7W-YId" firstAttribute="trailing" secondItem="BGn-6J-Eaf" secondAttribute="trailing" id="LRI-3G-eKF"/>
+                            <constraint firstItem="BGn-6J-Eaf" firstAttribute="top" secondItem="q7e-7W-YId" secondAttribute="top" id="pzK-hZ-QQp"/>
+                            <constraint firstItem="q7e-7W-YId" firstAttribute="bottom" secondItem="BGn-6J-Eaf" secondAttribute="bottom" id="wmH-Dl-eX5"/>
+                            <constraint firstItem="BGn-6J-Eaf" firstAttribute="leading" secondItem="q7e-7W-YId" secondAttribute="leading" id="yrc-Bh-7Sq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="markdown" destination="dj0-u4-knJ" id="9E3-e7-65b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BB7-7y-5Kt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="985" y="39"/>
+        </scene>
     </scenes>
     <resources>
         <namedColor name="bgMain">
-            <color red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94499999284744263" green="0.94499999284744263" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

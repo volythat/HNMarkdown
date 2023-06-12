@@ -62,3 +62,11 @@ extension UIButton {
         
     }
 }
+
+extension HNMarkdown {
+    func logDebug(_ message:String){
+        if isDebug {
+            print("\n❗️❗️❗️ \(#function)(\(#line)) : \(message)\n")
+        }
+    }
+}
