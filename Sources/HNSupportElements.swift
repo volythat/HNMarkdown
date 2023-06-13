@@ -8,7 +8,7 @@
 import Foundation
 
 enum HNMarkDownType {
-    case text, code
+    case text, code, image 
 }
 enum HNSupportElements : String {
     case italic = "*"
@@ -22,17 +22,18 @@ enum HNSupportElements : String {
     case header6 = "######"
     case code = "```"
     case inlinecode = "`"
+    case link
     
     func addTag(from:String)->String {
         switch self {
         case .bold :
-            return "<b>" + from + "</b>"
+            return " <b>" + from + "</b> "
         
         case .italic :
-            return "<i>" + from + "</i>"
+            return " <i>" + from + "</i> "
         
         case .strikethrough:
-            return "<u>" + from + "</u>"
+            return " <u>" + from + "</u> "
             
         case .header1:
             return "<h1>" + from + "</h1>"
@@ -51,7 +52,9 @@ enum HNSupportElements : String {
             return from
             
         case .inlinecode:
-            return "<f>" + from + "</f>"
+            return " <f>" + from + "</f> "
+        case .link:
+            return from
         }
     }
 }

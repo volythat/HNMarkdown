@@ -33,6 +33,7 @@ extension String {
             }
         }
         return element.addTag(from: str)
+        
     }
 }
 extension UIButton {

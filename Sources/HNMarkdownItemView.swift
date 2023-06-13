@@ -7,9 +7,11 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
-class HNBlockCodeView : UIView {
+class HNMarkdownItemView : UIView {
     var label : HNBlockCodeLabel? = nil
+    var imageView : HNImageView? = nil
     var item : HNMarkDownItem?
     var options = HNMarkdownOption()
     
@@ -36,16 +38,27 @@ class HNBlockCodeView : UIView {
     //MARK: - LAYOUT
     
     func addLabel(item:HNMarkDownItem,options:HNMarkdownOption){
-        label = HNBlockCodeLabel(frame: .zero)
-        self.addSubview(label!)
+        
         if item.type == .code {
+            label = HNBlockCodeLabel(frame: .zero)
+            self.addSubview(label!)
             label?.snp.makeConstraints { make in
                 make.top.equalToSuperview().offset(30)
                 make.leading.equalToSuperview().offset(8)
                 make.trailing.equalToSuperview().offset(-8)
                 make.bottom.equalToSuperview().offset(-8)
             }
+        }else if item.type == .image {
+            imageView = HNImageView(frame: .zero)
+            imageView?.setImage(item.content)
+            self.addSubview(imageView!)
+            imageView?.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+                make.height.equalTo(200)
+            }
         }else{
+            label = HNBlockCodeLabel(frame: .zero)
+            self.addSubview(label!)
             label?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
