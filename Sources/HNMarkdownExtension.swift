@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 extension String {
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {

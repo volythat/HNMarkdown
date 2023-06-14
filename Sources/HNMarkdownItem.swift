@@ -8,8 +8,6 @@
 import UIKit
 import Foundation
 import Markdown
-import SwiftRichString
-
 
 class HNMarkDownItem {
     var type : HNMarkDownType = .text

@@ -11,6 +11,7 @@ import HNMarkdown
 class TBFeatureCodeResponseCell: UITableViewCell {
     
     @IBOutlet weak var viewContent : HNMarkdown!
+    public var didSelectedLink : ((_ url:URL)->Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,5 +26,8 @@ class TBFeatureCodeResponseCell: UITableViewCell {
     
     func setUp(text:String){
         self.viewContent.setUp(markdownText: text,isDebug: true)
+        self.viewContent.didSelectedLink = { url in
+            self.didSelectedLink?(url)
+        }
     }
 }

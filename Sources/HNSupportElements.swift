@@ -54,7 +54,14 @@ enum HNSupportElements : String {
         case .inlinecode:
             return " <f>" + from + "</f> "
         case .link:
-            return from
+            return ""
+        }
+    }
+    func addHref(link:String,text:String)->String{
+        if self == .link {
+            return " <a href=\"\(link)\">" + text + "</a> "
+        }else{
+            return ""
         }
     }
 }

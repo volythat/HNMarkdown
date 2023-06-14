@@ -15,6 +15,8 @@ class HNMarkdownItemView : UIView {
     var item : HNMarkDownItem?
     var options = HNMarkdownOption()
     
+    public var didSelectedLink : ((_ url:URL)->Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -62,6 +64,7 @@ class HNMarkdownItemView : UIView {
             label?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
+            label?.delegate = self
         }
         label?.setUp(item: item, options: options)
     }
@@ -86,5 +89,12 @@ class HNMarkdownItemView : UIView {
     @objc func selectedCopyButton(_ sender:UIButton){
         UIPasteboard.general.string = item?.content ?? ""
         sender.animationCopyButton()
+    }
+}
+extension HNMarkdownItemView : UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        
+        self.didSelectedLink?(URL)
+        return false
     }
 }

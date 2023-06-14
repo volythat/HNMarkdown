@@ -33,7 +33,7 @@
       "location" : "https://github.com/apple/swift-cmark.git",
       "state" : {
         "branch" : "gfm",
-        "revision" : "6c7037758492a28593264aaa22ef659afa94e5bf"
+        "revision" : "b1c49eb0752d727fda5dfa63c8bb23670592d7c9"
       }
     },
     {
@@ -42,16 +42,7 @@
       "location" : "https://github.com/apple/swift-markdown.git",
       "state" : {
         "branch" : "main",
-        "revision" : "40f7f858e01a6ca512d96088087ffa861861eee5"
-      }
-    },
-    {
-      "identity" : "swiftrichstring",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/malcommac/SwiftRichString.git",
-      "state" : {
-        "revision" : "9bf4b5af6bb4386865636fc504d6c588c2b65040",
-        "version" : "3.7.2"
+        "revision" : "8ea3072e4ba2a2aa6395d529fbfc188c838c2dba"
       }
     }
   ],

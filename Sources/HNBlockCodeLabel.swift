@@ -7,10 +7,10 @@
 
 import UIKit
 import Foundation
-import SwiftRichString
 import Splash
+import SwiftRichString
 
-class HNBlockCodeLabel : HNParagraphLabel {
+class HNBlockCodeLabel : UITextView {
     
     var item : HNMarkDownItem?
     var options = HNMarkdownOption()
@@ -18,14 +18,27 @@ class HNBlockCodeLabel : HNParagraphLabel {
     
     //MARK: - SETUP
     func setUp(item:HNMarkDownItem,options:HNMarkdownOption){
-        numberOfLines = 0
+//        numberOfLines = 0
+        isScrollEnabled = false
+        isUserInteractionEnabled = true
+        backgroundColor = .clear
+        isEditable = false
+        showsHorizontalScrollIndicator = false
+        showsVerticalScrollIndicator = false
+        self.textColor = options.colorText
+        self.text = item.content
+        self.font = options.font
         self.item = item
         self.options = options
         if item.type == .code {
             self.attributedText = self.setAttrCode(text: item.content)
+        }else if item.type == .image {
+            
         }else{
             self.attributedText = self.setAttrParagraph(text: item.content)
         }
+        sizeToFit()
+        
     }
 
     //MARK: - FUNC
@@ -33,11 +46,13 @@ class HNBlockCodeLabel : HNParagraphLabel {
         // The base style is applied to the entire string
         let baseStyle = Style {
             $0.font = self.options.font
+            $0.color = self.options.colorText
             $0.lineSpacing = 1
         }
 
         let boldStyle = Style {
             $0.font = self.options.fontBold
+            $0.color = self.options.colorText
             $0.dynamicText = DynamicText {
             $0.style = .body
             $0.maximumSize = 35.0
@@ -51,28 +66,36 @@ class HNBlockCodeLabel : HNParagraphLabel {
         }
         let italic: Style = Style {
             $0.font = self.options.fontItalic
+            $0.color = self.options.colorText
         }
         let underline: Style = Style {
             $0.font = self.options.font
+            $0.color = self.options.colorText
             $0.underline = (.single, self.options.colorText)
         }
         let header1: Style = Style {
             $0.font = self.options.fontHeader1
+            $0.color = self.options.colorText
         }
         let header2: Style = Style {
             $0.font = self.options.fontHeader2
+            $0.color = self.options.colorText
         }
         let header3: Style = Style {
             $0.font = self.options.fontHeader3
+            $0.color = self.options.colorText
         }
         let header4: Style = Style {
             $0.font = self.options.fontHeader4
+            $0.color = self.options.colorText
         }
         let header5: Style = Style {
             $0.font = self.options.fontHeader5
+            $0.color = self.options.colorText
         }
         let header6: Style = Style {
             $0.font = self.options.fontHeader6
+            $0.color = self.options.colorText
         }
         // A group container includes all the style defined.
         let groupStyle = StyleXML.init(base: baseStyle, ["b" : boldStyle,

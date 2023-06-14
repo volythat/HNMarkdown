@@ -17,7 +17,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/apple/swift-markdown.git", branch: "main"),
-        .package(url: "https://github.com/malcommac/SwiftRichString.git", from: "3.0.0"),
         .package(url: "https://github.com/JohnSundell/Splash", from: "0.1.0"),
         .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1")),
         .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.1.0")
@@ -29,13 +28,18 @@ let package = Package(
             name: "HNMarkdown",
             dependencies: [
                 "Splash",
-                "SwiftRichString",
                 "SDWebImage",
                 "SnapKit",
+                "SwiftRichString",
                 .product(name: "Markdown", package: "swift-markdown"),
             ],
             path:"Sources"
         ),
+        .target(
+            name: "SwiftRichString",
+            dependencies: [],
+            path:"SwiftRichString"
+        )
     ],
     swiftLanguageVersions: [.v5]
 )
