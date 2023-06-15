@@ -16,7 +16,7 @@ class HNMarkdownItemView : UIView {
     var options = HNMarkdownOption()
     
     public var didSelectedLink : ((_ url:URL)->Void)?
-    public var didSelectedImage : ((_ url:String)->Void)?
+    public var didSelectedImage : ((_ image:UIImage)->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,8 +59,8 @@ class HNMarkdownItemView : UIView {
                 make.edges.equalToSuperview()
                 make.height.equalTo(300)
             }
-            imageView?.didTaped = { [weak self] urlString in
-                self?.didSelectedImage?(urlString)
+            imageView?.didTaped = { [weak self] image in
+                self?.didSelectedImage?(image)
             }
             
         }else{

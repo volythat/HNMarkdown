@@ -12,7 +12,7 @@ import SDWebImage
 class HNImageView : UIImageView {
     
     var urlString = ""
-    var didTaped : ((_ urlString:String)->Void)?
+    var didTaped : ((_ image:UIImage)->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,14 +24,14 @@ class HNImageView : UIImageView {
     func setImage(_ urlString:String){
         self.urlString = urlString
         contentMode = .scaleAspectFit
-        isUserInteractionEnabled = true 
+        isUserInteractionEnabled = true
         self.sd_setImage(with: URL(string: urlString)) { image , error , cache, url  in
             self.image = image
             if let img = image {
                 self.updateHeight(size: img.size)
+                self.addTapable()
             }
         }
-        addTapable()
     }
     func updateHeight(size:CGSize){
         let h = self.frame.width  * (size.height/size.width)
@@ -46,7 +46,9 @@ class HNImageView : UIImageView {
     }
     
     @objc func tapOnImage(){
-        self.didTaped?(self.urlString)
+        if let img = self.image {
+            self.didTaped?(img)
+        }
     }
 }
 extension UIView {

@@ -182,8 +182,8 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         cell.didSelectedLink = { url in
             self.safari(url)
         }
-        cell.didSelectedImage = { url in
-            print("url image = \(url)")
+        cell.didSelectedImage = { image in
+            print("selected image")
         }
         return cell
     }

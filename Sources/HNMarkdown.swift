@@ -25,7 +25,7 @@ public class HNMarkdown : UIView {
     public var options : HNMarkdownOption = HNMarkdownOption()
     
     public var didSelectedLink : ((_ url:URL)->Void)?
-    public var didSelectedImage : ((_ url:String)->Void)?
+    public var didSelectedImage : ((_ image:UIImage)->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -199,8 +199,8 @@ public class HNMarkdown : UIView {
             label.didSelectedLink = { [weak self] url in
                 self?.didSelectedLink?(url)
             }
-            label.didSelectedImage = {[weak self] url in
-                self?.didSelectedImage?(url)
+            label.didSelectedImage = {[weak self] image in
+                self?.didSelectedImage?(image)
             }
             
             topView = label
