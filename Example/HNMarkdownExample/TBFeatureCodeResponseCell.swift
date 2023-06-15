@@ -12,6 +12,7 @@ class TBFeatureCodeResponseCell: UITableViewCell {
     
     @IBOutlet weak var viewContent : HNMarkdown!
     public var didSelectedLink : ((_ url:URL)->Void)?
+    public var didSelectedImage : ((_ url:String)->Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +29,9 @@ class TBFeatureCodeResponseCell: UITableViewCell {
         self.viewContent.setUp(markdownText: text,isDebug: true)
         self.viewContent.didSelectedLink = { url in
             self.didSelectedLink?(url)
+        }
+        self.viewContent.didSelectedImage = { urlString in
+            self.didSelectedImage?(urlString)
         }
     }
 }

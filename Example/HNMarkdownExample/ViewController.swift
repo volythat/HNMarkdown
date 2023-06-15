@@ -182,6 +182,9 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         cell.didSelectedLink = { url in
             self.safari(url)
         }
+        cell.didSelectedImage = { url in
+            print("url image = \(url)")
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

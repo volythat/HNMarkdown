@@ -15,6 +15,7 @@ import Splash
 import Markdown
 import SnapKit
 
+
 public class HNMarkdown : UIView {
     
     var items : [HNMarkDownItem] = []
@@ -22,7 +23,9 @@ public class HNMarkdown : UIView {
     let padding : CGFloat = 16
     var content : String = ""
     public var options : HNMarkdownOption = HNMarkdownOption()
+    
     public var didSelectedLink : ((_ url:URL)->Void)?
+    public var didSelectedImage : ((_ url:String)->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -195,6 +198,9 @@ public class HNMarkdown : UIView {
             
             label.didSelectedLink = { [weak self] url in
                 self?.didSelectedLink?(url)
+            }
+            label.didSelectedImage = {[weak self] url in
+                self?.didSelectedImage?(url)
             }
             
             topView = label
