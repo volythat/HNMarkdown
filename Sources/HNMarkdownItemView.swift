@@ -56,8 +56,9 @@ class HNMarkdownItemView : UIView {
             self.addSubview(imageView!)
             imageView?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
-                make.height.equalTo(200)
+                make.height.equalTo(300)
             }
+            
         }else{
             label = HNBlockCodeLabel(frame: .zero)
             self.addSubview(label!)

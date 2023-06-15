@@ -24,6 +24,9 @@ class HNImageView : UIImageView {
         contentMode = .scaleAspectFit
         self.sd_setImage(with: URL(string: urlString)) { image , error , cache, url  in
             self.image = image
+            if let img = image {
+                self.updateHeight(size: img.size)
+            }
         }
     }
     func updateHeight(size:CGSize){
