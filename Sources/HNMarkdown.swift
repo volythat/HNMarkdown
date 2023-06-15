@@ -145,7 +145,11 @@ public class HNMarkdown : UIView {
             type = .text
             var isAdded = false
             if mark is Paragraph || mark is BlockQuote {
-                content += "\n\n"
+                if !content.isEmpty {
+                    content += "\n\n"
+                }else{
+                    content += "\n"
+                }
             }
             mark.children.forEach { child in
 //                logDebug("child = \(child.debugDescription(options: .printEverything))")
