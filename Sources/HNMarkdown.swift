@@ -78,6 +78,13 @@ public class HNMarkdown : UIView {
             
             let item = HNMarkDownItem(type:type,content: code.code)
             self.items.append(item)
+        }else if let code = mark as? BlockQuote {
+            self.addItemText()
+            content = ""
+            type = .quote
+            
+            let item = HNMarkDownItem(type:type,content: code.format().removeElementQuote(element: .quote))
+            self.items.append(item)
         }else if let header = mark as? Heading {
             self.addItemText()
             

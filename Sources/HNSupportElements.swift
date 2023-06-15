@@ -8,7 +8,7 @@
 import Foundation
 
 enum HNMarkDownType {
-    case text, code, image 
+    case text, code, image , quote
 }
 enum HNSupportElements : String {
     case italic = "*"
@@ -23,6 +23,7 @@ enum HNSupportElements : String {
     case code = "```"
     case inlinecode = "`"
     case link
+    case quote = ">"
     
     func addTag(from:String)->String {
         switch self {
@@ -55,6 +56,8 @@ enum HNSupportElements : String {
             return " <f>" + from + "</f> "
         case .link:
             return ""
+        case .quote:
+            return from
         }
     }
     func addHref(link:String,text:String)->String{

@@ -11,6 +11,7 @@ import SDWebImage
 
 class HNMarkdownItemView : UIView {
     var label : HNBlockCodeLabel? = nil
+    var quote : HNBlockQuoteLabel? = nil
     var imageView : HNImageView? = nil
     var item : HNMarkDownItem?
     var options = HNMarkdownOption()
@@ -49,9 +50,20 @@ class HNMarkdownItemView : UIView {
                 make.top.equalToSuperview().offset(30)
                 make.leading.equalToSuperview().offset(8)
                 make.trailing.equalToSuperview().offset(-8)
-                make.bottom.equalToSuperview().offset(-8)
+                make.bottom.equalToSuperview()
             }
-        }else if item.type == .image {
+            label?.setUp(item: item, options: options)
+        }else if item.type == .quote {
+            quote = HNBlockQuoteLabel(frame: .zero)
+            self.addSubview(quote!)
+            quote?.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(30)
+                make.leading.equalToSuperview().offset(8)
+                make.trailing.equalToSuperview().offset(-8)
+                make.bottom.equalToSuperview()
+            }
+            quote?.setUp(item: item, options: options)
+        } else if item.type == .image {
             imageView = HNImageView(frame: .zero)
             imageView?.setImage(item.content)
             self.addSubview(imageView!)
@@ -70,8 +82,8 @@ class HNMarkdownItemView : UIView {
                 make.edges.equalToSuperview()
             }
             label?.delegate = self
+            label?.setUp(item: item, options: options)
         }
-        label?.setUp(item: item, options: options)
     }
     
     func createCopyButton(){

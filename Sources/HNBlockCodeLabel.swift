@@ -32,6 +32,8 @@ class HNBlockCodeLabel : UITextView {
         self.options = options
         if item.type == .code {
             self.attributedText = self.setAttrCode(text: item.content)
+        }else if item.type == .quote {
+            self.attributedText = self.setAttrParagraph(text: "<q>" + item.content + "</q>")
         }else if item.type == .image {
             
         }else{
@@ -48,6 +50,10 @@ class HNBlockCodeLabel : UITextView {
             $0.font = self.options.font
             $0.color = self.options.colorText
             $0.lineSpacing = 1
+        }
+        let quote = Style {
+            $0.font = self.options.fontQuote
+            $0.color = self.options.colorTextQuote
         }
 
         let boldStyle = Style {
@@ -102,6 +108,7 @@ class HNBlockCodeLabel : UITextView {
                                                          "f": foreground,
                                                          "i":italic,
                                                          "u":underline,
+                                                         "q":quote,
                                                          "h1":header1,
                                                          "h2":header2,
                                                          "h3":header3,

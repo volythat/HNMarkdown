@@ -45,6 +45,19 @@ public class HNMarkdownOption {
     }
     public var codeBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
     public var colorText = UIColor(named: "defaultColorText",in: Bundle.module, compatibleWith: nil)!
+    
+    public var fontQuote : UIFont {
+        get {
+            return HNFont.SpaceMonoRegular.size(fontSize)
+        }
+        set {}
+    }
+    public var colorTextQuote : UIColor {
+        get {
+            return colorText.withAlphaComponent(0.9)
+        }
+        set {}
+    }
     public var copyImage = UIImage(systemName: "doc.on.doc")
     public var copyDoneImage = UIImage(systemName: "checkmark")
     public var tintColorCopyButton = UIColor(named: "tintColorCopyButton",in: Bundle.module, compatibleWith: nil)

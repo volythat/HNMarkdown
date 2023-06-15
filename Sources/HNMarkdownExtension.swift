@@ -36,6 +36,15 @@ extension String {
         return element.addTag(from: str)
         
     }
+    func removeElementQuote(element:HNSupportElements)->String{
+        
+        var str = self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let count = element.rawValue.count
+        if str.prefix(count) == element.rawValue {
+            str = str.substring(from: count, length: str.count - count) ?? str
+        }
+        return str
+    }
 }
 extension UIButton {
     func fade(){
