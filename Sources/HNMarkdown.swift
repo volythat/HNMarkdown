@@ -44,7 +44,7 @@ public class HNMarkdown : UIView {
         
         
         document.children.forEach { mark in
-//            logDebug("mark = \(mark.debugDescription(options: .printEverything))")
+            logDebug("mark = \(mark.debugDescription(options: .printEverything))")
             self.addItems(mark: mark)
         }
         if !content.isEmpty {
@@ -66,7 +66,7 @@ public class HNMarkdown : UIView {
     }
     
     func addItems(mark:Markup){
-        logDebug("mark text = \(mark.format(options: .default))")
+//        logDebug("mark text = \(mark.format(options: .default))")
         var type = HNMarkDownType.text
         if let code = mark as? CodeBlock {
             self.addItemText()
@@ -134,7 +134,9 @@ public class HNMarkdown : UIView {
         }else{
             type = .text
             var isAdded = false
-            
+            if mark is Paragraph || mark is BlockQuote {
+                content += "\n\n"
+            }
             mark.children.forEach { child in
 //                logDebug("child = \(child.debugDescription(options: .printEverything))")
                 
@@ -182,7 +184,7 @@ public class HNMarkdown : UIView {
                 make.trailing.equalToSuperview().offset(-self.options.padding)
                 
                 if let top = topView {
-                    make.top.equalTo(top.snp.bottom).offset(topOffset)
+                    make.top.equalTo(top.snp.bottom).offset(0)
                 }else{
                     make.top.equalToSuperview().offset(topOffset)
                 }
