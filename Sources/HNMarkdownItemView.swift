@@ -70,7 +70,11 @@ class HNMarkdownItemView : UIView {
             imageView?.setImage(item.content)
             self.addSubview(imageView!)
             imageView?.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+                make.leading.equalToSuperview().offset(8)
+                make.trailing.equalToSuperview().offset(-8)
+                
+                make.top.equalToSuperview().offset(4)
+                make.bottom.equalToSuperview().offset(-4)
                 make.height.equalTo(300)
             }
             imageView?.didTaped = { [weak self] image in

@@ -62,7 +62,8 @@ enum HNSupportElements : String {
     }
     func addHref(link:String,text:String)->String{
         if self == .link {
-            return " <a href=\"\(link)\">" + text + "</a> "
+            let ct = text.isEmpty ? link : text
+            return " <a href=\"\(link)\">" + ct + "</a> "
         }else{
             return ""
         }
