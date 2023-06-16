@@ -26,14 +26,16 @@ public class HNMarkdown : UIView {
     
     public var didSelectedLink : ((_ url:URL)->Void)?
     public var didSelectedImage : ((_ image:UIImage)->Void)?
+    public var updatedHeight : (()->Void)?
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+
     
     public func setUp(markdownText:String,isDebug:Bool = false ){
         self.isDebug = isDebug
@@ -174,9 +176,6 @@ public class HNMarkdown : UIView {
             }
         }
     }
-    func getLastMarkup(mark:Markup){
-        
-    }
     
     func addItemText(){
         if !content.isEmpty {
@@ -212,6 +211,9 @@ public class HNMarkdown : UIView {
             }
             label.didSelectedImage = {[weak self] image in
                 self?.didSelectedImage?(image)
+            }
+            label.updatedHeight = { [weak self] in
+                self?.updatedHeight?()
             }
             
             topView = label

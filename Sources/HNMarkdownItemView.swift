@@ -18,6 +18,7 @@ class HNMarkdownItemView : UIView {
     
     public var didSelectedLink : ((_ url:URL)->Void)?
     public var didSelectedImage : ((_ image:UIImage)->Void)?
+    public var updatedHeight : (()->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +40,7 @@ class HNMarkdownItemView : UIView {
             createCopyButton()
         }
     }
+    
     //MARK: - LAYOUT
     
     func addLabel(item:HNMarkDownItem,options:HNMarkdownOption){
@@ -73,6 +75,9 @@ class HNMarkdownItemView : UIView {
             }
             imageView?.didTaped = { [weak self] image in
                 self?.didSelectedImage?(image)
+            }
+            imageView?.updatedHeight = { [weak self] in
+                self?.updatedHeight?()
             }
             
         }else{

@@ -13,6 +13,7 @@ class HNImageView : UIImageView {
     
     var urlString = ""
     var didTaped : ((_ image:UIImage)->Void)?
+    var updatedHeight : (()->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,19 +26,22 @@ class HNImageView : UIImageView {
         self.urlString = urlString
         contentMode = .scaleAspectFit
         isUserInteractionEnabled = true
-        self.sd_setImage(with: URL(string: urlString)) { image , error , cache, url  in
-            self.image = image
-            if let img = image {
-                self.updateHeight(size: img.size)
-                self.addTapable()
+        self.sd_setImage(with: URL(string: urlString)) { [weak self] image , error , cache, url  in
+            self?.image = image
+            if let img = image , img.size.height > 0 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
+                    self?.updateHeight(size: img.size)
+                    self?.addTapable()
+                }
             }
         }
     }
     func updateHeight(size:CGSize){
-        let h = self.frame.width  * (size.height/size.width)
+        let h = CGFloat(self.frame.width)  * (CGFloat(size.height)/CGFloat(size.width))
         self.snp.updateConstraints { make in
             make.height.equalTo(h)
         }
+        self.updatedHeight?()
     }
     
     func addTapable(){
@@ -51,24 +55,4 @@ class HNImageView : UIImageView {
         }
     }
 }
-extension UIView {
 
-    var heightConstraint: NSLayoutConstraint? {
-        get {
-            return constraints.first(where: {
-                $0.firstAttribute == .height && $0.relation == .equal
-            })
-        }
-        set { setNeedsLayout() }
-    }
-
-    var widthConstraint: NSLayoutConstraint? {
-        get {
-            return constraints.first(where: {
-                $0.firstAttribute == .width && $0.relation == .equal
-            })
-        }
-        set { setNeedsLayout() }
-    }
-
-}
