@@ -31,8 +31,16 @@ extension Markup {
             return (fm,false)
         }else if let image = self as? Image {
             return (image.source ?? "",true)
-        }else if self is Text {
-            return (self.getChildFormat(),false)
+        }else if let text = self as? Text {
+            return (text.plainText,false)
+        }else if let text = self as? SoftBreak {
+            print("SoftBreak = \(text.plainText)")
+            return (text.plainText,false)
+        }else if let text = self as? LineBreak {
+            print("LineBreak = \(text.plainText)")
+            return (text.plainText,false)
+        }else if let quote = self as? BlockQuote {
+            return (quote.getChildFormat(),false)
         }else{
             return (self.getChildFormat(),false)
         }

@@ -147,67 +147,25 @@ s.close()
 
 """
     let content = """
-    **Website**
-\nNiche graphic websites such as Artstation and Deviant Art aggregate many images of distinct genres. Using them in a prompt is a sure way to steer the image toward these styles.
-\n
-\nLet add artstation to the prompt.
-\n
-\n> Emma Watson as a powerful mysterious sorceress, casting lightning magic, detailed clothing, digital painting, hyperrealistic, fantasy, Surrealist, full body, by Stanley Artgerm Lau and Alphonse Mucha, artstation
-\n
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/28.png)
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/29.png)
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/30.png)
-\n
-\nIt not a huge change but the images do look like what you would find on Artstation.
-\n
-\n**Resolution**
-\nResolution represents how sharp and detailed the image is. Let add keywords highly detailed and sharp focus.
-\n
-\n> Emma Watson as a powerful mysterious sorceress, casting lightning magic, detailed clothing, digital painting, hyperrealistic, fantasy, Surrealist, full body, by Stanley Artgerm Lau and Alphonse Mucha, artstation, highly detailed, sharp focus
-\n
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/31.png)
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/32.png)
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/33.png)
-\n
-\nWell, not a huge effect perhaps because the previous images are already pretty sharp and detailed. But it doesn hurt to add.
-\n
-\n**Additional details**
-\nAdditional details are sweeteners added to modify an image. We will add sci-fi, stunningly beautiful and dystopian to add some vibe to the image.
-\n
-\n> Emma Watson as a powerful mysterious sorceress, casting lightning magic, detailed clothing, digital painting, hyperrealistic, fantasy, Surrealist, full body, by Stanley Artgerm Lau and Alphonse Mucha, artstation, highly detailed, sharp focus, sci-fi, stunningly beautiful, dystopian
-\n
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/36.png)
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/35.png)
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/34.png)
-\n
-\n**Color**
-\nYou can control the overall color of the image by adding color keywords. The colors you specified may appear as a tone or in objects.
-\n
-\nLet add some golden color to the image with the keyword iridescent gold.
-\n
-\n> Emma Watson as a powerful mysterious sorceress, casting lightning magic, detailed clothing, digital painting, hyperrealistic, fantasy, Surrealist, full body, by Stanley Artgerm Lau and Alphonse Mucha, artstation, highly detailed, sharp focus, sci-fi, stunningly beautiful, dystopian, iridescent gold
-\n
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/38.png)
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/39.png)
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/40.png)
-\n
-\nThe gold comes out great!
-\n
-\n**Lighting**
-\nAny photographer would tell you lighting is a key factor in creating successful images. Lighting keywords can have a huge effect on how the image looks. Let add cinematic lighting and dark to the prompt.
-\n
-\n> Emma Watson as a powerful mysterious sorceress, casting lightning magic, detailed clothing, digital painting, hyperrealistic, fantasy, Surrealist, full body, by Stanley Artgerm Lau and Alphonse Mucha, artstation, highly detailed, sharp focus, sci-fi, stunningly beautiful, dystopian, iridescent gold, cinematic lighting, dark
-\n
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/41.png)
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/42.png)
-\n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/43.png)
-\n
-\nThis complete our example prompt.
-\n
-\n**Remarks**
-\nAs you may have notice, the images are already pretty good with a few keywords added to the subject. When it comes to building a prompt for Stable Diffusion, often you don need to have many keywords to get good images.
-\n
-\nSource : [](https://stable-diffusion-art.com/)
+    \n**What is ArtJourney - AI Art Generator?**
+    \nArtJourney - AI Art Generator  is a latent diffusion model for generating AI images. The images can be photorealistic, like those captured by a camera, or in an artistic style as if produced by a professional artist.
+    \n
+    \n
+
+    > asd fasd fsad fsdf sd fsfd1
+    > asd fasd fsad fsdf sd fsfd2
+
+    \n
+    \n**How to use ArtJourney - AI Art Generator?**
+    \nYou need to give it a prompt that describes an image.
+    \nFor example: gingerbread house, diorama, in focus, white background, toast , crunch cereal
+    \nArtJourney - AI Art Generator turns this prompt into images like the ones below.
+    \n
+    \n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/117.png)
+    \n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/118.png)
+    \n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/119.png)
+    \n
+    \n*Recompiled source : https://stable-diffusion-art.com/*
 """
 
     override func viewDidLoad() {

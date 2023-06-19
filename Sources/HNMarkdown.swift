@@ -49,7 +49,6 @@ public class HNMarkdown : UIView {
         
         
         document.children.forEach { mark in
-            logDebug("mark = \(mark.debugDescription(options: .printEverything))")
             self.addItems(mark: mark)
         }
         if !content.isEmpty {
@@ -71,7 +70,7 @@ public class HNMarkdown : UIView {
     }
     
     func addItems(mark:Markup){
-//        logDebug("mark text = \(mark.format(options: .default))")
+//        logDebug("mark = \(mark.debugDescription(options: .printEverything))")
         var type = HNMarkDownType.text
         if let code = mark as? CodeBlock {
             self.addItemText()
@@ -84,8 +83,29 @@ public class HNMarkdown : UIView {
             self.addItemText()
             content = ""
             type = .quote
-            
-            let item = HNMarkDownItem(type:type,content: code.format().removeElementQuote(element: .quote))
+            var isAdded = false
+            code.children.forEach { child in
+//                logDebug("child = \(child.debugDescription(options: .printEverything))")
+                
+                let fm = child.getFormat()
+                if fm.isImage {
+                    self.addItemText()
+                    
+                    isAdded = true
+                    let item = HNMarkDownItem(type:.image,content: fm.text)
+                    self.items.append(item)
+                    
+                }else{
+                    isAdded = true
+                    content += fm.text
+                }
+                    
+                
+            }
+            if !isAdded {
+                content += mark.format(options: .init(orderedListNumerals: .incrementing(start: 1)))
+            }
+            let item = HNMarkDownItem(type:type,content: content)
             self.items.append(item)
         }else if let header = mark as? Heading {
             self.addItemText()
@@ -146,13 +166,12 @@ public class HNMarkdown : UIView {
         }else{
             type = .text
             var isAdded = false
-            if mark is Paragraph || mark is BlockQuote {
+            if mark is Paragraph {
                 if !content.isEmpty {
                     content += "\n\n"
-                }else{
-                    content += "\n"
                 }
             }
+
             mark.children.forEach { child in
 //                logDebug("child = \(child.debugDescription(options: .printEverything))")
                 
