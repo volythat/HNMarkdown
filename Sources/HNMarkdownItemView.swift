@@ -67,11 +67,11 @@ class HNMarkdownItemView : UIView {
             quote?.setUp(item: item, options: options)
         } else if item.type == .image {
             imageView = HNImageView(frame: .zero)
-            imageView?.setImage(item.content)
+            imageView?.setImage(item.content,options: options)
             self.addSubview(imageView!)
             imageView?.snp.makeConstraints { make in
-                make.leading.equalToSuperview().offset(8)
-                make.trailing.equalToSuperview().offset(-8)
+                make.leading.equalToSuperview().offset(0)
+                make.trailing.equalToSuperview().offset(-0)
                 
                 make.top.equalToSuperview().offset(4)
                 make.bottom.equalToSuperview().offset(-4)

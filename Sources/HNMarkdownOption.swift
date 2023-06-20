@@ -64,6 +64,8 @@ public class HNMarkdownOption {
     public var padding : CGFloat = 16
     public var allowDarkmode : Bool = false
     public var thematicBreakColor = UIColor(named: "bgLineBreak",in: Bundle.module, compatibleWith: nil)
+    public var placeholderImageView = UIImage(named: "img_placeholder_default", in: Bundle.module, with: nil)
+    public var bgImageView = UIColor(named: "bgImageView",in: Bundle.module,compatibleWith: nil)
     
     public func themeForCode()->Theme {
         return Theme(
