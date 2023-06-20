@@ -13,15 +13,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var tbView : UITableView!
     
     let readMeContents = """
+----
 
 Bạn có thể sử dụng **AlamofireSessionManager** để cấu hình SSL ~Pinning~. Để trust certificate self-signed, bạn cần tạo 1 custom *ServerTrustPolicy* và set cho `AlamofireSessionManager`.
 
+----
 
 # The largest heading
 ## The second largest heading
 ###### The smallest heading
 
-Ví dụ như sau (kotlin):
+**** Ví dụ như sau (kotlin):
 
 ```
 let serverTrustPolicies: [String: ServerTrustPolicy] = [
@@ -160,6 +162,8 @@ s.close()
     \nYou need to give it a prompt that describes an image.
     \nFor example: gingerbread house, diorama, in focus, white background, toast , crunch cereal
     \nArtJourney - AI Art Generator turns this prompt into images like the ones below.
+    
+    **** Hello
     \n
     \n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/117.png)
     \n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/118.png)
@@ -204,7 +208,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TBFeatureCodeResponseCell", for: indexPath) as! TBFeatureCodeResponseCell
         
-        cell.setUp(text: content)
+        cell.setUp(text: readMeContents)
         cell.didSelectedLink = {[weak self] url in
             self?.safari(url)
         }

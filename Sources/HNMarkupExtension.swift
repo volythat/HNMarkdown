@@ -34,10 +34,10 @@ extension Markup {
         }else if let text = self as? Text {
             return (text.plainText,false)
         }else if let text = self as? SoftBreak {
-            print("SoftBreak = \(text.plainText)")
+//            print("SoftBreak = \(text.plainText)")
             return (text.plainText,false)
         }else if let text = self as? LineBreak {
-            print("LineBreak = \(text.plainText)")
+//            print("LineBreak = \(text.plainText)")
             return (text.plainText,false)
         }else if let quote = self as? BlockQuote {
             return (quote.getChildFormat(),false)

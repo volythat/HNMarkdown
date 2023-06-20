@@ -70,7 +70,7 @@ public class HNMarkdown : UIView {
     }
     
     func addItems(mark:Markup){
-//        logDebug("mark = \(mark.debugDescription(options: .printEverything))")
+        logDebug("mark = \(mark.debugDescription(options: .printEverything))")
         var type = HNMarkDownType.text
         if let code = mark as? CodeBlock {
             self.addItemText()
@@ -79,7 +79,13 @@ public class HNMarkdown : UIView {
             
             let item = HNMarkDownItem(type:type,content: code.code)
             self.items.append(item)
-        }else if let code = mark as? BlockQuote {
+        }else if mark is ThematicBreak {
+            self.addItemText()
+            content = ""
+            type = .line
+            let item = HNMarkDownItem(type:type,content: "")
+            self.items.append(item)
+        } else if let code = mark as? BlockQuote {
             self.addItemText()
             content = ""
             type = .quote
@@ -206,36 +212,56 @@ public class HNMarkdown : UIView {
     
     func addItemViews(){
         var topView : UIView? = nil
+
         for (index,item) in items.enumerated() {
-            let label = HNMarkdownItemView()
-            label.setUp(item: item,options: self.options)
-            self.addSubview(label)
-            let topOffset : CGFloat = self.options.padding
-            label.snp.makeConstraints { make in
-                make.leading.equalToSuperview().offset(self.options.padding)
-                make.trailing.equalToSuperview().offset(-self.options.padding)
+            if item.type == .line {
+                let line = HNThematicBreak(frame: .zero)
+                line.backgroundColor = options.thematicBreakColor
+                self.addSubview(line)
+                line.snp.makeConstraints { make in
+                    make.leading.equalToSuperview().offset(self.options.padding)
+                    make.trailing.equalToSuperview().offset(-self.options.padding)
+                    make.height.equalTo(1)
+                    if let top = topView {
+                        make.top.equalTo(top.snp.bottom).offset(0)
+                    }else{
+                        make.top.equalToSuperview().offset(self.options.padding)
+                    }
+                    if index == items.count - 1 {
+                        make.bottom.equalToSuperview().offset(-self.options.padding)
+                    }
+                }
+                topView = line
+            }else{
+                let label = HNMarkdownItemView()
+                label.setUp(item: item,options: self.options)
+                self.addSubview(label)
+                label.snp.makeConstraints { make in
+                    make.leading.equalToSuperview().offset(self.options.padding)
+                    make.trailing.equalToSuperview().offset(-self.options.padding)
+                    
+                    if let top = topView {
+                        make.top.equalTo(top.snp.bottom).offset(0)
+                    }else{
+                        make.top.equalToSuperview().offset(self.options.padding)
+                    }
+                    if index == items.count - 1 {
+                        make.bottom.equalToSuperview().offset(-self.options.padding)
+                    }
+                }
                 
-                if let top = topView {
-                    make.top.equalTo(top.snp.bottom).offset(0)
-                }else{
-                    make.top.equalToSuperview().offset(topOffset)
+                label.didSelectedLink = { [weak self] url in
+                    self?.didSelectedLink?(url)
                 }
-                if index == items.count - 1 {
-                    make.bottom.equalToSuperview().offset(-self.options.padding)
+                label.didSelectedImage = {[weak self] image in
+                    self?.didSelectedImage?(image)
                 }
+                label.updatedHeight = { [weak self] in
+                    self?.updatedHeight?()
+                }
+                
+                topView = label
             }
-            
-            label.didSelectedLink = { [weak self] url in
-                self?.didSelectedLink?(url)
-            }
-            label.didSelectedImage = {[weak self] image in
-                self?.didSelectedImage?(image)
-            }
-            label.updatedHeight = { [weak self] in
-                self?.updatedHeight?()
-            }
-            
-            topView = label
         }
         
     }
