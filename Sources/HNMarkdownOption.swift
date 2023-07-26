@@ -39,7 +39,7 @@ public class HNMarkdownOption {
     
     public var fontCode : UIFont {
         get {
-            return HNFont.SpaceMonoRegular.size(fontSize - 1)
+            return UIFont.monoRegular(size: fontSize - 1)
         }
         set {}
     }
@@ -48,7 +48,7 @@ public class HNMarkdownOption {
     
     public var fontQuote : UIFont {
         get {
-            return HNFont.SpaceMonoRegular.size(fontSize)
+            return UIFont.monoRegular(size: fontSize)
         }
         set {}
     }

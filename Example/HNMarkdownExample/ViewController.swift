@@ -233,23 +233,5 @@ extension UITableView {
     func dequeue(_ clas : AnyClass,_ indexPath:IndexPath)->UITableViewCell{
         return self.dequeueReusableCell(withIdentifier: String(describing: clas), for: indexPath)
     }
-    func showEmpty(isShow : Bool,text:String = "Not found!"){
-        if isShow {
-            
-            let lb = UILabel(frame: CGRect.zero)
-            lb.text = text
-            lb.font = UIFont.font(.HelveticaNeue, 14)
-            lb.textColor = UIColor.lightGray
-            lb.textAlignment = .center
-            lb.numberOfLines = 0
-            self.backgroundView = lb
-        }else{
-            self.backgroundView = nil
-        }
-    }
-    func clearLineEmpty(){
-        self.tableFooterView = UIView()
-    }
-    
     
 }

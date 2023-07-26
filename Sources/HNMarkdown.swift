@@ -43,7 +43,8 @@ public class HNMarkdown : UIView {
         subviews.forEach { v in
             v.removeFromSuperview()
         }
-        HNFont.SpaceMonoRegular.register()
+        
+        UIFont.register()
         let document = Document(parsing: markdownText)
         items = []
         

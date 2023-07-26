@@ -36,7 +36,9 @@ class TBFeatureCodeResponseCell: UITableViewCell {
             viewContent?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            
+            let options = HNMarkdownOption()
+            options.padding = 8
+            self.viewContent?.options = options
             self.viewContent?.setUp(markdownText: text,isDebug: true)
             self.viewContent?.didSelectedLink = {[weak self] url in
                 self?.didSelectedLink?(url)

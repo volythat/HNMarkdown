@@ -81,3 +81,17 @@ extension HNMarkdown {
         }
     }
 }
+extension UIFont {
+    class func monoRegular(size:CGFloat)->UIFont{
+        return UIFont(name: "SpaceMono-Regular", size: size) ?? UIFont.systemFont(ofSize: size)
+    }
+    class func register(){
+        guard let asset = NSDataAsset(name: "SpaceMono-Regular", bundle: Bundle.module),
+              let provider = CGDataProvider(data: asset.data as NSData),
+              let font = CGFont(provider),
+              CTFontManagerRegisterGraphicsFont(font, nil) else {
+            print("register font error")
+            return
+        }
+    }
+}
