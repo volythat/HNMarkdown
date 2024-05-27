@@ -170,6 +170,23 @@ public class HNMarkdown : UIView {
             let item = HNMarkDownItem(type:type,content: str)
             self.items.append(item)
             
+        }else if let order = mark as? OrderedList {
+            self.addItemText()
+            var str = ""
+            
+            for (index,item) in order.listItems.enumerated() {
+                type = .text
+                item.children.forEach { child in
+                    str += "\(index + 1). " + child.getFormat().text
+                }
+                
+                if index < order.childCount - 1 {
+                    str += "\n"
+                }
+            }
+            let item = HNMarkDownItem(type:type,content: str)
+            self.items.append(item)
+            
         }else{
             type = .text
             var isAdded = false
