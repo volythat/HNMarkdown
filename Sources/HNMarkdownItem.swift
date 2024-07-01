@@ -12,6 +12,9 @@ import Markdown
 class HNMarkDownItem {
     var type : HNMarkDownType = .text
     var content : String = ""
+    var language : String = ""
+    var head : Table.Head? = nil
+    var body : Table.Body? = nil 
     
     init(type: HNMarkDownType, content: String) {
         self.type = type
@@ -21,5 +24,5 @@ class HNMarkDownItem {
     func getHeight(width:CGFloat,font:UIFont)->CGFloat {
         return content.height(withConstrainedWidth: width , font: font)
     }
-    
+
 }

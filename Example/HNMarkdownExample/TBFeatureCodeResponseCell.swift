@@ -36,7 +36,7 @@ class TBFeatureCodeResponseCell: UITableViewCell {
             viewContent?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            let options = HNMarkdownOption()
+            let options = HNMarkdownOption(widthView: UIScreen.main.bounds.size.width - 32)
             options.padding = 8
             self.viewContent?.options = options
             self.viewContent?.setUp(markdownText: text,isDebug: true)

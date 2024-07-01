@@ -8,6 +8,11 @@
 import Foundation
 import Markdown
 
+enum LatexContentType {
+    case paragraph(String)
+    case latex(String)
+}
+
 extension Markup {
     func sourceImage()->String? {
         if let img = self as? Image {
@@ -56,4 +61,123 @@ extension Markup {
         }
         return str
     }
+    
+    
+    func extractLaTeXAndMarkdown() -> [LatexContentType] {
+        let text = getFormat().text
+        // Regular expression patterns for LaTeX
+        let latexPatterns = [
+            "\\$\\$[\\s\\S]+?\\$\\$", // Matches $$ ... $$ (multi-line)
+            "\\\\\\([\\s\\S]+?\\\\\\)", // Matches \( ... \) (inline LaTeX)
+            "\\$[\\s\\S]+?\\$" // Matches $ ... $ (inline LaTeX)
+        ]
+        
+        // Combine patterns
+        let combinedPattern = latexPatterns.joined(separator: "|")
+        
+        // Regular expression to find LaTeX
+        let regex = try! NSRegularExpression(pattern: combinedPattern, options: [])
+        
+        // Find matches
+        let matches = regex.matches(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count))
+        
+        // Extract LaTeX strings and their ranges
+        var latexStrings: [(String, NSRange)] = []
+        
+        for match in matches {
+            if let range = Range(match.range, in: text) {
+                latexStrings.append((String(text[range]), match.range))
+            }
+        }
+        
+        // Sort the matches by range location
+        latexStrings.sort { $0.1.location < $1.1.location }
+        
+        var result: [LatexContentType] = []
+        var lastPosition = text.startIndex
+        
+        for (latex, range) in latexStrings {
+            let rangeStartIndex = text.index(text.startIndex, offsetBy: range.location)
+            let rangeEndIndex = text.index(text.startIndex, offsetBy: range.location + range.length)
+            
+            if lastPosition < rangeStartIndex {
+                let substring = String(text[lastPosition..<rangeStartIndex]).trimmingCharacters(in: .whitespacesAndNewlines)
+                if !substring.isEmpty {
+                    result.append(.paragraph(substring))
+                }
+            }
+            
+            result.append(.latex(latex))
+            lastPosition = rangeEndIndex
+        }
+        
+        if lastPosition < text.endIndex {
+            let substring = String(text[lastPosition..<text.endIndex]).trimmingCharacters(in: .whitespacesAndNewlines)
+            if !substring.isEmpty {
+                result.append(.paragraph(substring))
+            }
+        }
+        
+        return result
+    }
+}
+extension String {
+    func extractLaTeXAndMarkdown() -> [LatexContentType] {
+        let text = self
+        // Regular expression patterns for LaTeX
+        let latexPatterns = [
+            "\\$\\$[\\s\\S]+?\\$\\$", // Matches $$ ... $$ (multi-line)
+            "\\\\\\([\\s\\S]+?\\\\\\)", // Matches \( ... \) (inline LaTeX)
+            "\\$[\\s\\S]+?\\$" // Matches $ ... $ (inline LaTeX)
+        ]
+        
+        // Combine patterns
+        let combinedPattern = latexPatterns.joined(separator: "|")
+        
+        // Regular expression to find LaTeX
+        let regex = try! NSRegularExpression(pattern: combinedPattern, options: [])
+        
+        // Find matches
+        let matches = regex.matches(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count))
+        
+        // Extract LaTeX strings and their ranges
+        var latexStrings: [(String, NSRange)] = []
+        
+        for match in matches {
+            if let range = Range(match.range, in: text) {
+                latexStrings.append((String(text[range]), match.range))
+            }
+        }
+        
+        // Sort the matches by range location
+        latexStrings.sort { $0.1.location < $1.1.location }
+        
+        var result: [LatexContentType] = []
+        var lastPosition = text.startIndex
+        
+        for (latex, range) in latexStrings {
+            let rangeStartIndex = text.index(text.startIndex, offsetBy: range.location)
+            let rangeEndIndex = text.index(text.startIndex, offsetBy: range.location + range.length)
+            
+            if lastPosition < rangeStartIndex {
+                let substring = String(text[lastPosition..<rangeStartIndex]).trimmingCharacters(in: .whitespacesAndNewlines)
+                if !substring.isEmpty {
+                    result.append(.paragraph(substring))
+                }
+            }
+            
+            result.append(.latex(latex))
+            lastPosition = rangeEndIndex
+        }
+        
+        if lastPosition < text.endIndex {
+            let substring = String(text[lastPosition..<text.endIndex]).trimmingCharacters(in: .whitespacesAndNewlines)
+            if !substring.isEmpty {
+                result.append(.paragraph(substring))
+            }
+        }
+        
+        return result
+    }
+    
 }

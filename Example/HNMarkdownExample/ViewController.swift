@@ -7,6 +7,7 @@
 
 import UIKit
 import SafariServices
+import Markdown
 
 class ViewController: UIViewController {
     
@@ -16,6 +17,8 @@ class ViewController: UIViewController {
 ----
 
 Bạn có thể sử dụng **AlamofireSessionManager** để cấu hình SSL ~Pinning~. Để trust certificate self-signed, bạn cần tạo 1 custom *ServerTrustPolicy* và set cho `AlamofireSessionManager`.
+
+Bạn có thể sử dụng $x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}$ Để trust certificate self-signed.
 
 ----
 
@@ -119,11 +122,18 @@ s.close()
 \n
 [pica](https://nodeca.github.io/pica/demo/)
 
+x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}
+
 
 | First Header  | Second Header |
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
+
+
+$$
+\\frac{1}{n}\\sum_{i=1}^{n}x_i \\geq \\sqrt[n]{\\prod_{i=1}^{n}x_i}
+$$
 
 
 - row 1
@@ -138,22 +148,30 @@ s.close()
 * row 2
 * row 3
 
+$
+x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}
+$
 
-| STT | Tên người              | Tài sản ước tính (tỷ USD) |
-|-----|------------------------|---------------------------|
-| 1   | Jeff Bezos             | 115,3                     |
-| 2   | Elon Musk              | 97,1                      |
-| 3   | Bernard Arnault       | 76,1                      |
-| 4   | Bill Gates             | 126,4                     |
-| 5   | Mark Zuckerberg | 129,1                     |
+| STT | Tên người              | Tài sản ước tính (tỷ USD) | ACB.         |
+|-----|------------------------|---------------------------|--------------|
+| 1   | Jeff Bezos             | 115,3                     |              |
+| 2   | Elon Musk              | 97,1                      |              |
+| 3   | Bernard Arnault       | 76,1                      |              |
+| 4   | Bill Gates             | 126,4                     |              |
+| 5   | Mark Zuckerberg | 129,1                     |              |
+
+
+
 
 """
     let content = """
     \n**What is ArtJourney - AI Art Generator?**
     \nArtJourney - AI Art Generator  is a latent diffusion model for generating AI images. The images can be photorealistic, like those captured by a camera, or in an artistic style as if produced by a professional artist.
+
     \n
     \n
 
+    \n
     > asd fasd fsad fsdf sd fsfd1
     > asd fasd fsad fsdf sd fsfd2
 
@@ -208,7 +226,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TBFeatureCodeResponseCell", for: indexPath) as! TBFeatureCodeResponseCell
         
-        cell.setUp(text: content)
+        cell.setUp(text: readMeContents)
         cell.didSelectedLink = {[weak self] url in
             self?.safari(url)
         }

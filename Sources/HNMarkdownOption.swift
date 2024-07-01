@@ -10,7 +10,7 @@ import UIKit
 import Splash
 
 public class HNMarkdownOption {
-    public var fontSize : CGFloat = 13
+    public var fontSize : CGFloat = 15
     public var font : UIFont {
         get {
             return UIFont.systemFont(ofSize: fontSize)
@@ -39,11 +39,13 @@ public class HNMarkdownOption {
     
     public var fontCode : UIFont {
         get {
-            return UIFont.monoRegular(size: fontSize - 1)
+            return UIFont.monoRegular(size: fontSize - 2)
         }
         set {}
     }
+    public var blockBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
     public var codeBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
+    public var codeHeaderBackground = UIColor(named: "bgHeaderBlockCode",in: Bundle.module, compatibleWith: nil)!
     public var colorText = UIColor(named: "defaultColorText",in: Bundle.module, compatibleWith: nil)!
     
     public var fontQuote : UIFont {
@@ -58,7 +60,7 @@ public class HNMarkdownOption {
         }
         set {}
     }
-    public var copyImage = UIImage(systemName: "doc.on.doc")
+    public var copyImage = UIImage(named: "file_copy", in: Bundle.module, with: nil)
     public var copyDoneImage = UIImage(systemName: "checkmark")
     public var tintColorCopyButton = UIColor(named: "tintColorCopyButton",in: Bundle.module, compatibleWith: nil)
     public var padding : CGFloat = 16
@@ -67,7 +69,10 @@ public class HNMarkdownOption {
     public var placeholderImageView = UIImage(named: "img_placeholder_default", in: Bundle.module, with: nil)
     public var bgImageView = UIColor(named: "bgImageView",in: Bundle.module,compatibleWith: nil)
     
-    public func themeForCode()->Theme {
+    public var tableTextAlignment : NSTextAlignment = .center
+    public var colorBorderTable = UIColor(named: "colorBorderTable",in: Bundle.module,compatibleWith: nil)!
+    
+    public var themeForCode : Theme {
         return Theme(
             font: Font(size: self.fontSize),
             plainTextColor: self.colorText,
@@ -85,7 +90,11 @@ public class HNMarkdownOption {
             backgroundColor: self.codeBackground
         )
     }
+    public var widthContentView : CGFloat = 0
+    public var minHeightOfTableCell : CGFloat = 30
     
-    public init() {}
+    public init(widthView:CGFloat){
+        self.widthContentView = widthView
+    }
 }
 

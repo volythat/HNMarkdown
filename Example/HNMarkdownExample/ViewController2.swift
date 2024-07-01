@@ -6,11 +6,13 @@
 //
 
 import UIKit
-import HNMarkdown
+import Markdown
 
 class ViewController2: UIViewController {
     
     @IBOutlet weak var buttonNext : UIButton!
+    @IBOutlet weak var label : UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,7 @@ class ViewController2: UIViewController {
     }
 
     func setUpView(){
+
     }
     
     @IBAction func selectedNextButton(_ sender:UIButton){
@@ -33,3 +36,4 @@ class ViewController2: UIViewController {
         }
     }
 }
+

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CEt-to-YC3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CEt-to-YC3">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -52,22 +52,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-j3-IQX">
-                                <rect key="frame" x="178" y="261" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-j3-IQX">
+                                <rect key="frame" x="162" y="110" width="69" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="-4" minY="5" maxX="0.0" maxY="5"/>
+                                <state key="normal" title="Copy" image="doc.on.doc" catalog="system">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="selectedNextButton:" destination="EaX-1d-oh9" eventType="touchUpInside" id="Gyx-5g-54D"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elZ-Zk-M7C">
+                                <rect key="frame" x="0.0" y="141" width="393" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="q7e-7W-YId"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2dn-j3-IQX" firstAttribute="top" secondItem="q7e-7W-YId" secondAttribute="top" constant="7" id="6Ka-Uz-tKb"/>
+                            <constraint firstItem="2dn-j3-IQX" firstAttribute="centerX" secondItem="D1d-ax-2qS" secondAttribute="centerX" id="Efc-FW-cAD"/>
+                            <constraint firstItem="elZ-Zk-M7C" firstAttribute="leading" secondItem="q7e-7W-YId" secondAttribute="leading" id="HG3-Oy-5rc"/>
+                            <constraint firstItem="q7e-7W-YId" firstAttribute="trailing" secondItem="elZ-Zk-M7C" secondAttribute="trailing" id="fRd-8t-fGT"/>
+                            <constraint firstItem="elZ-Zk-M7C" firstAttribute="top" secondItem="2dn-j3-IQX" secondAttribute="bottom" constant="8" id="yOA-a0-cWp"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="i7w-gg-4KK"/>
                     <connections>
                         <outlet property="buttonNext" destination="2dn-j3-IQX" id="ma3-Zx-LWX"/>
+                        <outlet property="label" destination="elZ-Zk-M7C" id="k7J-mm-R9W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BB7-7y-5Kt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -94,6 +112,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="doc.on.doc" catalog="system" width="116" height="128"/>
         <namedColor name="bgMain">
             <color red="0.94499999284744263" green="0.94499999284744263" blue="0.94499999284744263" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

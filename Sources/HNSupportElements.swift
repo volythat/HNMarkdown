@@ -8,7 +8,7 @@
 import Foundation
 
 enum HNMarkDownType {
-    case text, code, image , quote, line
+    case text, code, image , quote, line, table, latex
 }
 enum HNSupportElements : String {
     case italic = "*"

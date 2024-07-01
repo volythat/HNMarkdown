@@ -20,9 +20,8 @@ public class HNMarkdown : UIView {
     
     var items : [HNMarkDownItem] = []
     var isDebug : Bool = false
-    let padding : CGFloat = 16
     var content : String = ""
-    public var options : HNMarkdownOption = HNMarkdownOption()
+    public var options : HNMarkdownOption!
     
     public var didSelectedLink : ((_ url:URL)->Void)?
     public var didSelectedImage : ((_ image:UIImage)->Void)?
@@ -35,7 +34,10 @@ public class HNMarkdown : UIView {
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
+    public init(options:HNMarkdownOption){
+        super.init(frame: .zero)
+        self.options = options 
+    }
     
     public func setUp(markdownText:String,isDebug:Bool = false ){
         self.isDebug = isDebug
@@ -71,7 +73,7 @@ public class HNMarkdown : UIView {
     }
     
     func addItems(mark:Markup){
-        logDebug("mark = \(mark.debugDescription(options: .printEverything))")
+//        logDebug("mark = \(mark.debugDescription(options: .printEverything))")
         var type = HNMarkDownType.text
         if let code = mark as? CodeBlock {
             self.addItemText()
@@ -79,6 +81,7 @@ public class HNMarkdown : UIView {
             type = .code
             
             let item = HNMarkDownItem(type:type,content: code.code)
+            item.language = code.language ?? ""
             self.items.append(item)
         }else if mark is ThematicBreak {
             self.addItemText()
@@ -148,10 +151,13 @@ public class HNMarkdown : UIView {
         }else if let table = mark as? Table {
             self.addItemText()
             
-            type = .code
+            type = .table
             let text = table.format().trimmingCharacters(in: .whitespacesAndNewlines)
             let item = HNMarkDownItem(type:type,content: text)
+            item.head = table.head
+            item.body = table.body
             self.items.append(item)
+            
         }else if let order = mark as? UnorderedList {
             self.addItemText()
             var str = ""
@@ -159,8 +165,8 @@ public class HNMarkdown : UIView {
             for (index,item) in order.listItems.enumerated() {
                 type = .text
                 item.children.forEach { child in
-                    let fm = child.getFormat()
-                    str += "- " + fm.text
+                    let fm = child.format()
+                    str += "- " + fm
                 }
                 
                 if index < order.childCount - 1 {
@@ -195,35 +201,47 @@ public class HNMarkdown : UIView {
                     content += "\n\n"
                 }
             }
+            
+                mark.children.forEach { child in
+                    logDebug("hcild = \(child.getFormat().text)")
+    //                logDebug("child = \(child.debugDescription(options: .printEverything))")
 
-            mark.children.forEach { child in
-//                logDebug("child = \(child.debugDescription(options: .printEverything))")
-                
-                let fm = child.getFormat()
-                if fm.isImage {
-                    self.addItemText()
-                    
-                    isAdded = true
-                    let item = HNMarkDownItem(type:.image,content: fm.text)
-                    self.items.append(item)
-                    
-                }else{
-                    isAdded = true
-                    content += fm.text
+                    let fm = child.getFormat()
+                    if fm.isImage {
+                        self.addItemText()
+                        
+                        isAdded = true
+                        let item = HNMarkDownItem(type:.image,content: fm.text)
+                        self.items.append(item)
+                        
+                    }else{
+                        
+                        isAdded = true
+                        content += fm.text
+                    }
                 }
-                    
-                
-            }
-            if !isAdded {
-                content += mark.format(options: .init(orderedListNumerals: .incrementing(start: 1)))
-            }
+                if !isAdded {
+                    content += mark.format(options: .init(orderedListNumerals: .incrementing(start: 1)))
+                }
+            
         }
     }
     
     func addItemText(){
         if !content.isEmpty {
-            let item = HNMarkDownItem(type:.text,content: content)
-            self.items.append(item)
+            let result = content.extractLaTeXAndMarkdown()
+            for item in result {
+                switch item {
+                case .paragraph(let paragraph):
+                    print("Paragraph:\n\(paragraph)\n")
+                    let item = HNMarkDownItem(type:.text,content: paragraph)
+                    self.items.append(item)
+                case .latex(let latex):
+                    print("LaTeX:\n\(latex)\n")
+                    let item = HNMarkDownItem(type:.latex,content: latex)
+                    self.items.append(item)
+                }
+            }
             content = ""
         }
     }
@@ -251,8 +269,7 @@ public class HNMarkdown : UIView {
                 }
                 topView = line
             }else{
-                let label = HNMarkdownItemView()
-                label.setUp(item: item,options: self.options)
+                let label = HNMarkdownItemView(options: self.options)
                 self.addSubview(label)
                 label.snp.makeConstraints { make in
                     make.leading.equalToSuperview().offset(self.options.padding)
@@ -267,6 +284,7 @@ public class HNMarkdown : UIView {
                         make.bottom.equalToSuperview().offset(-self.options.padding)
                     }
                 }
+                label.setUp(item: item)
                 
                 label.didSelectedLink = { [weak self] url in
                     self?.didSelectedLink?(url)

@@ -13,17 +13,24 @@ import SwiftRichString
 class HNBlockQuoteLabel : UIView {
     var label : HNBlockCodeLabel? = nil
     var viewLine : UIView?
-    var item : HNMarkDownItem?
-    var options = HNMarkdownOption()
+    var item : HNMarkDownItem!
+    var options : HNMarkdownOption!
 
-    
-    //MARK: - SETUP
-    func setUp(item:HNMarkDownItem,options:HNMarkdownOption){
+    init(item: HNMarkDownItem, options: HNMarkdownOption) {
+        super.init(frame: .zero)
         self.item = item
         self.options = options
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - SETUP
+    func setUp(){
         
         if label == nil {
-            self.label = HNBlockCodeLabel(frame: .zero)
+            self.label = HNBlockCodeLabel(item: item, options: self.options)
             self.addSubview(self.label!)
             self.label?.snp.makeConstraints { make in
                 make.top.equalToSuperview()
@@ -31,7 +38,7 @@ class HNBlockQuoteLabel : UIView {
                 make.leading.equalToSuperview().offset(8)
                 make.trailing.equalToSuperview()
             }
-            self.label?.setUp(item: item , options: options)
+            self.label?.setUp()
         }
         addLine()
     }
@@ -39,7 +46,7 @@ class HNBlockQuoteLabel : UIView {
     func addLine(){
         if viewLine == nil {
             viewLine = UIView(frame: .zero)
-            viewLine?.backgroundColor = options.codeBackground
+            viewLine?.backgroundColor = options.blockBackground
             self.addSubview(viewLine!)
             viewLine?.snp.makeConstraints { make in
                 make.leading.equalToSuperview()

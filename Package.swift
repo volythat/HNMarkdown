@@ -19,7 +19,8 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-markdown.git", branch: "main"),
         .package(url: "https://github.com/JohnSundell/Splash", from: "0.1.0"),
         .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1")),
-        .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.1.0")
+        .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.1.0"),
+        .package(url: "https://github.com/mgriebling/SwiftMath.git",from: "1.4.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -30,6 +31,7 @@ let package = Package(
                 "Splash",
                 "SDWebImage",
                 "SnapKit",
+                "SwiftMath",
                 "SwiftRichString",
                 .product(name: "Markdown", package: "swift-markdown"),
             ],

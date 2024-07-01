@@ -12,12 +12,23 @@ import SwiftRichString
 
 class HNBlockCodeLabel : UITextView {
     
-    var item : HNMarkDownItem?
-    var options = HNMarkdownOption()
+    var item : HNMarkDownItem!
+    var options : HNMarkdownOption!
 
+    init(item: HNMarkDownItem, options: HNMarkdownOption) {
+        super.init(frame: .zero, textContainer: nil)
+        self.item = item
+        self.options = options
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     //MARK: - SETUP
-    func setUp(item:HNMarkDownItem,options:HNMarkdownOption){
+    func setUp(){
 //        numberOfLines = 0
         isScrollEnabled = false
         isUserInteractionEnabled = true
@@ -28,8 +39,7 @@ class HNBlockCodeLabel : UITextView {
         self.textColor = options.colorText
         self.text = item.content
         self.font = options.font
-        self.item = item
-        self.options = options
+        
         if item.type == .code {
             self.attributedText = self.setAttrCode(text: item.content)
         }else if item.type == .quote {
@@ -68,7 +78,7 @@ class HNBlockCodeLabel : UITextView {
         let foreground: Style = Style {
             $0.font = self.options.fontCode
             $0.color = self.options.colorText
-            $0.backColor = self.options.codeBackground
+            $0.backColor = self.options.blockBackground
         }
         let italic: Style = Style {
             $0.font = self.options.fontItalic
@@ -122,7 +132,7 @@ class HNBlockCodeLabel : UITextView {
     
 
     func setAttrCode(text:String)->NSAttributedString?{
-        let highlighter = SyntaxHighlighter(format: AttributedStringOutputFormat(theme: options.themeForCode()))
+        let highlighter = SyntaxHighlighter(format: AttributedStringOutputFormat(theme: options.themeForCode))
         return highlighter.highlight(text)
     }
     //MARK: - ACTION

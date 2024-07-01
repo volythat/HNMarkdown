@@ -12,9 +12,13 @@ import SDWebImage
 class HNMarkdownItemView : UIView {
     var label : HNBlockCodeLabel? = nil
     var quote : HNBlockQuoteLabel? = nil
+    var table : HNScrollTableView? = nil
     var imageView : HNImageView? = nil
+    var headerCode : HNHeaderBlockCode? = nil
+    var latex : HNLatexLabel? = nil
+    
     var item : HNMarkDownItem?
-    var options = HNMarkdownOption()
+    var options : HNMarkdownOption!
     
     public var didSelectedLink : ((_ url:URL)->Void)?
     public var didSelectedImage : ((_ image:UIImage)->Void)?
@@ -26,18 +30,21 @@ class HNMarkdownItemView : UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    init(options:HNMarkdownOption){
+        super.init(frame: .zero)
+        self.options = options
+    }
     
     //MARK: - SETUP
-    func setUp(item:HNMarkDownItem,options:HNMarkdownOption){
+    func setUp(item:HNMarkDownItem){
         self.item = item
-        self.options = options
         self.addLabel(item: item , options: options)
         
         if item.type == .code {
             backgroundColor = options.codeBackground
             layer.cornerRadius = 8
             layer.masksToBounds = true
-            createCopyButton()
+            createCopyButton(language: item.language)
         }
     }
     
@@ -46,7 +53,7 @@ class HNMarkdownItemView : UIView {
     func addLabel(item:HNMarkDownItem,options:HNMarkdownOption){
         
         if item.type == .code {
-            label = HNBlockCodeLabel(frame: .zero)
+            label = HNBlockCodeLabel(item: item, options: options)
             self.addSubview(label!)
             label?.snp.makeConstraints { make in
                 make.top.equalToSuperview().offset(30)
@@ -54,9 +61,9 @@ class HNMarkdownItemView : UIView {
                 make.trailing.equalToSuperview().offset(-8)
                 make.bottom.equalToSuperview()
             }
-            label?.setUp(item: item, options: options)
+            label?.setUp()
         }else if item.type == .quote {
-            quote = HNBlockQuoteLabel(frame: .zero)
+            quote = HNBlockQuoteLabel(item: item, options: options)
             self.addSubview(quote!)
             quote?.snp.makeConstraints { make in
                 make.top.equalToSuperview().offset(30)
@@ -64,7 +71,7 @@ class HNMarkdownItemView : UIView {
                 make.trailing.equalToSuperview().offset(-8)
                 make.bottom.equalToSuperview()
             }
-            quote?.setUp(item: item, options: options)
+            quote?.setUp()
         } else if item.type == .image {
             imageView = HNImageView(frame: .zero)
             imageView?.setImage(item.content,options: options)
@@ -84,29 +91,53 @@ class HNMarkdownItemView : UIView {
                 self?.updatedHeight?()
             }
             
+        }else if item.type == .table {
+            table = HNScrollTableView(options: options, item: item)
+            self.addSubview(self.table!)
+            table?.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(8)
+                make.bottom.equalToSuperview()
+                make.leading.equalToSuperview().offset(8)
+                make.trailing.equalToSuperview().offset(-8)
+                make.height.equalTo(50)
+            }
+            table?.setUp()
+            table?.didAdded = { [weak self] h in
+                self?.table?.snp.updateConstraints({ make in
+                    make.height.equalTo(h)
+                })
+                self?.updatedHeight?()
+            }
+        }else if item.type == .latex {
+            latex = HNLatexLabel(item: item, options: options)
+            self.addSubview(self.latex!)
+            latex?.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset(8)
+                make.bottom.equalToSuperview().offset(-8)
+                make.leading.equalToSuperview().offset(8)
+                make.trailing.equalToSuperview().offset(-8)
+            }
+            latex?.setUp()
         }else{
-            label = HNBlockCodeLabel(frame: .zero)
+            
+            label = HNBlockCodeLabel(item: item, options: options)
             self.addSubview(label!)
             label?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
             label?.delegate = self
-            label?.setUp(item: item, options: options)
+            label?.setUp()
         }
     }
     
-    func createCopyButton(){
-        let btn = UIButton(frame: CGRect(x: frame.width - 30, y: 0, width: 30, height: 30))
-        btn.setImage(self.options.copyImage, for: .normal)
-        btn.setImage(self.options.copyDoneImage, for: .selected)
-        btn.tintColor = self.options.tintColorCopyButton
-        btn.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        btn.addTarget(self , action: #selector(self.selectedCopyButton(_:)), for: .touchUpInside)
-        self.addSubview(btn)
-        btn.snp.makeConstraints { make in
+    func createCopyButton(language:String){
+        self.headerCode = HNHeaderBlockCode(options: self.options)
+        self.headerCode?.setUp(language: language , action: #selector(self.selectedCopyButton(_:)),target: self)
+        self.addSubview(self.headerCode!)
+        self.headerCode?.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.width.height.equalTo(30)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(30)
         }
     }
     //MARK: - FUNC
