@@ -45,6 +45,22 @@ extension String {
         }
         return str
     }
+    func removeFirstAndLastCharacter() -> String {
+        guard self.count > 1 else {
+            // If the text has 0 or 1 characters, return an empty string
+            return self
+        }
+        
+        // Remove the first and last characters
+        if let first = self.first , first == "[" ,
+           let last = self.last , last == "]" {
+            let result = self.dropFirst().dropLast()
+            return String(result)
+        }else{
+            return self
+        }
+        
+    }
 }
 extension UIButton {
     func fade(){

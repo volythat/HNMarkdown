@@ -233,12 +233,12 @@ public class HNMarkdown : UIView {
             for item in result {
                 switch item {
                 case .paragraph(let paragraph):
-                    print("Paragraph:\n\(paragraph)\n")
+//                    print("Paragraph:\n\(paragraph)\n")
                     let item = HNMarkDownItem(type:.text,content: paragraph)
                     self.items.append(item)
                 case .latex(let latex):
-                    print("LaTeX:\n\(latex)\n")
-                    let item = HNMarkDownItem(type:.latex,content: latex)
+//                    print("LaTeX:\n\(latex)\n")
+                    let item = HNMarkDownItem(type:.latex,content: latex.removeFirstAndLastCharacter())
                     self.items.append(item)
                 }
             }

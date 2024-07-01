@@ -128,7 +128,8 @@ extension String {
         let latexPatterns = [
             "\\$\\$[\\s\\S]+?\\$\\$", // Matches $$ ... $$ (multi-line)
             "\\\\\\([\\s\\S]+?\\\\\\)", // Matches \( ... \) (inline LaTeX)
-            "\\$[\\s\\S]+?\\$" // Matches $ ... $ (inline LaTeX)
+            "\\$[\\s\\S]+?\\$", // Matches $ ... $ (inline LaTeX)
+            "\\[[\\s\\S]+?\\]" // Matches [ ... ]
         ]
         
         // Combine patterns
@@ -179,5 +180,48 @@ extension String {
         
         return result
     }
-    
+    func extractLaTeXAndMarkdownParagraphs() -> (paragraphs: [String], latex: [String]) {
+        // Regular expression patterns for LaTeX
+        let latexPatterns = [
+            "\\$\\$[\\s\\S]+?\\$\\$", // Matches $$ ... $$ (multi-line)
+            "\\\\\\([\\s\\S]+?\\\\\\)", // Matches \( ... \) (inline LaTeX)
+            "\\$[\\s\\S]+?\\$" // Matches $ ... $ (inline LaTeX)
+        ]
+        
+        // Combine patterns
+        let combinedPattern = latexPatterns.joined(separator: "|")
+        
+        // Regular expression to find LaTeX
+        let regex = try! NSRegularExpression(pattern: combinedPattern, options: [])
+        
+        // Find matches
+        let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count))
+        
+        // Extract LaTeX strings
+        var latexStrings: [String] = []
+        var rangesToRemove: [NSRange] = []
+        
+        for match in matches {
+            if let range = Range(match.range, in: self) {
+                latexStrings.append(String(self[range]))
+                rangesToRemove.append(match.range)
+            }
+        }
+        
+        // Remove LaTeX parts from text to get markdown paragraphs
+        var cleanText = self
+        for range in rangesToRemove.reversed() {
+            if let range = Range(range, in: cleanText) {
+                cleanText.removeSubrange(range)
+            }
+        }
+        
+        // Split remaining text into paragraphs
+        let paragraphs = cleanText
+            .components(separatedBy: "\n\n")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+        
+        return (paragraphs, latexStrings)
+    }
 }

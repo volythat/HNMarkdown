@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
 Bạn có thể sử dụng **AlamofireSessionManager** để cấu hình SSL ~Pinning~. Để trust certificate self-signed, bạn cần tạo 1 custom *ServerTrustPolicy* và set cho `AlamofireSessionManager`.
 
-Bạn có thể sử dụng $x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}$ Để trust certificate self-signed.
+Bạn có thể sử dụng [x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}] Để trust certificate self-signed.
 
 ----
 
@@ -122,7 +122,7 @@ s.close()
 \n
 [pica](https://nodeca.github.io/pica/demo/)
 
-x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}
+[x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}]
 
 
 | First Header  | Second Header |
