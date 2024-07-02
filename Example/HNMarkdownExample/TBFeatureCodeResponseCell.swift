@@ -38,6 +38,8 @@ class TBFeatureCodeResponseCell: UITableViewCell {
             }
             let options = HNMarkdownOption(widthView: UIScreen.main.bounds.size.width - 32)
             options.padding = 8
+            options.turnOnLatex = true
+            
             self.viewContent?.options = options
             self.viewContent?.setUp(markdownText: text,isDebug: true)
             self.viewContent?.didSelectedLink = {[weak self] url in

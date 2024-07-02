@@ -160,9 +160,10 @@ $
 | 4   | Bill Gates             | 126,4                     |              |
 | 5   | Mark Zuckerberg | 129,1                     |              |
 
-
-
-
+Lưu ý:
+- Một
+- Hai
+- Ba
 """
     let content = """
     \n**What is ArtJourney - AI Art Generator?**

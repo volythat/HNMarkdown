@@ -229,18 +229,23 @@ public class HNMarkdown : UIView {
     
     func addItemText(){
         if !content.isEmpty {
-            let result = content.extractLaTeXAndMarkdown()
-            for item in result {
-                switch item {
-                case .paragraph(let paragraph):
-//                    print("Paragraph:\n\(paragraph)\n")
-                    let item = HNMarkDownItem(type:.text,content: paragraph)
-                    self.items.append(item)
-                case .latex(let latex):
-//                    print("LaTeX:\n\(latex)\n")
-                    let item = HNMarkDownItem(type:.latex,content: latex.removeFirstAndLastCharacter())
-                    self.items.append(item)
+            if options.turnOnLatex {
+                let result = content.extractLaTeXAndMarkdown()
+                for item in result {
+                    switch item {
+                    case .paragraph(let paragraph):
+                        //                    print("Paragraph:\n\(paragraph)\n")
+                        let item = HNMarkDownItem(type:.text,content: paragraph)
+                        self.items.append(item)
+                    case .latex(let latex):
+                        //                    print("LaTeX:\n\(latex)\n")
+                        let item = HNMarkDownItem(type:.latex,content: latex.removeFirstAndLastCharacter())
+                        self.items.append(item)
+                    }
                 }
+            }else{
+                let item = HNMarkDownItem(type:.text,content: content)
+                self.items.append(item)
             }
             content = ""
         }

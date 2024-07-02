@@ -92,6 +92,7 @@ public class HNMarkdownOption {
     }
     public var widthContentView : CGFloat = 0
     public var minHeightOfTableCell : CGFloat = 30
+    public var turnOnLatex : Bool = false 
     
     public init(widthView:CGFloat){
         self.widthContentView = widthView
