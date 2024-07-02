@@ -135,7 +135,6 @@ $$
 \\frac{1}{n}\\sum_{i=1}^{n}x_i \\geq \\sqrt[n]{\\prod_{i=1}^{n}x_i}
 $$
 
-
 - row 1
 - row 2
 - row 3
@@ -164,6 +163,20 @@ Lưu ý:
 - Một
 - Hai
 - Ba
+
+Công thức nghiệm của phương trình bậc hai \\(ax^2 + bx + c = 0\\) là:
+
+[ x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a} \\]
+
+Trong đó:
+- \\(a\\), \\(b\\), và \\(c\\) là các hệ số của phương trình.
+- \\(\\pm\\) biểu thị hai nghiệm khác nhau của phương trình.
+- \\(\\sqrt{b^2-4ac}\\) là căn bậc hai của biểu thức discriminant \\(b^2-4ac\\).
+
+
+- Nếu \\(b^2 - 4ac > 0\\), phương trình có hai nghiệm phân biệt.
+- Nếu \\(b^2 - 4ac = 0\\), phương trình có nghiệm kép.
+- Nếu \\(b^2 - 4ac < 0\\), phương trình không có nghiệm thực.
 """
     let content = """
     \n**What is ArtJourney - AI Art Generator?**

@@ -8,7 +8,6 @@
 import UIKit
 import Foundation
 import Splash
-import SwiftRichString
 
 class HNBlockQuoteLabel : UIView {
     var label : HNBlockCodeLabel? = nil

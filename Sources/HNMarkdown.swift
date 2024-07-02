@@ -73,7 +73,7 @@ public class HNMarkdown : UIView {
     }
     
     func addItems(mark:Markup){
-//        logDebug("mark = \(mark.debugDescription(options: .printEverything))")
+        logDebug("mark = \(mark.debugDescription(options: .printEverything))")
         var type = HNMarkDownType.text
         if let code = mark as? CodeBlock {
             self.addItemText()
@@ -159,6 +159,7 @@ public class HNMarkdown : UIView {
             self.items.append(item)
             
         }else if let order = mark as? UnorderedList {
+            
             self.addItemText()
             var str = ""
             
@@ -203,7 +204,7 @@ public class HNMarkdown : UIView {
             }
             
                 mark.children.forEach { child in
-                    logDebug("hcild = \(child.getFormat().text)")
+//                    logDebug("hcild = \(child.getFormat().text)")
     //                logDebug("child = \(child.debugDescription(options: .printEverything))")
 
                     let fm = child.getFormat()
@@ -238,7 +239,7 @@ public class HNMarkdown : UIView {
                         let item = HNMarkDownItem(type:.text,content: paragraph)
                         self.items.append(item)
                     case .latex(let latex):
-                        //                    print("LaTeX:\n\(latex)\n")
+                        logDebug("latex = \(latex)")
                         let item = HNMarkDownItem(type:.latex,content: latex.removeFirstAndLastCharacter())
                         self.items.append(item)
                     }

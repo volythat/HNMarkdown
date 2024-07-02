@@ -26,22 +26,21 @@ extension String {
     
     func removeElement(element:HNSupportElements)->String{
         var str = self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        let count = element.rawValue.count
-        if str.prefix(count) == element.rawValue {
-            str = str.substring(from: count, length: str.count - count) ?? str
-            if str.suffix(count) == element.rawValue {
-                str = str.substring(from: 0, length: str.count - count) ?? str
-            }
+        
+        if str.hasPrefix(element.rawValue) , str.hasSuffix(element.rawValue) {
+            str.removeFirst(element.rawValue.count)
+            str.removeLast(element.rawValue.count)
         }
+
         return element.addTag(from: str)
         
     }
     func removeElementQuote(element:HNSupportElements)->String{
         
         var str = self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        let count = element.rawValue.count
-        if str.prefix(count) == element.rawValue {
-            str = str.substring(from: count, length: str.count - count) ?? str
+        
+        if str.hasPrefix(element.rawValue) {
+            str.removeFirst(element.rawValue.count)
         }
         return str
     }
