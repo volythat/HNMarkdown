@@ -34,7 +34,7 @@ enum HNSupportElements : String {
             return " <i>" + from + "</i> "
         
         case .strikethrough:
-            return " <u>" + from + "</u> "
+            return " <s>" + from + "</s> "
             
         case .header1:
             return "<h1>" + from + "</h1>"

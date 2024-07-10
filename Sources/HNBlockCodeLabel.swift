@@ -79,6 +79,11 @@ class HNBlockCodeLabel : UITextView {
             .color(self.options.colorText),
             .underline(.single, self.options.colorText)
         )
+        let strike = StringStyle(
+            .font(self.options.font),
+            .color(self.options.colorText),
+            .strikethrough(.single, self.options.colorText)
+        )
         let header1 = StringStyle(
             .font(self.options.fontHeader1),
             .color(self.options.colorText)
@@ -112,6 +117,7 @@ class HNBlockCodeLabel : UITextView {
                 .style("f", foreground),
                 .style("i", italic),
                 .style("u", underline),
+                .style("s", strike),
                 .style("q", quote),
                 .style("h1", header1),
                 .style("h2", header2),

@@ -135,17 +135,19 @@ $$
 \\frac{1}{n}\\sum_{i=1}^{n}x_i \\geq \\sqrt[n]{\\prod_{i=1}^{n}x_i}
 $$
 
-- row 1
-- row 2
-- row 3
+- row 1 : Outside of a dog, a `book is man's` best friend
+- row 2 : Outside of a *dog*, a book is man's best friend
+- ## row 3 : Outside of a dog, a book is man's best friend
 
-1. row 1
-2. row 2
-3. row 3
+1. row 1 : Outside of a dog, a `book is man's` best friend
+2. row 2 : Outside of a *dog*, a book is man's best friend
+3. ## row 3 : **Outside** of a dog, a book ~~is man's best friend~~
 
 * row 1
 * row 2
 * row 3
+
+*** Hello
 
 $
 x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}

@@ -166,8 +166,8 @@ public class HNMarkdown : UIView {
             for (index,item) in order.listItems.enumerated() {
                 type = .text
                 item.children.forEach { child in
-                    let fm = child.format()
-                    str += "- " + fm
+                    let fm = child.getFormat()
+                    str += "- " + fm.text
                 }
                 
                 if index < order.childCount - 1 {
