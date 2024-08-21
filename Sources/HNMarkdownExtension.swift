@@ -60,6 +60,8 @@ extension String {
         }
         
     }
+    
+    
 }
 extension UIButton {
     func fade(){

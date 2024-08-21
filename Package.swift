@@ -20,8 +20,7 @@ let package = Package(
         .package(url: "https://github.com/JohnSundell/Splash", from: "0.1.0"),
         .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1")),
         .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.1.0"),
-        .package(url: "https://github.com/mgriebling/SwiftMath.git",from: "1.4.0"),
-        .package(url: "https://github.com/Rightpoint/BonMot.git",from:"6.1.3")
+        .package(url: "https://github.com/mgriebling/SwiftMath.git",from: "1.4.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -33,7 +32,6 @@ let package = Package(
                 "SDWebImage",
                 "SnapKit",
                 "SwiftMath",
-                "BonMot",
                 .product(name: "Markdown", package: "swift-markdown"),
             ],
             path:"Sources"

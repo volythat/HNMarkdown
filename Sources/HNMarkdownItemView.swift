@@ -61,6 +61,7 @@ class HNMarkdownItemView : UIView {
                 make.trailing.equalToSuperview().offset(-8)
                 make.bottom.equalToSuperview()
             }
+            label?.delegate = self 
             label?.setUp()
         }else if item.type == .quote {
             quote = HNBlockQuoteLabel(item: item, options: options)

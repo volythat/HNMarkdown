@@ -1,15 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "bonmot",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Rightpoint/BonMot",
-      "state" : {
-        "revision" : "001139aad601ed8009b49a0e868e21df3dea979c",
-        "version" : "6.1.3"
-      }
-    },
-    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",

@@ -120,7 +120,7 @@ s.close()
 > dog it's too dark to read.
 
 \n
-[pica](https://nodeca.github.io/pica/demo/)
+[pica](https://nodeca.github.io/pica/demo/),  [pica2](https://google.com.vn)
 
 [x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}]
 
@@ -171,14 +171,15 @@ Công thức nghiệm của phương trình bậc hai \\(ax^2 + bx + c = 0\\) l�
 [ x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a} \\]
 
 Trong đó:
-- \\(a\\), \\(b\\), và \\(c\\) là các hệ số của phương trình.
-- \\(\\pm\\) biểu thị hai nghiệm khác nhau của phương trình.
-- \\(\\sqrt{b^2-4ac}\\) là căn bậc hai của biểu thức discriminant \\(b^2-4ac\\).
+- Nếu , phương trình có hai nghiệm phân biệt.
+- Nếu , phương trình có nghiệm kép.
+- Nếu , phương trình không có nghiệm thực.
 
 
-- Nếu \\(b^2 - 4ac > 0\\), phương trình có hai nghiệm phân biệt.
-- Nếu \\(b^2 - 4ac = 0\\), phương trình có nghiệm kép.
-- Nếu \\(b^2 - 4ac < 0\\), phương trình không có nghiệm thực.
+Lưu ý:
+- Một
+- Hai
+- Ba
 """
     let content = """
     \n**What is ArtJourney - AI Art Generator?**
@@ -204,6 +205,8 @@ Trong đó:
     \n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/119.png)
     \n
     \n*Recompiled source : https://stable-diffusion-art.com/*
+
+
 """
 
     override func viewDidLoad() {
