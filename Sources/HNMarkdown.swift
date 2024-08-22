@@ -184,7 +184,11 @@ public class HNMarkdown : UIView {
             for (index,item) in order.listItems.enumerated() {
                 type = .text
                 item.children.forEach { child in
-                    str += "\(index + 1). " + child.getFormat().text
+                    if child is UnorderedList {
+                        str += child.getFormat().text
+                    }else{
+                        str += "\(index + 1). " + child.getFormat().text
+                    }
                 }
                 
                 if index < order.childCount - 1 {

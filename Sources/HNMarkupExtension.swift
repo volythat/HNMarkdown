@@ -38,6 +38,14 @@ extension Markup {
             return (image.source ?? "",true)
         }else if let text = self as? Text {
             return (text.plainText,false)
+        }else if let order = self as? UnorderedList {
+            var str = ""
+            order.listItems.forEach { item in
+                str += "\n- " + item.getChildFormat()
+            }
+            str += "\n"
+            
+            return (str ,false)
         }else if let text = self as? SoftBreak {
 //            print("SoftBreak = \(text.plainText)")
             return (text.plainText,false)

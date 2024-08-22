@@ -182,31 +182,7 @@ Lưu ý:
 - Ba
 """
     let content = """
-    \n**What is ArtJourney - AI Art Generator?**
-    \nArtJourney - AI Art Generator  is a latent diffusion model for generating AI images. The images can be photorealistic, like those captured by a camera, or in an artistic style as if produced by a professional artist.
-
-    \n
-    \n
-
-    \n
-    > asd fasd fsad fsdf sd fsfd1
-    > asd fasd fsad fsdf sd fsfd2
-
-    \n
-    \n**How to use ArtJourney - AI Art Generator?**
-    \nYou need to give it a prompt that describes an image.
-    \nFor example: gingerbread house, diorama, in focus, white background, toast , crunch cereal
-    \nArtJourney - AI Art Generator turns this prompt into images like the ones below.
-    
-    **** Hello
-    \n
-    \n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/117.png)
-    \n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/118.png)
-    \n![](http://imageai.sboomtools.net/uploads/Duyentest/Blogs/119.png)
-    \n
-    \n*Recompiled source : https://stable-diffusion-art.com/*
-
-
+        The search results you provided contain multiple weather forecasts for Hà Nội. Here's a summary:\n\n1. **From kenhthoitiet.edu.vn**:\n   - Title: Hello Hello Hello Hello Hello Hello Hello \n   - Description: Weather updates for Hanoi including temperature, rain, humidity, and wind speed. The information is detailed and updated continuously.\n\n2. **From moitruong.net.vn (dated June 9, 2024)**:\n   - Title: Hello Hello Hello Hello Hello Hello y 10/6: Hello Hello Hello Hello Hello Hello "\n   - Description: Information from the National Center for Hydro-Meteorological Forecast reveals rain forecast for Hello Hello  on June 10, 2024.\n\n3. **From qdnd.vn (dated May 5, 2024)**:\n   - Title: Hello Hello Hello  nay (5-5): Hello Hello Hello Hello Hello \n   - Description: Forecast for Hello Hello Hello  indicates many clouds with local heavy rain, possibly accompanied by thunderstorms.\n\n4. **Additional Weather Updates**:\n   - General weather data mentions the ongoing updates on rain, temperature, and atmospheric conditions in Hello Hello .\n
 """
 
     override func viewDidLoad() {
@@ -245,7 +221,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TBFeatureCodeResponseCell", for: indexPath) as! TBFeatureCodeResponseCell
         
-        cell.setUp(text: readMeContents)
+        cell.setUp(text: content)
         cell.didSelectedLink = {[weak self] url in
             self?.safari(url)
         }
