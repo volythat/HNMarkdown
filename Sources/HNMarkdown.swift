@@ -25,7 +25,7 @@ public class HNMarkdown : UIView {
     
     public var didSelectedLink : ((_ url:URL)->Void)?
     public var didSelectedImage : ((_ image:UIImage)->Void)?
-    public var updatedHeight : (()->Void)?
+    public var updatedHeight : ((_ height:CGFloat)->Void)?
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -302,8 +302,8 @@ public class HNMarkdown : UIView {
                 label.didSelectedImage = {[weak self] image in
                     self?.didSelectedImage?(image)
                 }
-                label.updatedHeight = { [weak self] in
-                    self?.updatedHeight?()
+                label.updatedHeight = { [weak self] height in
+                    self?.updatedHeight?(height)
                 }
                 
                 topView = label

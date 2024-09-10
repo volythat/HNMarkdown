@@ -16,6 +16,7 @@ class TBFeatureCodeResponseCell: UITableViewCell {
     public var updatedHeight : (()->Void)?
     
     var viewContent : HNMarkdown? = nil
+    var heightOfContent : CGFloat = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,8 +49,11 @@ class TBFeatureCodeResponseCell: UITableViewCell {
             self.viewContent?.didSelectedImage = {[weak self] image in
                 self?.didSelectedImage?(image)
             }
-            self.viewContent?.updatedHeight = { [weak self] in
-                self?.updatedHeight?()
+            self.viewContent?.updatedHeight = { [weak self] height in
+                if self?.heightOfContent != height {
+                    print("self.viewContent?.updatedHeight tableview")
+                    self?.updatedHeight?()
+                }
             }
         }
     }

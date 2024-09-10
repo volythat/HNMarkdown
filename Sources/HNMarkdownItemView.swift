@@ -22,7 +22,7 @@ class HNMarkdownItemView : UIView {
     
     public var didSelectedLink : ((_ url:URL)->Void)?
     public var didSelectedImage : ((_ image:UIImage)->Void)?
-    public var updatedHeight : (()->Void)?
+    public var updatedHeight : ((_ height:CGFloat)->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -89,7 +89,7 @@ class HNMarkdownItemView : UIView {
                 self?.didSelectedImage?(image)
             }
             imageView?.updatedHeight = { [weak self] in
-                self?.updatedHeight?()
+                self?.updatedHeight?(0)
             }
             
         }else if item.type == .table {
@@ -107,7 +107,7 @@ class HNMarkdownItemView : UIView {
                 self?.table?.snp.updateConstraints({ make in
                     make.height.equalTo(h)
                 })
-                self?.updatedHeight?()
+                self?.updatedHeight?(h)
             }
         }else if item.type == .latex {
             latex = HNLatexLabel(item: item, options: options)
