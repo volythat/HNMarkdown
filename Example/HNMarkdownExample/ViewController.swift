@@ -194,6 +194,9 @@ Hello
 | 5   | Mark Zuckerberg | 129,1                     |              |
 
 Hello bottom
+sau:[[\"]](https://www.qdnd.vn/xa-hoi/tin-tuc/thoi-tiet-hom-nay-12-9-mien-bac-tiep-dien-mua-to-nhung-luong-mua-se-giam-dan-793906)[[\"]](https://nongnghiep.vn/tin-thoi-tiet-hom-nay-12-9-2024-moi-nhat-trong-ca-nuoc-d399639.html)sau:[[\"]](https://www.qdnd.vn/xa-hoi/tin-tuc/thoi-tiet-hom-nay-12-9-mien-bac-tiep-dien-mua-to-nhung-luong-mua-se-giam-dan-793906)[[\"]](https://nongnghiep.vn/tin-thoi-tiet-hom-nay-12-9-2024-moi-nhat-trong-ca-nuoc-d399639.html)[[\"]](https://baohatinh.vn/du-bao-thoi-tiet-ha-tinh-hom-nay-129-mua-rao-va-dong-ngay-nang-yeu-post273494.html)[[\"]](https://baomoi.com/du-bao-thoi-tiet-hom-nay-ngay-12-9-2024-mua-dong-ca-3-mien-canh-bao-lu-khan-cap-bd3-tren-cac-song-c50151354.epi)[[\"]](https://tuoitre.vn/thoi-tiet-hom-nay-12-9-ca-nuoc-mua-mien-bac-tiep-tuc-mua-to-20240911204414623.htm)\n\n
+
+Công thức $x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}$ được gọi là \"công thức bậc hai\" hoặc \"công thức giải phương trình bậc hai\". Đây là một công cụ toán học quan trọng để giải phương trình bậc hai trong đại số. Dưới đây là cách giải thích công thức này:\n\n- Trong công thức trên, $a$, $b$, và $c$ là các hệ số của phương trình bậc hai $ax^2 + bx + c = 0$[[\"]](https://www.quora.com/What-is-an-example-of-an-expression-in-which-I-would-use-the-formula-x-frac-b-pm-sqrt-b-2-4ac-2a)[[\"]](https://www.expii.com/t/the-quadratic-formula-defintion-examples-4539).\n- Khi giải phương trình bậc hai, chúng ta có hai giá trị của $x$ được tính bằng cách sử dụng dấu $\\pm$, nghĩa là một giá trị với dấu cộng và một giá trị với dấu trừ[[\"]](https://www.reddit.com/r/learnmath/comments/8bld5y/what_is_the_quadratic_formula_and_how_do_you_use/)[[\"]](https://www.quora.com/What-is-x-frac-b-pm-sqrt-b-2-4ac-2a-1).\n- Phần căn bậc hai $\\sqrt{b^2-4ac}$ trong công thức được gọi là \"biệt số\" (discriminant)[[\"]](https://brainly.com/question/17394965). Giá trị của biệt số này sẽ quyết định có bao nhiêu nghiệm của phương trình bậc hai và các loại nghiệm đó[[\"]](https://brainly.com/question/17394965).\n\nĐây là một công thức quan trọng và hữu ích trong giải toán học liên quan đến phương trình bậc hai.
 
 """
 
@@ -227,13 +230,13 @@ Hello bottom
 
 extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TBFeatureCodeResponseCell", for: indexPath) as! TBFeatureCodeResponseCell
         
-        cell.setUp(text: content)
+        cell.setUp(text: readMeContents)
         cell.didSelectedLink = {[weak self] url in
             self?.safari(url)
         }

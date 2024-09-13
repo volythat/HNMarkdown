@@ -76,7 +76,6 @@ extension Markup {
         // Regular expression patterns for LaTeX
         let latexPatterns = [
             "\\$\\$[\\s\\S]+?\\$\\$", // Matches $$ ... $$ (multi-line)
-            "\\\\\\([\\s\\S]+?\\\\\\)", // Matches \( ... \) (inline LaTeX)
             "\\$[\\s\\S]+?\\$" // Matches $ ... $ (inline LaTeX)
         ]
         
@@ -135,9 +134,7 @@ extension String {
         // Regular expression patterns for LaTeX
         let latexPatterns = [
             "\\$\\$[\\s\\S]+?\\$\\$", // Matches $$ ... $$ (multi-line)
-            "\\\\\\([\\s\\S]+?\\\\\\)", // Matches \( ... \) (inline LaTeX)
             "\\$[\\s\\S]+?\\$", // Matches $ ... $ (inline LaTeX)
-            "\\[[\\s\\S]+?\\]" // Matches [ ... ]
         ]
         
         // Combine patterns
@@ -192,7 +189,6 @@ extension String {
         // Regular expression patterns for LaTeX
         let latexPatterns = [
             "\\$\\$[\\s\\S]+?\\$\\$", // Matches $$ ... $$ (multi-line)
-            "\\\\\\([\\s\\S]+?\\\\\\)", // Matches \( ... \) (inline LaTeX)
             "\\$[\\s\\S]+?\\$" // Matches $ ... $ (inline LaTeX)
         ]
         

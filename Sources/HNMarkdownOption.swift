@@ -15,33 +15,53 @@ public class HNMarkdownOption {
         get {
             return UIFont.systemFont(ofSize: fontSize)
         }
-        set {}
     }
     public var fontBold : UIFont {
         get {
             return UIFont.boldSystemFont(ofSize: fontSize)
         }
-        set {}
     }
     public var fontItalic : UIFont {
         get {
             return UIFont.italicSystemFont(ofSize: fontSize)
         }
-        set {}
     }
     
-    public var fontHeader6 = UIFont.boldSystemFont(ofSize: 16)
-    public var fontHeader5 = UIFont.boldSystemFont(ofSize: 18)
-    public var fontHeader4 = UIFont.boldSystemFont(ofSize: 20)
-    public var fontHeader3 = UIFont.boldSystemFont(ofSize: 22)
-    public var fontHeader2 = UIFont.boldSystemFont(ofSize: 24)
-    public var fontHeader1 = UIFont.boldSystemFont(ofSize: 26)
+    public var fontHeader6 : UIFont {
+        get {
+            return UIFont.boldSystemFont(ofSize: fontSize + 1)
+        }
+    }
+    public var fontHeader5 : UIFont {
+        get {
+            return UIFont.boldSystemFont(ofSize: fontSize + 3)
+        }
+    }
+    public var fontHeader4 : UIFont {
+        get {
+            return UIFont.boldSystemFont(ofSize: fontSize + 5)
+        }
+    }
+    public var fontHeader3 : UIFont {
+        get {
+            return UIFont.boldSystemFont(ofSize: fontSize + 7)
+        }
+    }
+    public var fontHeader2 : UIFont {
+        get {
+            return UIFont.boldSystemFont(ofSize: fontSize + 9)
+        }
+    }
+    public var fontHeader1 : UIFont {
+        get {
+            return UIFont.boldSystemFont(ofSize: fontSize + 11)
+        }
+    }
     
     public var fontCode : UIFont {
         get {
             return UIFont.monoRegular(size: fontSize - 2)
         }
-        set {}
     }
     public var blockBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
     public var codeBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
@@ -52,13 +72,11 @@ public class HNMarkdownOption {
         get {
             return UIFont.monoRegular(size: fontSize)
         }
-        set {}
     }
     public var colorTextQuote : UIColor {
         get {
             return colorText.withAlphaComponent(0.9)
         }
-        set {}
     }
     public var copyImage = UIImage(named: "file_copy", in: Bundle.module, with: nil)
     public var copyDoneImage = UIImage(systemName: "checkmark")
@@ -93,6 +111,8 @@ public class HNMarkdownOption {
     public var widthContentView : CGFloat = 0
     public var minHeightOfTableCell : CGFloat = 30
     public var turnOnLatex : Bool = false 
+    
+    public var fontLink : UIFont = UIFont.boldSystemFont(ofSize: 15)
     
     public init(widthView:CGFloat){
         self.widthContentView = widthView

@@ -40,6 +40,8 @@ class TBFeatureCodeResponseCell: UITableViewCell {
             let options = HNMarkdownOption(widthView: UIScreen.main.bounds.size.width - 32)
             options.padding = 8
             options.turnOnLatex = true
+            options.fontSize = 15
+            options.fontLink = UIFont.init(name: "SecularOne-Regular", size: 18)!
             
             self.viewContent?.options = options
             self.viewContent?.setUp(markdownText: text,isDebug: true)

@@ -113,9 +113,13 @@ class HNBlockCodeLabel : UITextView {
             $0.font = self.options.fontHeader6
             $0.color = self.options.colorText
         }
+        let a = Style {
+            $0.font = self.options.fontLink
+        }
         // A group container includes all the style defined.
         let groupStyle = StyleXML.init(base: baseStyle, ["b" : boldStyle,
                                                          "f": foreground,
+                                                         "a": a,
                                                          "i":italic,
                                                          "u":underline,
                                                          "q":quote,

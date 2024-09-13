@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EB039DA2C93EA8800A6317C /* SecularOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EB039D92C93EA8800A6317C /* SecularOne-Regular.ttf */; };
 		B20CB6B32A0C9407002FB5CE /* HNMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = B20CB6B22A0C9407002FB5CE /* HNMarkdown */; };
 		B23AE1CD2A0B349D008B05AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AE1CC2A0B349D008B05AB /* AppDelegate.swift */; };
 		B23AE1CF2A0B349D008B05AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AE1CE2A0B349D008B05AB /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1EB039D92C93EA8800A6317C /* SecularOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SecularOne-Regular.ttf"; sourceTree = "<group>"; };
 		B20CB6B02A0C9336002FB5CE /* HNMarkdown */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HNMarkdown; path = ..; sourceTree = "<group>"; };
 		B23AE1C92A0B349D008B05AB /* HNMarkdownExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HNMarkdownExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B23AE1CC2A0B349D008B05AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				B23AE1CC2A0B349D008B05AB /* AppDelegate.swift */,
+				1EB039D92C93EA8800A6317C /* SecularOne-Regular.ttf */,
 				B23AE1CE2A0B349D008B05AB /* SceneDelegate.swift */,
 				B2E317E82A0B8DFB0017AF2F /* TBFeatureCodeResponseCell.swift */,
 				B2E317E72A0B8DFB0017AF2F /* TBFeatureCodeResponseCell.xib */,
@@ -163,6 +166,7 @@
 				B2E317E92A0B8DFB0017AF2F /* TBFeatureCodeResponseCell.xib in Resources */,
 				B23AE1D62A0B349F008B05AB /* Assets.xcassets in Resources */,
 				B23AE1D42A0B349D008B05AB /* Main.storyboard in Resources */,
+				1EB039DA2C93EA8800A6317C /* SecularOne-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
