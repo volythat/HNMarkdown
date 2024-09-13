@@ -37,7 +37,7 @@ extension Markup {
         }else if let image = self as? Image {
             return (image.source ?? "",true)
         }else if let text = self as? Text {
-            return (text.plainText,false)
+            return (text.plainText.replaceSpecial(),false)
         }else if let order = self as? UnorderedList {
             var str = ""
             order.listItems.forEach { item in
@@ -129,6 +129,13 @@ extension Markup {
     }
 }
 extension String {
+    func replaceSpecial()->String{
+//        if !self.contains(">") {
+            return self.replacingOccurrences(of: " < ", with: " &lt; ").replacingOccurrences(of: " > ", with: " &gt; ")
+//        }else{
+//            return self
+//        }
+    }
     func extractLaTeXAndMarkdown() -> [LatexContentType] {
         let text = self
         // Regular expression patterns for LaTeX

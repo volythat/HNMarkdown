@@ -239,7 +239,7 @@ public class HNMarkdown : UIView {
                 for item in result {
                     switch item {
                     case .paragraph(let paragraph):
-                        //                    print("Paragraph:\n\(paragraph)\n")
+//                        print("Paragraph = \(paragraph)")
                         let item = HNMarkDownItem(type:.text,content: paragraph)
                         self.items.append(item)
                     case .latex(let latex):

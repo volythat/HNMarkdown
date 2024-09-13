@@ -60,6 +60,7 @@ class HNMarkdownItemView : UIView {
                 make.leading.equalToSuperview().offset(8)
                 make.trailing.equalToSuperview().offset(-8)
                 make.bottom.equalToSuperview()
+                make.height.greaterThanOrEqualTo(30)
             }
             label?.delegate = self 
             label?.setUp()

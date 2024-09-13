@@ -104,12 +104,18 @@ public class XMLStringBuilder: NSObject, XMLParserDelegate {
     
     /// StyleXML instance.
     private weak var styleXML: StyleXML!
-        
+
+    // Tag names stack, used to keep track of the context (e.g parent) of the current tag
+    private var tagNamesStack = [String]()
+
+    // Ordered lists stuff
+    private var orderedListItemCounter = 0
+    private var isOrderedList = false
+
     // MARK: - Initialization
 
     public init(styleXML: StyleXML, string: String) {
         self.styleXML = styleXML
-
         let xmlString = (styleXML.xmlParsingOptions.contains(.escapeString) ? string.escapeWithUnicodeEntities() : string)
         let xml = (styleXML.xmlParsingOptions.contains(.doNotWrapXML) ? xmlString : "<\(XMLStringBuilder.topTag)>\(xmlString)</\(XMLStringBuilder.topTag)>")
         guard let data = xml.data(using: String.Encoding.utf8) else {
@@ -148,6 +154,7 @@ public class XMLStringBuilder: NSObject, XMLParserDelegate {
     // MARK: XMLParserDelegate
     
     @objc public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
+        
         foundNewString()
         enter(element: elementName, attributes: attributeDict)
     }
@@ -162,16 +169,39 @@ public class XMLStringBuilder: NSObject, XMLParserDelegate {
     }
     
     @objc public func parser(_ parser: XMLParser, foundCharacters string: String) {
+        
         currentString = (currentString ?? "").appending(string)
     }
-    
+
     // MARK: Support Private Methods
     
     func enter(element elementName: String, attributes: [String: String]) {
+
         guard elementName != XMLStringBuilder.topTag else {
             return
         }
-        
+        tagNamesStack.append(elementName)
+
+        if elementName == "ol" {
+            // we need to reset the counter everytime we find an ordered list element
+            orderedListItemCounter = 0
+            isOrderedList = true
+            if let startString = attributes["start"], let start = Int(startString) {
+                // the order list counter starts at an specified number;
+                // we do a -1 because we always increment at every item
+                orderedListItemCounter = start - 1
+            }
+        } else if elementName == "ul" {
+            isOrderedList = false
+        } else if elementName == "li" {
+            if isOrderedList {
+                orderedListItemCounter += 1
+                currentString = "\(self.orderedListItemCounter). "
+            } else {
+                currentString = "• "
+            }
+        }
+
         if elementName != XMLStringBuilder.topTag {
             xmlStylers.append( XMLDynamicStyle(tag: elementName, style: styles[elementName], xmlAttributes: attributes) )
         }
@@ -179,6 +209,7 @@ public class XMLStringBuilder: NSObject, XMLParserDelegate {
     
     func exit(element elementName: String) {
         xmlStylers.removeLast()
+        tagNamesStack.removeLast()
     }
     
     func foundNewString() {
@@ -187,11 +218,13 @@ public class XMLStringBuilder: NSObject, XMLParserDelegate {
         }
        */
         var newAttributedString = AttributedString(string: currentString ?? "")
+
         for xmlStyle in xmlStylers {
             // Apply
             if let style = xmlStyle.style {
-                // it's a know style
+
                 newAttributedString = newAttributedString.add(style: style)
+
                 // Also apply the xml attributes if needed
                 if xmlStyle.xmlAttributes != nil {
                     xmlAttributesResolver.applyDynamicAttributes(to: &newAttributedString, xmlStyle: xmlStyle, fromStyle: styleXML)
