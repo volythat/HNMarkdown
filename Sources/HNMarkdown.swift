@@ -73,7 +73,7 @@ public class HNMarkdown : UIView {
     }
     
     func addItems(mark:Markup){
-        logDebug("mark = \(mark.debugDescription(options: .printEverything))")
+//        logDebug("mark = \(mark.debugDescription(options: .printEverything))")
         var type = HNMarkDownType.text
         if let code = mark as? CodeBlock {
             self.addItemText()
@@ -92,11 +92,11 @@ public class HNMarkdown : UIView {
         } else if let code = mark as? BlockQuote {
             self.addItemText()
             content = ""
+            var txt = ""
             type = .quote
             var isAdded = false
             code.children.forEach { child in
 //                logDebug("child = \(child.debugDescription(options: .printEverything))")
-                
                 let fm = child.getFormat()
                 if fm.isImage {
                     self.addItemText()
@@ -107,16 +107,15 @@ public class HNMarkdown : UIView {
                     
                 }else{
                     isAdded = true
-                    content += fm.text
+                    txt += fm.text
                 }
-                    
-                
             }
             if !isAdded {
-                content += mark.format(options: .init(orderedListNumerals: .incrementing(start: 1)))
+                txt += mark.format(options: .init(orderedListNumerals: .incrementing(start: 1)))
             }
-            let item = HNMarkDownItem(type:type,content: content)
+            let item = HNMarkDownItem(type:type,content: txt)
             self.items.append(item)
+            
         }else if let header = mark as? Heading {
             self.addItemText()
             

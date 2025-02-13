@@ -51,7 +51,7 @@ class HNMarkdownItemView : UIView {
     //MARK: - LAYOUT
     
     func addLabel(item:HNMarkDownItem,options:HNMarkdownOption){
-        
+//        print("item content = \(item.content)")
         if item.type == .code {
             label = HNBlockCodeLabel(item: item, options: options)
             self.addSubview(label!)
