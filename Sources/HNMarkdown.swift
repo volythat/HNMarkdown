@@ -227,7 +227,7 @@ public class HNMarkdown : UIView {
                 if !isAdded {
                     content += mark.format(options: .init(orderedListNumerals: .incrementing(start: 1)))
                 }
-            
+//            logDebug("content = \(content)")
         }
     }
     
@@ -242,7 +242,7 @@ public class HNMarkdown : UIView {
                         let item = HNMarkDownItem(type:.text,content: paragraph)
                         self.items.append(item)
                     case .latex(let latex):
-                        logDebug("latex = \(latex)")
+//                        logDebug("latex = \(latex)")
                         let item = HNMarkDownItem(type:.latex,content: latex.removeFirstAndLastCharacter())
                         self.items.append(item)
                     }

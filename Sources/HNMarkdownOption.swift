@@ -11,73 +11,56 @@ import Splash
 
 public class HNMarkdownOption {
     public var fontSize : CGFloat = 15
-    public var font : UIFont {
+    public var font : UIFont = UIFont.systemFont(ofSize: 15)
+    public var fontBold : UIFont = UIFont.boldSystemFont(ofSize: 15)
+    public var fontItalic : UIFont  = UIFont.italicSystemFont(ofSize: 15)
+    public var fontQuote : UIFont = UIFont.monoRegular(size: 15)
+    public var fontCode : UIFont = UIFont.monoRegular(size: 13)
+    public var fontLink : UIFont = UIFont.boldSystemFont(ofSize: 15)
+    
+    var fontHeader6 : UIFont {
         get {
-            return UIFont.systemFont(ofSize: fontSize)
+            return fontBold.withSize(fontSize + 1)
         }
     }
-    public var fontBold : UIFont {
+    var fontHeader5 : UIFont {
         get {
-            return UIFont.boldSystemFont(ofSize: fontSize)
+            return fontBold.withSize(fontSize + 4)
         }
     }
-    public var fontItalic : UIFont {
+    var fontHeader4 : UIFont {
         get {
-            return UIFont.italicSystemFont(ofSize: fontSize)
+            return fontBold.withSize(fontSize + 5)
+        }
+    }
+    var fontHeader3 : UIFont {
+        get {
+            return fontBold.withSize(fontSize + 7)
+        }
+    }
+    var fontHeader2 : UIFont {
+        get {
+            return fontBold.withSize(fontSize + 9)
+        }
+    }
+    var fontHeader1 : UIFont {
+        get {
+            return fontBold.withSize(fontSize + 11)
         }
     }
     
-    public var fontHeader6 : UIFont {
-        get {
-            return UIFont.boldSystemFont(ofSize: fontSize + 1)
-        }
-    }
-    public var fontHeader5 : UIFont {
-        get {
-            return UIFont.boldSystemFont(ofSize: fontSize + 3)
-        }
-    }
-    public var fontHeader4 : UIFont {
-        get {
-            return UIFont.boldSystemFont(ofSize: fontSize + 5)
-        }
-    }
-    public var fontHeader3 : UIFont {
-        get {
-            return UIFont.boldSystemFont(ofSize: fontSize + 7)
-        }
-    }
-    public var fontHeader2 : UIFont {
-        get {
-            return UIFont.boldSystemFont(ofSize: fontSize + 9)
-        }
-    }
-    public var fontHeader1 : UIFont {
-        get {
-            return UIFont.boldSystemFont(ofSize: fontSize + 11)
-        }
-    }
     
-    public var fontCode : UIFont {
-        get {
-            return UIFont.monoRegular(size: fontSize - 2)
-        }
-    }
     public var blockBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
     public var codeBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
     public var codeHeaderBackground = UIColor(named: "bgHeaderBlockCode",in: Bundle.module, compatibleWith: nil)!
     public var colorText = UIColor(named: "defaultColorText",in: Bundle.module, compatibleWith: nil)!
     
-    public var fontQuote : UIFont {
-        get {
-            return UIFont.monoRegular(size: fontSize)
-        }
-    }
-    public var colorTextQuote : UIColor {
+    var colorTextQuote : UIColor {
         get {
             return colorText.withAlphaComponent(0.9)
         }
     }
+    
     public var copyImage = UIImage(named: "file_copy", in: Bundle.module, with: nil)
     public var copyDoneImage = UIImage(systemName: "checkmark")
     public var tintColorCopyButton = UIColor(named: "tintColorCopyButton",in: Bundle.module, compatibleWith: nil)
@@ -112,7 +95,6 @@ public class HNMarkdownOption {
     public var minHeightOfTableCell : CGFloat = 30
     public var turnOnLatex : Bool = false 
     
-    public var fontLink : UIFont = UIFont.boldSystemFont(ofSize: 15)
     
     public init(widthView:CGFloat){
         self.widthContentView = widthView

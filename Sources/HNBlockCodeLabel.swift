@@ -89,6 +89,11 @@ class HNBlockCodeLabel : UITextView {
             $0.color = self.options.colorText
             $0.underline = (.single, self.options.colorText)
         }
+        let s: Style = Style {
+            $0.font = self.options.font
+            $0.color = self.options.colorText
+            $0.strikethrough = (.single, self.options.colorText)
+        }
         let header1: Style = Style {
             $0.font = self.options.fontHeader1
             $0.color = self.options.colorText
@@ -123,6 +128,7 @@ class HNBlockCodeLabel : UITextView {
                                                          "i":italic,
                                                          "u":underline,
                                                          "q":quote,
+                                                         "s":s,
                                                          "h1":header1,
                                                          "h2":header2,
                                                          "h3":header3,
