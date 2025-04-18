@@ -11,14 +11,13 @@ import Markdown
 class ViewController2: UIViewController {
     
     @IBOutlet weak var buttonNext : UIButton!
-    @IBOutlet weak var label : UILabel!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setUpView()
+        
         
     }
     
@@ -26,9 +25,6 @@ class ViewController2: UIViewController {
         super.viewDidAppear(animated)
     }
 
-    func setUpView(){
-
-    }
     
     @IBAction func selectedNextButton(_ sender:UIButton){
         if let vc = storyboard?.instantiateViewController(withIdentifier: "ViewController") as? UIViewController {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CEt-to-YC3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CEt-to-YC3">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3uy-K4-E5R">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="68I-xc-bA4"/>
@@ -53,39 +53,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dn-j3-IQX">
-                                <rect key="frame" x="162" y="110" width="69" height="23"/>
+                                <rect key="frame" x="163.66666666666666" y="169" width="66" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="I8R-yb-eqH"/>
+                                    <constraint firstAttribute="width" constant="66" id="kqU-zZ-yrQ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="-4" minY="5" maxX="0.0" maxY="5"/>
-                                <state key="normal" title="Copy" image="doc.on.doc" catalog="system">
+                                <state key="normal" title="Next" image="doc.on.doc" catalog="system">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="selectedNextButton:" destination="EaX-1d-oh9" eventType="touchUpInside" id="Gyx-5g-54D"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elZ-Zk-M7C">
-                                <rect key="frame" x="0.0" y="141" width="393" height="20.333333333333343"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="q7e-7W-YId"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2dn-j3-IQX" firstAttribute="top" secondItem="q7e-7W-YId" secondAttribute="top" constant="7" id="6Ka-Uz-tKb"/>
                             <constraint firstItem="2dn-j3-IQX" firstAttribute="centerX" secondItem="D1d-ax-2qS" secondAttribute="centerX" id="Efc-FW-cAD"/>
-                            <constraint firstItem="elZ-Zk-M7C" firstAttribute="leading" secondItem="q7e-7W-YId" secondAttribute="leading" id="HG3-Oy-5rc"/>
-                            <constraint firstItem="q7e-7W-YId" firstAttribute="trailing" secondItem="elZ-Zk-M7C" secondAttribute="trailing" id="fRd-8t-fGT"/>
-                            <constraint firstItem="elZ-Zk-M7C" firstAttribute="top" secondItem="2dn-j3-IQX" secondAttribute="bottom" constant="8" id="yOA-a0-cWp"/>
+                            <constraint firstItem="2dn-j3-IQX" firstAttribute="top" secondItem="q7e-7W-YId" secondAttribute="top" constant="7" id="XZH-zH-A2h"/>
+                            <constraint firstItem="2dn-j3-IQX" firstAttribute="centerX" secondItem="D1d-ax-2qS" secondAttribute="centerX" id="dQx-mf-7hS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="i7w-gg-4KK"/>
                     <connections>
                         <outlet property="buttonNext" destination="2dn-j3-IQX" id="ma3-Zx-LWX"/>
-                        <outlet property="label" destination="elZ-Zk-M7C" id="k7J-mm-R9W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BB7-7y-5Kt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -98,7 +94,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CEt-to-YC3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hhO-l5-IYD">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

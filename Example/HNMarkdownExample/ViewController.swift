@@ -186,16 +186,71 @@ Lưu ý:
 - Một
 - Hai
 - Ba
+
+Đây là mã C dùng để giải phương trình bậc 2 có dạng \\( ax^2 + bx + c = 0 \\). Mã này tính toán nghiệm của phương trình dựa trên các hệ số a, b và c.
 """
     let content = """
-Để **giải** một phương trình bậc hai, chúng ta cần < áp dụng công thức nghiệm của phương trình bậc hai, cụ thể là: \n\n- Phương trình bậc hai có dạng ax^2 + bx + c = 0.\n- Để giải phương trình, ta sử dụng công thức nghiệm chung: $x = (-b ± √(b^2 - 4ac)) / 2a$ .\n\nDưới đây là các bước chi tiết để giải phương trình bậc hai:\n\n
-1. Xác định các hệ số a, b, và c trong phương trình .\n
-2. Tính delta theo công thức: \n
-3. Dựa vào giá trị của delta, ta có các trường hợp sau:\n   - Nếu delta > 0, phương trình có **hai nghiệm** phân biệt.\n   - Nếu delta = 0, phương trình có nghiệm kép.\n   - Nếu delta < 0, va delta > 0 phương trình **vô nghiệm** trên tập số thực.\n\nNhớ rằng, khi giải phương trình bậc hai, bạn cần xác định đúng công thức và thực hiện các bước một cách chính xác để đạt được kết quả chính xác.
+Đây là mã C dùng để giải phương trình bậc 2 có dạng \\( ax^2 + bx + c = 0 \\). Mã này tính toán nghiệm của phương trình dựa trên các hệ số a, b và c:
 
-$
-x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}
-$
+```c
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double a, b, c;
+    printf("Nhập vào hệ số a: ");
+    scanf("%lf", &a);
+    printf("Nhập vào hệ số b: ");
+    scanf("%lf", &b);
+    printf("Nhập vào hệ số c: ");
+    scanf("%lf", &c);
+
+    // Kiểm tra xem a có bằng 0 hay không
+    if (a == 0) {
+        if (b == 0) {
+            if (c == 0) {
+                printf("Phương trình vô số nghiệm.\n");
+            } else {
+                printf("Phương trình vô nghiệm.\n");
+            }
+        } else {
+            // Phương trình bậc nhất bx + c = 0
+            double x = -c / b;
+            printf("Nghiệm của phương trình bậc nhất là: x = %.2lf\n", x);
+        }
+    } else {
+        // Tính delta
+        double delta = b * b - 4 * a * c;
+
+        if (delta > 0) {
+            double x1 = (-b + sqrt(delta)) / (2 * a);
+            double x2 = (-b - sqrt(delta)) / (2 * a);
+            printf("Phương trình có hai nghiệm phân biệt:\n");
+            printf("Nghiệm thứ nhất: x1 = %.2lf\n", x1);
+            printf("Nghiệm thứ hai: x2 = %.2lf\n", x2);
+        } else if (delta == 0) {
+            double x = -b / (2 * a);
+            printf("Phương trình có nghiệm kép:\n");
+            printf("Nghiệm: x = %.2lf\n", x);
+        } else {
+            printf("Phương trình vô nghiệm (delta < 0).\n");
+        }
+    }
+
+    return 0;
+}
+```
+
+### Giải thích mã:
+- Chương trình bắt đầu bằng việc khai báo các biến cho hệ số `a`, `b`, và `c`.
+- Sau đó đọc các hệ số này từ người dùng.
+- Kiểm tra xem `a` có bằng 0 hay không để xác định xem đó có phải là phương trình bậc 2 hay không.
+- Nếu `a` khác 0, tính giá trị delta (định thức) để xác định số nghiệm của phương trình:
+  - Nếu delta dương, phương trình có hai nghiệm phân biệt.
+  - Nếu delta bằng 0, phương trình có một nghiệm kép.
+  - Nếu delta âm, phương trình không có nghiệm thực.
+
+Bạn có thể biên dịch mã này trên bất kỳ trình biên dịch C nào và thử nghiệm với các giá trị khác nhau cho a, b và c.
 """
 
     override func viewDidLoad() {
