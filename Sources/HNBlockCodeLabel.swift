@@ -59,7 +59,6 @@ class HNBlockCodeLabel : UITextView {
         let baseStyle = Style {
             $0.font = self.options.font
             $0.color = self.options.colorText
-            $0.lineSpacing = 1
         }
         let quote = Style {
             $0.font = self.options.fontQuote
@@ -69,11 +68,6 @@ class HNBlockCodeLabel : UITextView {
         let boldStyle = Style {
             $0.font = self.options.fontBold
             $0.color = self.options.colorText
-            $0.dynamicText = DynamicText {
-            $0.style = .body
-            $0.maximumSize = 35.0
-            $0.traitCollection = UITraitCollection(userInterfaceIdiom: .phone)
-            }
         }
         let foreground: Style = Style {
             $0.font = self.options.fontCode
