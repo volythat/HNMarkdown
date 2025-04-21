@@ -8,10 +8,7 @@
 		<true/>
 	</dict>
 	<key>UIAppFonts</key>
-	<array>
-		<string>SpaceMono-Regular.ttf</string>
-		<string>SecularOne-Regular.ttf</string>
-	</array>
+	<array/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

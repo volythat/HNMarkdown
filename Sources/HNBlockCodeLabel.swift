@@ -35,6 +35,7 @@ class HNBlockCodeLabel : UITextView {
         isEditable = false
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
+        textContainerInset = UIEdgeInsets(top: 0, left:0, bottom: 8, right: 0)
         
         self.textColor = options.colorText
         self.text = item.content
@@ -49,7 +50,10 @@ class HNBlockCodeLabel : UITextView {
         }else{
             self.attributedText = self.setAttrParagraph(text: item.content)
         }
-        sizeToFit()
+        let targetWidth = options.widthContentView
+        let size = sizeThatFits(CGSize(width: targetWidth, height: .greatestFiniteMagnitude))
+        frame = CGRect(x: 0, y: 0, width: targetWidth, height: size.height)
+//        sizeToFit()
 
     }
 

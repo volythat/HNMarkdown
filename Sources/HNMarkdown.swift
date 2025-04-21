@@ -279,7 +279,6 @@ public class HNMarkdown : UIView {
             }else{
                 let label = HNMarkdownItemView(options: self.options)
                 self.addSubview(label)
-                label.setUp(item: item)
                 label.snp.makeConstraints { make in
                     make.leading.equalToSuperview().offset(self.options.padding)
                     make.trailing.equalToSuperview().offset(-self.options.padding)
@@ -303,6 +302,7 @@ public class HNMarkdown : UIView {
                 label.updatedHeight = { [weak self] height in
                     self?.updatedHeight?(height)
                 }
+                label.setUp(item: item)
                 
                 topView = label
             }
