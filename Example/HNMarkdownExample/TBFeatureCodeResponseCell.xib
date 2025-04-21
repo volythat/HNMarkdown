@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,16 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARr-v2-39k">
-                        <rect key="frame" x="16" y="4" width="288" height="92"/>
+                        <rect key="frame" x="8" y="4" width="304" height="46"/>
                         <color key="backgroundColor" name="bgBoxChatLeft"/>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="ARr-v2-39k" secondAttribute="bottom" constant="4" id="Lxv-lK-UV5"/>
+                    <constraint firstAttribute="bottom" secondItem="ARr-v2-39k" secondAttribute="bottom" constant="50" id="Lxv-lK-UV5"/>
                     <constraint firstItem="ARr-v2-39k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="hbI-MG-ZGJ"/>
-                    <constraint firstItem="ARr-v2-39k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="o0x-Jl-P58"/>
-                    <constraint firstAttribute="trailing" secondItem="ARr-v2-39k" secondAttribute="trailing" constant="16" id="th7-qJ-82p"/>
+                    <constraint firstItem="ARr-v2-39k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="o0x-Jl-P58"/>
+                    <constraint firstAttribute="trailing" secondItem="ARr-v2-39k" secondAttribute="trailing" constant="8" id="th7-qJ-82p"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

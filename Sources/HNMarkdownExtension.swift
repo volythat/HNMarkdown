@@ -99,16 +99,20 @@ extension HNMarkdown {
     }
 }
 extension UIFont {
-    class func monoRegular(size:CGFloat)->UIFont{
-        return UIFont(name: "SpaceMono-Regular", size: size) ?? UIFont.systemFont(ofSize: size)
+
+    class func fontWithTraits(from fontName: String, size: CGFloat, traits: UIFontDescriptor.SymbolicTraits = []) -> UIFont? {
+        guard let baseFont = UIFont(name: fontName, size: size) else { return nil }
+        let descriptor = baseFont.fontDescriptor.withSymbolicTraits(traits)
+        return descriptor.flatMap { UIFont(descriptor: $0, size: size) }
     }
-    class func register(){
-        guard let asset = NSDataAsset(name: "SpaceMono-Regular", bundle: Bundle.module),
-              let provider = CGDataProvider(data: asset.data as NSData),
-              let font = CGFont(provider),
-              CTFontManagerRegisterGraphicsFont(font, nil) else {
-            print("register font error")
-            return
-        }
+    
+    class func fontRegular(_ name:String,size:CGFloat)->UIFont{
+        return fontWithTraits(from: name, size: size) ?? UIFont.systemFont(ofSize: size)
+    }
+    class func fontBold(_ name:String,size:CGFloat)->UIFont{
+        return fontWithTraits(from: name, size: size, traits: .traitBold) ?? UIFont.boldSystemFont(ofSize: size)
+    }
+    class func fontItalic(_ name:String,size:CGFloat)->UIFont{
+        return fontWithTraits(from: name, size: size, traits: .traitItalic) ?? UIFont.italicSystemFont(ofSize: size)
     }
 }

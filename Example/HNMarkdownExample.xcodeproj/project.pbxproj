@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1EB039DA2C93EA8800A6317C /* SecularOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EB039D92C93EA8800A6317C /* SecularOne-Regular.ttf */; };
+		1EDBF7162DB5E86500266E5F /* TBChatAssistantCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EDBF7152DB5E86500266E5F /* TBChatAssistantCell2.xib */; };
+		1EDBF7172DB5E86500266E5F /* TBChatAssistantCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDBF7142DB5E86500266E5F /* TBChatAssistantCell2.swift */; };
 		B20CB6B32A0C9407002FB5CE /* HNMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = B20CB6B22A0C9407002FB5CE /* HNMarkdown */; };
 		B23AE1CD2A0B349D008B05AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AE1CC2A0B349D008B05AB /* AppDelegate.swift */; };
 		B23AE1CF2A0B349D008B05AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23AE1CE2A0B349D008B05AB /* SceneDelegate.swift */; };
@@ -21,7 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1EB039D92C93EA8800A6317C /* SecularOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SecularOne-Regular.ttf"; sourceTree = "<group>"; };
+		1EDBF7142DB5E86500266E5F /* TBChatAssistantCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBChatAssistantCell2.swift; sourceTree = "<group>"; };
+		1EDBF7152DB5E86500266E5F /* TBChatAssistantCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBChatAssistantCell2.xib; sourceTree = "<group>"; };
 		B20CB6B02A0C9336002FB5CE /* HNMarkdown */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HNMarkdown; path = ..; sourceTree = "<group>"; };
 		B23AE1C92A0B349D008B05AB /* HNMarkdownExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HNMarkdownExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B23AE1CC2A0B349D008B05AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,10 +87,11 @@
 			isa = PBXGroup;
 			children = (
 				B23AE1CC2A0B349D008B05AB /* AppDelegate.swift */,
-				1EB039D92C93EA8800A6317C /* SecularOne-Regular.ttf */,
 				B23AE1CE2A0B349D008B05AB /* SceneDelegate.swift */,
 				B2E317E82A0B8DFB0017AF2F /* TBFeatureCodeResponseCell.swift */,
 				B2E317E72A0B8DFB0017AF2F /* TBFeatureCodeResponseCell.xib */,
+				1EDBF7142DB5E86500266E5F /* TBChatAssistantCell2.swift */,
+				1EDBF7152DB5E86500266E5F /* TBChatAssistantCell2.xib */,
 				B23AE1D02A0B349D008B05AB /* ViewController.swift */,
 				B23AE1D22A0B349D008B05AB /* Main.storyboard */,
 				B23AE1D52A0B349F008B05AB /* Assets.xcassets */,
@@ -164,9 +167,9 @@
 			files = (
 				B23AE1D92A0B349F008B05AB /* LaunchScreen.storyboard in Resources */,
 				B2E317E92A0B8DFB0017AF2F /* TBFeatureCodeResponseCell.xib in Resources */,
+				1EDBF7162DB5E86500266E5F /* TBChatAssistantCell2.xib in Resources */,
 				B23AE1D62A0B349F008B05AB /* Assets.xcassets in Resources */,
 				B23AE1D42A0B349D008B05AB /* Main.storyboard in Resources */,
-				1EB039DA2C93EA8800A6317C /* SecularOne-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +183,7 @@
 				B26EFA392A36FF9D00CC77D6 /* ViewController2.swift in Sources */,
 				B23AE1D12A0B349D008B05AB /* ViewController.swift in Sources */,
 				B23AE1CD2A0B349D008B05AB /* AppDelegate.swift in Sources */,
+				1EDBF7172DB5E86500266E5F /* TBChatAssistantCell2.swift in Sources */,
 				B2E317EA2A0B8DFB0017AF2F /* TBFeatureCodeResponseCell.swift in Sources */,
 				B23AE1CF2A0B349D008B05AB /* SceneDelegate.swift in Sources */,
 			);

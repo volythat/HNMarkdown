@@ -35,6 +35,7 @@ class HNBlockCodeLabel : UITextView {
         isEditable = false
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
+        
         self.textColor = options.colorText
         self.text = item.content
         self.font = options.font
@@ -49,7 +50,7 @@ class HNBlockCodeLabel : UITextView {
             self.attributedText = self.setAttrParagraph(text: item.content)
         }
         sizeToFit()
-        
+
     }
 
     //MARK: - FUNC

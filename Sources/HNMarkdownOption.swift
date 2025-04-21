@@ -11,12 +11,28 @@ import Splash
 
 public class HNMarkdownOption {
     public var fontSize : CGFloat = 15
-    public var font : UIFont = UIFont.systemFont(ofSize: 15)
-    public var fontBold : UIFont = UIFont.boldSystemFont(ofSize: 15)
-    public var fontItalic : UIFont  = UIFont.italicSystemFont(ofSize: 15)
-    public var fontQuote : UIFont = UIFont.monoRegular(size: 15)
-    public var fontCode : UIFont = UIFont.monoRegular(size: 13)
-    public var fontLink : UIFont = UIFont.boldSystemFont(ofSize: 15)
+    public var fontName : String = "HelveticaNeue"
+    
+    var font : UIFont {
+        get {
+            return UIFont.fontRegular(fontName, size: fontSize)
+        }
+    }
+    var fontBold : UIFont  {
+        get {
+            return UIFont.fontBold(fontName, size: fontSize)
+        }
+    }
+    var fontItalic : UIFont  {
+        get {
+            return UIFont.fontBold(fontName, size: fontSize)
+        }
+    }
+    var fontLink : UIFont {
+        get {
+            return UIFont.fontBold(fontName, size: fontSize)
+        }
+    }
     
     var fontHeader6 : UIFont {
         get {
@@ -48,6 +64,8 @@ public class HNMarkdownOption {
             return fontBold.withSize(fontSize + 11)
         }
     }
+    public var fontQuote : UIFont = UIFont.monospacedSystemFont(ofSize: 15, weight: .regular)
+    public var fontCode : UIFont = UIFont.monospacedSystemFont(ofSize: 15, weight: .regular)
     
     
     public var blockBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
@@ -75,7 +93,7 @@ public class HNMarkdownOption {
     
     public var themeForCode : Theme {
         return Theme(
-            font: Font(size: self.fontSize),
+            font: Font(size: self.fontSize - 1),
             plainTextColor: self.colorText,
             tokenColors: [
                 .keyword: Color(named: "colorKeyword", in: Bundle.module, compatibleWith: nil)!,

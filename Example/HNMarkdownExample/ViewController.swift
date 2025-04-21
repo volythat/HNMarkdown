@@ -187,7 +187,7 @@ Lưu ý:
 - Hai
 - Ba
 
-Đây là mã C dùng để giải phương trình bậc 2 có dạng \\( ax^2 + bx + c = 0 \\). Mã này tính toán nghiệm của phương trình dựa trên các hệ số a, b và c.
+Đây là mã C dùng để <f>giải</f> phương trình bậc 2 có dạng \\( ax^2 + bx + c = 0 \\). Mã này tính toán nghiệm của phương trình dựa trên các hệ số a, b và c.
 """
     let content = """
 Đây là mã C dùng để giải phương trình bậc 2 có dạng \\( ax^2 + bx + c = 0 \\). Mã này tính toán nghiệm của phương trình dựa trên các hệ số a, b và c:
@@ -258,6 +258,7 @@ Bạn có thể biên dịch mã này trên bất kỳ trình biên dịch C nà
         // Do any additional setup after loading the view.
         
         self.tbView.register(TBFeatureCodeResponseCell.self)
+        self.tbView.register(TBChatAssistantCell2.self)
         
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -283,25 +284,32 @@ Bạn có thể biên dịch mã này trên bất kỳ trình biên dịch C nà
 
 extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TBFeatureCodeResponseCell", for: indexPath) as! TBFeatureCodeResponseCell
-        
-        cell.setUp(text: readMeContents)
-        cell.didSelectedLink = {[weak self] url in
-            self?.safari(url)
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TBFeatureCodeResponseCell", for: indexPath) as! TBFeatureCodeResponseCell
+            cell.setUp(text: content)
+            
+            cell.updatedHeight = {[weak self] in
+                print("updatedHeight")
+                self?.tbView.beginUpdates()
+                self?.tbView.endUpdates()
+            }
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TBChatAssistantCell2", for: indexPath) as! TBChatAssistantCell2
+            
+            cell.configure(message: readMeContents, speaking: false)
+            
+            cell.updatedHeight = {[weak self] in
+                print("updatedHeight")
+                self?.tbView.beginUpdates()
+                self?.tbView.endUpdates()
+            }
+            return cell
         }
-        cell.didSelectedImage = {[weak self] image in
-            print("selected image")
-        }
-        cell.updatedHeight = {[weak self] in
-            print("updatedHeight")
-            self?.tbView.beginUpdates()
-            self?.tbView.endUpdates()
-        }
-        return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

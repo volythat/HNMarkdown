@@ -46,7 +46,6 @@ public class HNMarkdown : UIView {
             v.removeFromSuperview()
         }
         
-        UIFont.register()
         let document = Document(parsing: markdownText)
         items = []
         
@@ -280,6 +279,7 @@ public class HNMarkdown : UIView {
             }else{
                 let label = HNMarkdownItemView(options: self.options)
                 self.addSubview(label)
+                label.setUp(item: item)
                 label.snp.makeConstraints { make in
                     make.leading.equalToSuperview().offset(self.options.padding)
                     make.trailing.equalToSuperview().offset(-self.options.padding)
@@ -293,7 +293,6 @@ public class HNMarkdown : UIView {
                         make.bottom.equalToSuperview().offset(-self.options.padding)
                     }
                 }
-                label.setUp(item: item)
                 
                 label.didSelectedLink = { [weak self] url in
                     self?.didSelectedLink?(url)

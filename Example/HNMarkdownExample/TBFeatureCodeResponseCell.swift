@@ -37,11 +37,11 @@ class TBFeatureCodeResponseCell: UITableViewCell {
             viewContent?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            let options = HNMarkdownOption(widthView: UIScreen.main.bounds.size.width - 32)
+            let options = HNMarkdownOption(widthView: UIScreen.main.bounds.size.width - 16)
             options.padding = 8
             options.turnOnLatex = true
             options.fontSize = 15
-            options.fontLink = UIFont.init(name: "SecularOne-Regular", size: 18)!
+            options.fontName = "HelveticaNeue"
             
             self.viewContent?.options = options
             self.viewContent?.setUp(markdownText: text,isDebug: true)
