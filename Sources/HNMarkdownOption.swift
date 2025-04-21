@@ -28,11 +28,6 @@ public class HNMarkdownOption {
             return UIFont.fontBold(fontName, size: fontSize)
         }
     }
-    var fontLink : UIFont {
-        get {
-            return UIFont.fontBold(fontName, size: fontSize)
-        }
-    }
     
     var fontHeader6 : UIFont {
         get {
@@ -66,6 +61,7 @@ public class HNMarkdownOption {
     }
     public var fontQuote : UIFont = UIFont.monospacedSystemFont(ofSize: 15, weight: .regular)
     public var fontCode : UIFont = UIFont.monospacedSystemFont(ofSize: 15, weight: .regular)
+    public var fontLink : UIFont = UIFont.monospacedSystemFont(ofSize: 15, weight: .regular)
     
     
     public var blockBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
