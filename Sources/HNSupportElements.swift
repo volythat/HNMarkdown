@@ -53,7 +53,10 @@ enum HNSupportElements : String {
             return from
             
         case .inlinecode:
-            return " <f>" + from + "</f> "
+            let f = from
+                .replacingOccurrences(of: "<", with: "&lt;")
+                .replacingOccurrences(of: ">", with: "&gt;")
+            return " <f>" + f + "</f> "
         case .link:
             return ""
         case .quote:

@@ -62,7 +62,7 @@ class TBChatAssistantCell2: UITableViewCell {
         self.viewMarkdown?.didSelectedImage = { [weak self] image in
             self?.didTapImage?(image)
         }
-        self.viewMarkdown?.setUp(markdownText: message,isDebug: false)
+        self.viewMarkdown?.setUp(markdownText: message,isDebug: true)
         self.heightOfButtons.constant = 8
     }
     

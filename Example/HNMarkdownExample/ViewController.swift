@@ -190,50 +190,49 @@ Lưu ý:
 Đây là mã C dùng để <f>giải</f> phương trình bậc 2 có dạng \\( ax^2 + bx + c = 0 \\). Mã này tính toán nghiệm của phương trình dựa trên các hệ số a, b và c.
 """
     let content = """
-Đây là mã C dùng để giải phương trình bậc 2 có dạng \\( ax^2 + bx + c = 0 \\). Mã này tính toán nghiệm của phương trình dựa trên các hệ số a, b và c:
-
+Dưới đây là một đoạn mã C để giải phương trình bậc 2 có dạng ax² + bx + c = 0. Chương trình sẽ tính toán nghiệm `<math.h>` của phương trình và in ra các nghiệm (nếu có).
 ```c
 #include <stdio.h>
 #include <math.h>
 
 int main() {
     double a, b, c;
-    printf("Nhập vào hệ số a: ");
+    double discriminant, x1, x2;
+
+    // Nhập hệ số a, b, c từ người dùng
+    printf("Nhap he so a: ");
     scanf("%lf", &a);
-    printf("Nhập vào hệ số b: ");
-    scanf("%lf", &b);
-    printf("Nhập vào hệ số c: ");
+    printf("Nhap he so b: ");
+    scanf("%lf &b);
+    printf("Nhap he so c: ");
     scanf("%lf", &c);
 
-    // Kiểm tra xem a có bằng 0 hay không
+    // Kiểm tra nếu a bằng 0, phương trình không phải là bậc 2
     if (a == 0) {
         if (b == 0) {
             if (c == 0) {
-                printf("Phương trình vô số nghiệm.\n");
+                printf("Phuong trinh co vo so nghiem.\n");
             } else {
-                printf("Phương trình vô nghiệm.\n");
+                printf("Phuong trinh vo nghiem.\n");
             }
         } else {
-            // Phương trình bậc nhất bx + c = 0
-            double x = -c / b;
-            printf("Nghiệm của phương trình bậc nhất là: x = %.2lf\n", x);
+            x1 = -c / b;
+            printf("Phuong trinh co mot nghiem: x = %.2lf\n", x1);
         }
     } else {
-        // Tính delta
-        double delta = b * b - 4 * a * c;
+        // Tính toán discriminant
+        discriminant = b * b - 4 * a * c;
 
-        if (delta > 0) {
-            double x1 = (-b + sqrt(delta)) / (2 * a);
-            double x2 = (-b - sqrt(delta)) / (2 * a);
-            printf("Phương trình có hai nghiệm phân biệt:\n");
-            printf("Nghiệm thứ nhất: x1 = %.2lf\n", x1);
-            printf("Nghiệm thứ hai: x2 = %.2lf\n", x2);
-        } else if (delta == 0) {
-            double x = -b / (2 * a);
-            printf("Phương trình có nghiệm kép:\n");
-            printf("Nghiệm: x = %.2lf\n", x);
+        // Kiểm tra discriminant để tìm nghiệm
+        if (discriminant > 0) {
+            x1 = (-b + sqrt(discriminant)) / (2 * a);
+            x2 = (-b - sqrt(discriminant)) / (2 * a);
+            printf("Phuong trinh co hai nghiem phan biet: x1 = %.2lf, x2 = %.2lf\n", x1, x2);
+        } else if (discriminant == 0) {
+            x1 = -b / (2 * a);
+            printf("Phuong trinh co nghiem kep: x = %.2lf\n", x1);
         } else {
-            printf("Phương trình vô nghiệm (delta < 0).\n");
+            printf("Phuong trinh vo nghiem.\n");
         }
     }
 
@@ -241,16 +240,21 @@ int main() {
 }
 ```
 
-### Giải thích mã:
-- Chương trình bắt đầu bằng việc khai báo các biến cho hệ số `a`, `b`, và `c`.
-- Sau đó đọc các hệ số này từ người dùng.
-- Kiểm tra xem `a` có bằng 0 hay không để xác định xem đó có phải là phương trình bậc 2 hay không.
-- Nếu `a` khác 0, tính giá trị delta (định thức) để xác định số nghiệm của phương trình:
-  - Nếu delta dương, phương trình có hai nghiệm phân biệt.
-  - Nếu delta bằng 0, phương trình có một nghiệm kép.
-  - Nếu delta âm, phương trình không có nghiệm thực.
+### Hướng dẫn sử dụng chương trình:
+1. Biên dịch mã nguồn trên bằng một trình biên dịch C, ví dụ: `gcc`:
+  ```bash
+   gcc -o giai_phuong_trinh_bac_2 giai_phuong_trinh_bac_2.c -lm
+  ```
+   2. Chạy chương trình:
+  ```bash
+   ./giai_phuong_trinh_bac_2
+  ```
+   3. Nhập các hệ số a, b, c khi được yêu cầu.
 
-Bạn có thể biên dịch mã này trên bất kỳ trình biên dịch C nào và thử nghiệm với các giá trị khác nhau cho a, b và c.
+### Chú thích `<math.h>`:
+- Chương trình sử dụng hàm `sqrt` từ thư viện `<math.h>` để tính căn bậc hai.
+- Mã kiểm các trường hợp: phương trình bậc 2, phương trình bậc 1, và phương trình không có nghiệm.
+- Nghiệm sẽ được in ra với độ chính xác 2 chữ số sau dấu thập phân.
 """
 
     override func viewDidLoad() {
