@@ -16,6 +16,7 @@ class HNMarkdownItemView : UIView {
     var imageView : HNImageView? = nil
     var headerCode : HNHeaderBlockCode? = nil
     var latex : HNLatexLabel? = nil
+    var isLastItem : Bool = false
     
     var item : HNMarkDownItem?
     var options : HNMarkdownOption!
@@ -54,6 +55,7 @@ class HNMarkdownItemView : UIView {
 //        print("item content = \(item.content)")
         if item.type == .code {
             label = HNBlockCodeLabel(item: item, options: options)
+            label?.isLastItem = isLastItem
             self.addSubview(label!)
             label?.snp.makeConstraints { make in
                 make.top.equalToSuperview().offset(30)
@@ -123,6 +125,7 @@ class HNMarkdownItemView : UIView {
         }else{
             
             label = HNBlockCodeLabel(item: item, options: options)
+            label?.isLastItem = isLastItem
             self.addSubview(label!)
             label?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()

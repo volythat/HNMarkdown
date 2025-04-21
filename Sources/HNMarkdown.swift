@@ -292,7 +292,7 @@ public class HNMarkdown : UIView {
                         make.bottom.equalToSuperview().offset(-self.options.padding)
                     }
                 }
-                
+                label.isLastItem = index == items.count - 1
                 label.didSelectedLink = { [weak self] url in
                     self?.didSelectedLink?(url)
                 }

@@ -13,6 +13,7 @@ class HNBlockCodeLabel : UITextView {
     
     var item : HNMarkDownItem!
     var options : HNMarkdownOption!
+    var isLastItem : Bool = false
 
     init(item: HNMarkDownItem, options: HNMarkdownOption) {
         super.init(frame: .zero, textContainer: nil)
@@ -35,7 +36,6 @@ class HNBlockCodeLabel : UITextView {
         isEditable = false
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
-        textContainerInset = UIEdgeInsets(top: 0, left:0, bottom: 8, right: 0)
         
         self.textColor = options.colorText
         self.text = item.content
@@ -48,7 +48,11 @@ class HNBlockCodeLabel : UITextView {
         }else if item.type == .image {
             
         }else{
-            self.attributedText = self.setAttrParagraph(text: item.content + "\n")
+            if isLastItem {
+                self.attributedText = self.setAttrParagraph(text: item.content + "\n")
+            }else{
+                self.attributedText = self.setAttrParagraph(text: item.content)
+            }
         }
         
         sizeToFit()
