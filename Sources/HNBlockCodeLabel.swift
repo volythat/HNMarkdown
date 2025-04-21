@@ -35,7 +35,7 @@ class HNBlockCodeLabel : UITextView {
         isEditable = false
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
-        textContainerInset = UIEdgeInsets(top: 8, left:0, bottom: 8, right: 0)
+        textContainerInset = UIEdgeInsets(top: 0, left:0, bottom: 8, right: 0)
         
         self.textColor = options.colorText
         self.text = item.content
@@ -48,16 +48,10 @@ class HNBlockCodeLabel : UITextView {
         }else if item.type == .image {
             
         }else{
-            self.attributedText = self.setAttrParagraph(text: item.content)
+            self.attributedText = self.setAttrParagraph(text: item.content + "\n")
         }
-        let targetWidth = options.widthContentView
-        let size = sizeThatFits(CGSize(width: targetWidth, height: .greatestFiniteMagnitude))
-        frame = CGRect(x: 0, y: 0, width: targetWidth, height: contentSize.height + 16)
-//        sizeToFit()
-        if item.type == .text {
-            print("size = \(size) -- screen = \(UIScreen.main.bounds.width)")
-            print("height = \(frame.height)")
-        }
+        
+        sizeToFit()
     }
 
     //MARK: - FUNC
