@@ -49,7 +49,7 @@ class HNBlockCodeLabel : UITextView {
             
         }else{
             if isLastItem {
-                self.attributedText = self.setAttrParagraph(text: item.content + "\n")
+                self.attributedText = self.setAttrParagraph(text: item.content)
             }else{
                 self.attributedText = self.setAttrParagraph(text: item.content)
             }
@@ -65,6 +65,7 @@ class HNBlockCodeLabel : UITextView {
         let baseStyle = Style {
             $0.font = self.options.font
             $0.color = self.options.colorText
+            $0.minimumLineHeight = self.options.font.lineHeight
         }
         let quote = Style {
             $0.font = self.options.fontQuote
