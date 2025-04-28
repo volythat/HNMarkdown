@@ -28,8 +28,12 @@ extension String {
         var str = self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         if str.hasPrefix(element.rawValue) , str.hasSuffix(element.rawValue) {
-            str.removeFirst(element.rawValue.count)
-            str.removeLast(element.rawValue.count)
+            if str.contains(element.rawValue){
+                str.removeFirst(element.rawValue.count)
+            }
+            if str.contains(element.rawValue){
+                str.removeLast(element.rawValue.count)
+            }
         }
 
         return element.addTag(from: str)
