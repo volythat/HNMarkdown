@@ -40,8 +40,6 @@ class TBChatAssistantCell2: UITableViewCell {
             viewMarkdown?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            
-            
         }
         let width : CGFloat = UIScreen.main.bounds.width - 16
         let options = HNMarkdownOption(widthView: width)
@@ -52,10 +50,6 @@ class TBChatAssistantCell2: UITableViewCell {
         
         self.viewMarkdown?.options = options
         
-        self.viewMarkdown?.updatedHeight = { [weak self] height in
-            self?.updatedHeight?()
-        }
-
         self.viewMarkdown?.didSelectedLink = { [weak self] url in
             self?.didTapUrl?(url)
         }

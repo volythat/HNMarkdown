@@ -9,57 +9,57 @@ import Foundation
 import UIKit
 import Markdown
 
-class HNBlockTableView : UIStackView {
-    
-    var item : HNMarkDownItem!
-    var options : HNMarkdownOption!
-    
-    init(item: HNMarkDownItem, options: HNMarkdownOption) {
-        super.init(frame: .zero)
-        self.item = item
-        self.options = options
-        self.axis = .vertical
-        self.spacing = 1
-        self.distribution = .fillEqually
-        self.backgroundColor = options.colorBorderTable
-        self.layer.borderColor = options.colorBorderTable.cgColor
-        self.layer.borderWidth = 1
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    //MARK: - SETUP
-    func setUp(){
-        addHeader()
-    }
-    
-    //MARK: - LAYOUT
-    func addHeader(){
-        if let cells = item?.head?.cells {
-            let row = HNTableViewCell(options: self.options)
-            row.addColumn(cells: cells.map{$0.plainText},isHeader: true,rowIndex: 0,widthOfColumn: 0)
-            self.addArrangedSubview(row)
-        }
-        addRow()
-    }
-    func addRow(){
-        if let rows = item?.body?.rows {
-            for (index,row) in rows.enumerated() {
-                let cell = HNTableViewCell(options: self.options)
-                cell.addColumn(cells: row.cells.map{$0.plainText},isHeader: false,rowIndex: index,widthOfColumn: 0)
-                self.addArrangedSubview(cell)
-            }
-        }
-    }
-    
-    //MARK: - FUNC
-
-    
-    //MARK: - ACTION
-    
-}
+//class HNBlockTableView : UIStackView {
+//    
+//    var item : HNMarkDownItem!
+//    var options : HNMarkdownOption!
+//    
+//    init(item: HNMarkDownItem, options: HNMarkdownOption) {
+//        super.init(frame: .zero)
+//        self.item = item
+//        self.options = options
+//        self.axis = .vertical
+//        self.spacing = 1
+//        self.distribution = .fillEqually
+//        self.backgroundColor = options.colorBorderTable
+//        self.layer.borderColor = options.colorBorderTable.cgColor
+//        self.layer.borderWidth = 1
+//    }
+//    
+//    required init(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//    
+//    //MARK: - SETUP
+//    func setUp(){
+//        addHeader()
+//    }
+//    
+//    //MARK: - LAYOUT
+//    func addHeader(){
+//        if let cells = item?.head?.cells {
+//            let row = HNTableViewCell(options: self.options)
+//            row.addColumn(cells: cells.map{$0.plainText},isHeader: true,rowIndex: 0,widthOfColumn: 0)
+//            self.addArrangedSubview(row)
+//        }
+//        addRow()
+//    }
+//    func addRow(){
+//        if let rows = item?.body?.rows {
+//            for (index,row) in rows.enumerated() {
+//                let cell = HNTableViewCell(options: self.options)
+//                cell.addColumn(cells: row.cells.map{$0.plainText},isHeader: false,rowIndex: index,widthOfColumn: 0)
+//                self.addArrangedSubview(cell)
+//            }
+//        }
+//    }
+//    
+//    //MARK: - FUNC
+//
+//    
+//    //MARK: - ACTION
+//    
+//}
 class HNTableViewCell : UIStackView {
     var options : HNMarkdownOption!
     var heightRow : CGFloat = 0
@@ -107,7 +107,6 @@ class HNTableViewCell : UIStackView {
             lb.backgroundColor = options.codeBackground
         }
         lb.sizeToFit()
-  
 
         return lb
     }

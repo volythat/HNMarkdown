@@ -23,7 +23,6 @@ class HNMarkdownItemView : UIView {
     
     public var didSelectedLink : ((_ url:URL)->Void)?
     public var didSelectedImage : ((_ image:UIImage)->Void)?
-    public var updatedHeight : ((_ height:CGFloat)->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,9 +90,6 @@ class HNMarkdownItemView : UIView {
             imageView?.didTaped = { [weak self] image in
                 self?.didSelectedImage?(image)
             }
-            imageView?.updatedHeight = { [weak self] in
-                self?.updatedHeight?(0)
-            }
             
         }else if item.type == .table {
             table = HNScrollTableView(options: options, item: item)
@@ -103,15 +99,10 @@ class HNMarkdownItemView : UIView {
                 make.bottom.equalToSuperview()
                 make.leading.equalToSuperview().offset(8)
                 make.trailing.equalToSuperview().offset(-8)
-                make.height.equalTo(50)
+                make.height.equalTo(40)
             }
             table?.setUp()
-            table?.didAdded = { [weak self] h in
-                self?.table?.snp.updateConstraints({ make in
-                    make.height.equalTo(h)
-                })
-                self?.updatedHeight?(h)
-            }
+
         }else if item.type == .latex {
             latex = HNLatexLabel(item: item, options: options)
             self.addSubview(self.latex!)

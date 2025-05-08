@@ -43,7 +43,7 @@ class HNImageView : UIImageView {
         self.snp.updateConstraints { make in
             make.height.equalTo(h)
         }
-        self.updatedHeight?()
+
     }
     
     func addTapable(){

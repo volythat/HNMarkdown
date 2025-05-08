@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by TrungOW on 28/6/24.
 //
@@ -14,7 +14,6 @@ class HNScrollTableView : UIScrollView {
     
     var widthOfColumn : CGFloat = 0
     var numberOfColumn : Int = 0
-    var didAdded : ((_ height:CGFloat)->Void)?
     
     var stackView : UIStackView = UIStackView()
     
@@ -36,6 +35,7 @@ class HNScrollTableView : UIScrollView {
         self.showsVerticalScrollIndicator = false
         self.showsHorizontalScrollIndicator = false
         
+
         stackView.axis = .vertical
         stackView.spacing = 1
         stackView.distribution = .fill
@@ -43,6 +43,7 @@ class HNScrollTableView : UIScrollView {
         stackView.layer.borderWidth = 1
         
         self.addSubview(self.stackView)
+        
         self.addHeader()
     }
     func addHeader(){
@@ -75,14 +76,19 @@ class HNScrollTableView : UIScrollView {
                 }
             }
             
-            DispatchQueue.main.async {
-                let w = self.widthOfColumn * CGFloat(self.numberOfColumn)
-                
+
+            let w = widthOfColumn * CGFloat(numberOfColumn)
+            if w > self.options.widthContentView {
                 self.stackView.frame = CGRect(x: 0, y: 0, width: w, height: h)
-                
-                self.contentSize = CGSize(width: w , height: h)
-                self.didAdded?(h)
+                contentSize = CGSize(width: w, height: h)
+            }else{
+                self.stackView.frame = CGRect(x: 0, y: 0, width: self.options.widthContentView, height: h)
+                contentSize = CGSize(width: self.options.widthContentView, height: h)
             }
+            stackView.layoutIfNeeded()
+            self.snp.updateConstraints({ make in
+                make.height.equalTo(h)
+            })
         }
     }
 

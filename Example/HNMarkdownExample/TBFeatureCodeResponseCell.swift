@@ -37,26 +37,22 @@ class TBFeatureCodeResponseCell: UITableViewCell {
             viewContent?.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
-            let options = HNMarkdownOption(widthView: UIScreen.main.bounds.size.width - 16)
-            options.padding = 8
-            options.turnOnLatex = true
+            
+            let width : CGFloat = UIScreen.main.bounds.width - 16
+            let options = HNMarkdownOption(widthView: width)
             options.fontSize = 15
             options.fontName = "HelveticaNeue"
+            options.padding = 8
+            options.turnOnLatex = true
             
             self.viewContent?.options = options
-            self.viewContent?.setUp(markdownText: text,isDebug: true)
-            self.viewContent?.didSelectedLink = {[weak self] url in
-                self?.didSelectedLink?(url)
-            }
-            self.viewContent?.didSelectedImage = {[weak self] image in
-                self?.didSelectedImage?(image)
-            }
-            self.viewContent?.updatedHeight = { [weak self] height in
-                if self?.heightOfContent != height {
-                    print("self.viewContent?.updatedHeight tableview")
-                    self?.updatedHeight?()
-                }
-            }
+        }
+        self.viewContent?.setUp(markdownText: text,isDebug: true)
+        self.viewContent?.didSelectedLink = {[weak self] url in
+            self?.didSelectedLink?(url)
+        }
+        self.viewContent?.didSelectedImage = {[weak self] image in
+            self?.didSelectedImage?(image)
         }
     }
 }

@@ -240,6 +240,9 @@ int main() {
 }
 ```
 
+![The San Juan Mountains are beautiful!](https://cdn.24h.com.vn/upload/1-2022/images/2022-03-16/baukrysie_275278910_3174792849424333_1380029197326773703_n-1647427653-670-width1440height1800.jpg "San Juan Mountains")
+
+
 ### Hướng dẫn sử dụng chương trình:
 1. Biên dịch mã nguồn trên bằng một trình biên dịch C, ví dụ: `gcc`:
   ```bash
@@ -296,22 +299,22 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TBFeatureCodeResponseCell", for: indexPath) as! TBFeatureCodeResponseCell
             cell.setUp(text: content)
             
-            cell.updatedHeight = {[weak self] in
-                print("updatedHeight")
-                self?.tbView.beginUpdates()
-                self?.tbView.endUpdates()
-            }
+//            cell.updatedHeight = {[weak self] in
+//                print("updatedHeight")
+//                self?.tbView.beginUpdates()
+//                self?.tbView.endUpdates()
+//            }
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "TBChatAssistantCell2", for: indexPath) as! TBChatAssistantCell2
             
             cell.configure(message: readMeContents, speaking: false)
             
-            cell.updatedHeight = {[weak self] in
-                print("updatedHeight")
-                self?.tbView.beginUpdates()
-                self?.tbView.endUpdates()
-            }
+//            cell.updatedHeight = {[weak self] in
+//                print("updatedHeight")
+//                self?.tbView.beginUpdates()
+//                self?.tbView.endUpdates()
+//            }
             return cell
         }
     }
