@@ -11,6 +11,8 @@ import UIKit
 class HNHeaderBlockCode : UIView {
     var options : HNMarkdownOption!
     
+    var lineView : UIView? = nil
+    
     init(options: HNMarkdownOption) {
         super.init(frame: .zero)
         self.options = options
@@ -21,15 +23,15 @@ class HNHeaderBlockCode : UIView {
     }
     
     func setUp(language:String,action: Selector,target:Any){
-        self.backgroundColor = options.codeHeaderBackground
+        self.backgroundColor = .clear
         
         let btn = UIButton(frame: .zero)
         btn.setImage(self.options.copyImage, for: .normal)
         btn.setImage(self.options.copyDoneImage, for: .selected)
-        btn.setTitle(" Copy", for: .normal)
-        btn.setTitle("Copied", for: .selected)
-        btn.setTitleColor(self.options.tintColorCopyButton, for: .normal)
-        btn.setTitleColor(self.options.tintColorCopyButton, for: .selected)
+//        btn.setTitle(" Copy", for: .normal)
+//        btn.setTitle("Copied", for: .selected)
+//        btn.setTitleColor(self.options.tintColorCopyButton, for: .normal)
+//        btn.setTitleColor(self.options.tintColorCopyButton, for: .selected)
         btn.tintColor = self.options.tintColorCopyButton
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 13)
         btn.addTarget(target , action: action, for: .touchUpInside)
@@ -50,5 +52,17 @@ class HNHeaderBlockCode : UIView {
             make.leading.equalToSuperview().offset(8)
         }
         labelTitle.sizeToFit()
+        self.addLineView()
+    }
+    
+    private func addLineView(){
+        lineView = UIView(frame: .zero)
+        lineView?.backgroundColor = options.lineBlockCodeBackground
+        addSubview(lineView!)
+        lineView?.snp.makeConstraints { make in
+            make.height.equalTo(2)
+            make.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview().offset(28)
+        }
     }
 }

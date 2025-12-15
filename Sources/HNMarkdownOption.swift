@@ -67,6 +67,7 @@ public class HNMarkdownOption {
     public var blockBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
     public var codeBackground = UIColor(named: "bgBlockCode",in: Bundle.module, compatibleWith: nil)!
     public var codeHeaderBackground = UIColor(named: "bgHeaderBlockCode",in: Bundle.module, compatibleWith: nil)!
+    public var lineBlockCodeBackground = UIColor(named: "bgLineBreak",in: Bundle.module, compatibleWith: nil)!
     public var colorText = UIColor(named: "defaultColorText",in: Bundle.module, compatibleWith: nil)!
     
     var colorTextQuote : UIColor {
